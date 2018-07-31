@@ -1,0 +1,19 @@
+{
+  "name": "profile-form",
+  "version": "0.0.1",
+  "description": "React component for managing user profiles",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtex/profile-form.git"
+  },
+  "author": "Gustavo Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vtex/profile-form/issues"
+  },
+  "homepage": "https://github.com/vtex/profile-form#readme"
+}
