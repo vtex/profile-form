@@ -1,19 +1,69 @@
 {
-  "name": "profile-form",
+  "name": "@vtex/profile-form",
   "version": "0.0.1",
   "description": "React component for managing user profiles",
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
+    "build:link": "npm link && watch 'npm run build' src",
+    "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
+    "addLocales": "cp -R -f src/locales/ lib/locales/",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "test": "jest --env=jsdom",
+    "test:coverage": "jest --env=jsdom --coverage",
+    "test:watch": "jest --env=jsdom --watch",
+    "prepublishOnly": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vtex/profile-form.git"
-  },
-  "author": "Gustavo Silva",
+  "repository": "https://github.com/vtex/profile-form",
+  "author": "Gustavo Silva (@akafts)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vtex/profile-form/issues"
+  "homepage": "https://github.com/vtex/profile-form",
+  "keywords": [
+    "react-component",
+    "vtex",
+    "profile"
+  ],
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]umd[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]es[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest.transform.js"
+    }
   },
-  "homepage": "https://github.com/vtex/profile-form#readme"
+  "devDependencies": {
+    "babel-plugin-add-react-displayname": "0.0.5",
+    "enzyme": "^3.3.0",
+    "jest": "^23.4.2",
+    "nwb": "^0.21.5",
+    "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.4"
+  },
+  "dependencies": {
+    "@vtex/styleguide": "^5.4.3",
+    "react": "^16.4.1",
+    "recompose": "^0.28.0"
+  }
 }
