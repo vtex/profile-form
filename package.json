@@ -29,6 +29,7 @@
   ],
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "testURL": "http://localhost",
     "testPathIgnorePatterns": [
       "/node_modules/",
       "<rootDir>/es/",
@@ -53,17 +54,21 @@
       "^.+\\.js$": "<rootDir>/jest.transform.js"
     }
   },
-  "devDependencies": {
-    "babel-plugin-add-react-displayname": "0.0.5",
-    "enzyme": "^3.3.0",
-    "jest": "^23.4.2",
-    "nwb": "^0.21.5",
-    "react-dom": "^16.4.1",
-    "react-hot-loader": "^4.3.4"
-  },
   "dependencies": {
     "@vtex/styleguide": "^5.4.3",
     "react": "^16.4.1",
+    "react-intl": "^2.4.0",
     "recompose": "^0.28.0"
+  },
+  "devDependencies": {
+    "babel-plugin-add-react-displayname": "0.0.5",
+    "babel-preset-react-app": "^3.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^22.4.4",
+    "jest-enzyme": "^6.0.2",
+    "nwb": "^0.21.5",
+    "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.4"
   }
 }
