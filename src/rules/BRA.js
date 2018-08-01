@@ -22,7 +22,7 @@ export default {
       name: 'document',
       maxLength: 50,
       label: 'cpf',
-      hidden: 'true',
+      hidden: true,
     },
   ],
 }
