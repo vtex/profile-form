@@ -39,8 +39,6 @@ class ProfileContainer extends Component {
 
     if (!profile) return null
 
-    removeValidation(profile)
-
     return (
       <div>
         {rules.fields.map(field => (
