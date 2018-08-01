@@ -16,14 +16,12 @@ class ProfileContainer extends Component {
     this.setState({ profile: addValidation(profile) })
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { profile: propProfile, onProfileChange } = this.props
-    const { profile: stateProfile } = this.state
+  componentDidUpdate(_, prevState) {
+    const { onProfileChange } = this.props
+    const { profile } = this.state
 
-    if (prevState.profile !== stateProfile && onProfileChange) {
-      onProfileChange(stateProfile)
-    } else if (prevProps.profile !== propProfile) {
-      this.setState({ profile: addValidation(propProfile) })
+    if (prevState.profile !== profile && onProfileChange) {
+      onProfileChange(profile)
     }
   }
 
