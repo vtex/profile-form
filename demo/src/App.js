@@ -10,20 +10,37 @@ class App extends Component {
   constructor(props) {
     super(props)
     addLocaleData(ptLocaleData)
+
+    this.state = {
+      profile: {
+        birthDate: null,
+        businessPhone: null,
+        corporateDocument: null,
+        corporateName: null,
+        document: null,
+        email: null,
+        firstName: 'Gustavo',
+        gender: null,
+        homePhone: null,
+        lastName: 'Silva',
+        stateRegistration: null,
+        tradeName: null,
+      },
+    }
   }
 
   render() {
+    const { profile } = this.state
+
     return (
       <div>
         <h3>ProfileForm demo:</h3>
         <IntlProvider locale={'pt-BR'} messages={ptTranslations}>
-          <ProfileContainer rules={mockRules} />
+          <ProfileContainer profile={profile} rules={mockRules} />
         </IntlProvider>
       </div>
     )
   }
 }
-
-App.propTypes = {}
 
 export default App
