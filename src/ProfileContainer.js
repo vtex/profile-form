@@ -4,6 +4,7 @@ import RuleShape from './propTypes/RuleShape'
 import ProfileShape from './propTypes/ProfileShape'
 import ProfileField from './ProfileField'
 import { addValidation } from './validateProfile'
+import defaultRules from './rules/default'
 
 class ProfileContainer extends Component {
   constructor(props) {
@@ -52,6 +53,10 @@ class ProfileContainer extends Component {
       </div>
     )
   }
+}
+
+ProfileContainer.defaultProps = {
+  rules: defaultRules,
 }
 
 ProfileContainer.propTypes = {
