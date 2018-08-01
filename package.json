@@ -66,11 +66,13 @@
     "babel-preset-react-app": "^3.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-react-intl": "^2.0.0",
     "jest": "^22.4.4",
     "jest-enzyme": "^6.0.2",
     "nwb": "^0.21.5",
     "react-dom": "^16.4.1",
-    "react-hot-loader": "^4.3.4"
+    "react-hot-loader": "^4.3.4",
+    "react-test-renderer": "^16.4.1"
   },
   "peerDependencies": {
     "vtex-tachyons": "^2.5.0"
