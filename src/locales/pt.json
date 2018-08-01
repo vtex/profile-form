@@ -1,0 +1,8 @@
+{
+  "profile-form.optional": "Opcional",
+
+  "profile-form.field.firstName": "Nome",
+  "profile-form.field.lastName": "Sobrenome",
+  "profile-form.field.gender": "Gênero",
+  "profile-form.field.cpf": "CPF"
+}
