@@ -58,7 +58,6 @@
     "@vtex/styleguide": "^5.4.3",
     "react": "^16.4.1",
     "react-intl": "^2.4.0",
-    "recompose": "^0.28.0",
     "vtex-tachyons": "^2.5.1"
   },
   "devDependencies": {
