@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import RuleShape from './propTypes/RuleShape'
+import ProfileShape from './propTypes/ProfileShape'
 import ProfileField from './ProfileField'
-import { addValidation, removeValidation } from './validateProfile'
+import { addValidation } from './validateProfile'
 
 class ProfileContainer extends Component {
   constructor(props) {
@@ -53,8 +55,8 @@ class ProfileContainer extends Component {
 }
 
 ProfileContainer.propTypes = {
-  rules: PropTypes.any.isRequired,
-  profile: PropTypes.any.isRequired,
+  rules: RuleShape.isRequired,
+  profile: ProfileShape.isRequired,
   onProfileChange: PropTypes.func,
 }
 

@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import Input from '@vtex/styleguide/lib/Input'
+import RuleFieldShape from './propTypes/RuleFieldShape'
+import ProfileFieldShape from './propTypes/ProfileFieldShape'
 
 const ProfileInput = ({ field, intl, data, onChange }) => {
   return (
@@ -34,8 +36,8 @@ const ProfileInput = ({ field, intl, data, onChange }) => {
 }
 
 ProfileInput.propTypes = {
-  field: PropTypes.any,
-  data: PropTypes.any,
+  field: RuleFieldShape.isRequired,
+  data: ProfileFieldShape.isRequired,
   onChange: PropTypes.func,
   intl: intlShape.isRequired,
 }

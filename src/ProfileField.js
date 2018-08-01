@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ProfileInput from './ProfileInput'
+import RuleFieldShape from './propTypes/RuleFieldShape'
+import ProfileFieldShape from './propTypes/ProfileFieldShape'
 
 class ProfileField extends Component {
   constructor(props) {
@@ -24,8 +26,8 @@ class ProfileField extends Component {
 }
 
 ProfileField.propTypes = {
-  field: PropTypes.any.isRequired,
-  data: PropTypes.any.isRequired,
+  field: RuleFieldShape.isRequired,
+  data: ProfileFieldShape.isRequired,
   onFieldUpdate: PropTypes.func.isRequired,
 }
 
