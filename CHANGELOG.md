@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.0] - 2018-08-01
+
+### Added
+
+- New `ProfileRules` component and tests
+- Default rules
+
 ## [0.2.0] - 2018-08-01
 
 ### Added
@@ -21,4 +28,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1.0] - 2018-07-31
 
 ### Added
+
 - Basic project structure

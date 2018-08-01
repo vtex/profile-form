@@ -17,12 +17,12 @@ export default {
       name: 'gender',
       maxLength: 30,
       label: 'gender',
+      hidden: true,
     },
     {
       name: 'document',
       maxLength: 50,
       label: 'cpf',
-      hidden: true,
     },
   ],
 }
