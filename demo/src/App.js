@@ -6,8 +6,6 @@ import ProfileContainer from '../../src/ProfileContainer'
 import ProfileRules from '../../src/ProfileRules'
 import 'vtex-tachyons'
 
-import defRules from '../../src/rules/default'
-
 class App extends Component {
   constructor(props) {
     super(props)
