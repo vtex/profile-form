@@ -5,6 +5,7 @@ import ptTranslations from '../../src/locales/pt'
 import ProfileContainer from '../../src/ProfileContainer'
 import ProfileRules from '../../src/ProfileRules'
 import 'vtex-tachyons'
+import ProfileSummary from './ProfileSummary'
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +37,8 @@ class App extends Component {
     }))
   }
 
+  handleSubmit = (valid, profile) => {}
+
   render() {
     const { profile, profileLocale } = this.state
 
@@ -57,6 +60,7 @@ class App extends Component {
           >
             <ProfileContainer profile={profile} />
           </ProfileRules>
+          <ProfileSummary profile={profile} />
         </IntlProvider>
       </div>
     )
