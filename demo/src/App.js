@@ -31,11 +31,9 @@ class App extends Component {
   }
 
   toggleLocale = () => {
-    if (this.state.profileLocale === 'pt-BR') {
-      this.setState({ profileLocale: 'en-US' })
-    } else {
-      this.setState({ profileLocale: 'pt-BR' })
-    }
+    this.setState(prevState => ({
+      profileLocale: prevState.profileLocale === 'pt-BR' ? 'en-US' : 'pt-BR',
+    }))
   }
 
   render() {
