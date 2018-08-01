@@ -60,8 +60,11 @@ class ProfileRules extends Component {
 }
 
 ProfileRules.propTypes = {
-  children: PropTypes.any.isRequired,
+  /** Components that will receive the rules */
+  children: PropTypes.element.isRequired,
+  /** The locale whose rules will be fetched and applied */
   locale: PropTypes.string.isRequired,
+  /** Functionality for importing the rule files */
   fetch: PropTypes.func.isRequired,
 }
 
