@@ -58,7 +58,8 @@
     "@vtex/styleguide": "^5.4.3",
     "react": "^16.4.1",
     "react-intl": "^2.4.0",
-    "recompose": "^0.28.0"
+    "recompose": "^0.28.0",
+    "vtex-tachyons": "^2.5.1"
   },
   "devDependencies": {
     "babel-plugin-add-react-displayname": "0.0.5",
@@ -70,5 +71,8 @@
     "nwb": "^0.21.5",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4"
+  },
+  "peerDependencies": {
+    "vtex-tachyons": "^2.5.0"
   }
 }
