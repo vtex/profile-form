@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import RuleShape from './propTypes/RuleShape'
 import ProfileShape from './propTypes/ProfileShape'
 import ProfileField from './ProfileField'
-import { addValidation } from './validateProfile'
+import { addValidation, removeValidation } from './validateProfile'
 import defaultRules from './rules/default'
+
+import Button from '@vtex/styleguide/lib/Button'
 
 class ProfileContainer extends Component {
   constructor(props) {
@@ -34,6 +36,17 @@ class ProfileContainer extends Component {
     }))
   }
 
+  handleSubmit = () => {
+    const { onSubmit } = this.props
+    const { profile } = this.state
+
+    //validate the entire form
+
+    if (onSubmit) {
+      onSubmit(true, removeValidation(profile))
+    }
+  }
+
   render() {
     const { rules } = this.props
     const { profile } = this.state
@@ -50,6 +63,9 @@ class ProfileContainer extends Component {
             onFieldUpdate={this.handleFieldUpdate}
           />
         ))}
+        <Button block size="small" onClick={this.handleSubmit}>
+          Submit form
+        </Button>
       </div>
     )
   }
@@ -66,6 +82,8 @@ ProfileContainer.propTypes = {
   profile: ProfileShape.isRequired,
   /** Function to be called when profile data changes */
   onProfileChange: PropTypes.func,
+  /** Function to be called upon form submission */
+  onSubmit: PropTypes.func,
 }
 
 export default ProfileContainer
