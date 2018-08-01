@@ -26,8 +26,11 @@ class ProfileField extends Component {
 }
 
 ProfileField.propTypes = {
+  /** Rules for the field this component represents */
   field: RuleFieldShape.isRequired,
+  /** Data to be displayed by this component */
   data: ProfileFieldShape.isRequired,
+  /** Function to be called when data changes */
   onFieldUpdate: PropTypes.func.isRequired,
 }
 

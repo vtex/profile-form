@@ -55,8 +55,11 @@ class ProfileContainer extends Component {
 }
 
 ProfileContainer.propTypes = {
+  /** Set of rules for this form */
   rules: RuleShape.isRequired,
+  /** Profile data to be managed */
   profile: ProfileShape.isRequired,
+  /** Function to be called when profile data changes */
   onProfileChange: PropTypes.func,
 }
 

@@ -19,9 +19,9 @@ const ProfileInput = ({ field, intl, data, onChange }) => {
         })}
         value={data.value || ''}
         errorMessage={
-          data.reason &&
+          data.error &&
           intl.formatMessage({
-            id: `profile-form.error.${data.reason}`,
+            id: `profile-form.error.${data.error}`,
           })
         }
         placeholder={
@@ -36,9 +36,13 @@ const ProfileInput = ({ field, intl, data, onChange }) => {
 }
 
 ProfileInput.propTypes = {
+  /** Rules for the field this input represents */
   field: RuleFieldShape.isRequired,
+  /** Data this input will display */
   data: ProfileFieldShape.isRequired,
-  onChange: PropTypes.func,
+  /** Function to be called when input changes */
+  onChange: PropTypes.func.isRequired,
+  /** React-intl utility */
   intl: intlShape.isRequired,
 }
 
