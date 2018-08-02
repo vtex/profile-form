@@ -7,5 +7,6 @@
   "profile-form.field.cpf": "CPF",
   "profile-form.field.ssn": "SSN",
 
-  "profile-form.error.EMPTY_FIELD": "Este campo é obrigatório."
+  "profile-form.error.EMPTY_FIELD": "Este campo é obrigatório.",
+  "profile-form.error.INVALID_FIELD": "Valor inválido."
 }

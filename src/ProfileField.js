@@ -24,6 +24,8 @@ class ProfileField extends Component {
   }
 
   applyValidation = (field, value) => {
+    if (field.required && (!value || !value.trim())) return 'EMPTY_FIELD'
+    if (field.validate && !field.validate(value)) return 'INVALID_FIELD'
     return null
   }
 

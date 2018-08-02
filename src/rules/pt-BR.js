@@ -24,6 +24,9 @@ export default {
       maxLength: 30,
       label: 'gender',
       required: true,
+      validate: value => {
+        return value === 'male' || value === 'female'
+      },
     },
   ],
 }
