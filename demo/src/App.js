@@ -70,7 +70,7 @@ class App extends Component {
                 <ProfileContainer
                   profile={profile}
                   onSubmit={this.handleSubmit}
-                  SubmitButton={onSubmit => (
+                  renderSubmitButton={onSubmit => (
                     <Button
                       block
                       variation="secondary"

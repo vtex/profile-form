@@ -86,7 +86,7 @@ ProfileContainer.propTypes = {
   /** Component to be used as input for the form fields */
   Input: PropTypes.func,
   /** Function returning a component to be used as a submit button */
-  SubmitButton: PropTypes.func,
+  renderSubmitButton: PropTypes.func,
 }
 
 export default ProfileContainer
