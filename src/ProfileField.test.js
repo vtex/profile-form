@@ -29,4 +29,69 @@ describe('ProfileField', () => {
     wrapper.instance().handleChange({ target: { value: 'Joe' } })
     expect(mockChange).toHaveBeenCalled()
   })
+
+  it('should mask data if necessary before passing up', () => {
+    const maskField = { ...mockField, mask: () => '999.999.999' }
+    const maskWrapper = shallow(
+      <ProfileField
+        field={maskField}
+        data={mockData}
+        onFieldUpdate={mockChange}
+        Input={StyleguideInput}
+      />,
+    )
+
+    maskWrapper.instance().handleChange({ target: { value: '123456789' } })
+    expect(mockChange).toHaveBeenCalledWith({
+      [maskField.name]: {
+        ...mockData,
+        value: '123.456.789',
+        error: null,
+      },
+    })
+  })
+
+  it('should validate touched fields before passing up', () => {
+    const valField = { ...mockField, required: true }
+    const valData = { ...mockData, touched: true }
+    const valWrapper = shallow(
+      <ProfileField
+        field={valField}
+        data={valData}
+        onFieldUpdate={mockChange}
+        Input={StyleguideInput}
+      />,
+    )
+
+    valWrapper.instance().handleChange({ target: { value: '' } })
+    expect(mockChange).toHaveBeenCalledWith({
+      [valField.name]: {
+        ...valData,
+        value: '',
+        error: 'EMPTY_FIELD',
+      },
+    })
+  })
+
+  it('should not validate pristine fields before passing up', () => {
+    const valField = { ...mockField, required: true }
+    const valData = { ...mockData, touched: false }
+    const valWrapper = shallow(
+      <ProfileField
+        field={valField}
+        data={valData}
+        onFieldUpdate={mockChange}
+        Input={StyleguideInput}
+      />,
+    )
+
+    valWrapper.instance().handleChange({ target: { value: '' } })
+    expect(mockChange).toHaveBeenCalledWith({
+      [valField.name]: {
+        ...valData,
+        value: '',
+        error: null,
+      },
+    })
+  })
 })
