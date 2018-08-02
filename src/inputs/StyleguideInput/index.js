@@ -30,6 +30,7 @@ const StyleguideInput = ({ field, intl, data, onChange }) => {
             : null
         }
         onChange={onChange}
+        maxLength={field.maxLength}
       />
     </div>
   )
