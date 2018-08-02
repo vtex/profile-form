@@ -7,6 +7,7 @@ import {
   addValidation,
   removeValidation,
   applyFullValidation,
+  isProfileValid,
 } from './validateProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
@@ -44,16 +45,15 @@ class ProfileContainer extends Component {
     const { profile } = this.state
 
     const validatedProfile = applyFullValidation(rules, profile)
-    this.setState(prevState => ({
-      profile: { ...prevState.profile, ...validatedProfile },
-    }))
+    this.setState({
+      profile: validatedProfile,
+    })
 
     if (onSubmit) {
-      const isProfileValid =
-        Object.keys(validatedProfile).find(
-          fieldName => validatedProfile[fieldName].error != null,
-        ) == null
-      onSubmit(isProfileValid, removeValidation(profile))
+      onSubmit(
+        isProfileValid(validatedProfile),
+        removeValidation(validatedProfile),
+      )
     }
   }
 

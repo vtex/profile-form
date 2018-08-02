@@ -28,5 +28,45 @@ export default {
         return value === 'male' || value === 'female'
       },
     },
+    {
+      name: 'birthDate',
+      maxLength: 30,
+      label: 'birthDate',
+    },
+    {
+      name: 'homePhone',
+      maxLength: 30,
+      label: 'homePhone',
+    },
+    {
+      name: 'businessPhone',
+      maxLength: 30,
+      label: 'businessPhone',
+      hidden: true,
+    },
+    {
+      name: 'corporateDocument',
+      maxLength: 30,
+      label: 'cnpj',
+      hidden: true,
+    },
+    {
+      name: 'corporateName',
+      maxLength: 30,
+      label: 'corporateName',
+      hidden: true,
+    },
+    {
+      name: 'stateRegistration',
+      maxLength: 30,
+      label: 'stateRegistration',
+      hidden: true,
+    },
+    {
+      name: 'tradeName',
+      maxLength: 30,
+      label: 'tradeName',
+      hidden: true,
+    },
   ],
 }
