@@ -47,7 +47,7 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    const { rules, Input, SubmitButton } = this.props
+    const { rules, Input, renderSubmitButton } = this.props
     const { profile } = this.state
 
     if (!profile) return null
@@ -63,7 +63,7 @@ class ProfileContainer extends Component {
             Input={Input}
           />
         ))}
-        {SubmitButton && SubmitButton(this.handleSubmit)}
+        {renderSubmitButton && renderSubmitButton(this.handleSubmit)}
       </div>
     )
   }
