@@ -36,14 +36,24 @@ class ProfileContainer extends Component {
   }
 
   handleSubmit = () => {
-    const { onSubmit } = this.props
+    const { rules, onSubmit } = this.props
     const { profile } = this.state
 
     //validate the entire form
+    console.log(profile)
+    console.log(rules)
 
+<<<<<<< HEAD
     if (onSubmit) {
       onSubmit({ valid: true, profile: removeValidation(profile) })
     }
+=======
+    rules.map(field => {})
+
+    // if (onSubmit) {
+    //   onSubmit(true, removeValidation(profile))
+    // }
+>>>>>>> Extract mask and validation to other file
   }
 
   render() {

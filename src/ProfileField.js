@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { applyMask, applyValidation } from './validateProfile'
 import RuleFieldShape from './propTypes/RuleFieldShape'
 import ProfileFieldShape from './propTypes/ProfileFieldShape'
 
@@ -10,31 +11,17 @@ class ProfileField extends Component {
     const { field, data, onFieldUpdate } = this.props
     const { value } = e.target
 
-    const error = data.touched ? this.applyValidation(field, value) : null
-    const maskedValue = this.applyMask(field, value)
+    const error = data.touched ? applyValidation(field, value) : null
+    const maskedValue = applyMask(field, value)
 
     onFieldUpdate({ [field.name]: { ...data, value: maskedValue, error } })
   }
 
   handleBlur = () => {
     const { field, data, onFieldUpdate } = this.props
-    const error = this.applyValidation(field, data.value)
+    const error = applyValidation(field, data.value)
 
     onFieldUpdate({ [field.name]: { ...data, touched: true, error } })
-  }
-
-  applyValidation = (field, value) => {
-    if (field.required && (!value || !value.trim())) return 'EMPTY_FIELD'
-    if (field.validate && !field.validate(value)) return 'INVALID_FIELD'
-    return null
-  }
-
-  applyMask = (field, value) => {
-    if (field.mask) {
-      const mask = field.mask()
-      return msk.fit(value, mask)
-    }
-    return value
   }
 
   render() {
