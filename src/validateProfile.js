@@ -26,7 +26,7 @@ export function applyValidation(field, value) {
 }
 
 export function applyFullValidation(rules, profile) {
-  return Object.keys(profile)
+  const validatedProfile = Object.keys(profile)
     .map(fieldName => {
       const rule = rules.fields.find(rule => rule.name === fieldName)
       if (rule) {
@@ -35,10 +35,16 @@ export function applyFullValidation(rules, profile) {
       }
     })
     .reduce((acc, cur) => ({ ...acc, ...cur }), {})
+
+  return addFocusToFirstInvalidInput(validatedProfile)
 }
 
 export function isProfileValid(profile) {
   return (
     Object.keys(profile).find(field => profile[field].error != null) == null
   )
+}
+
+function addFocusToFirstInvalidInput(profile) {
+  const firstInvalid = Object.keys(profile).find(fieldName => {})
 }

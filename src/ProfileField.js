@@ -4,9 +4,15 @@ import { applyMask, applyValidation } from './validateProfile'
 import RuleFieldShape from './propTypes/RuleFieldShape'
 import ProfileFieldShape from './propTypes/ProfileFieldShape'
 
-import msk from 'msk'
-
 class ProfileField extends Component {
+  componentDidUpdate() {
+    const { field, data, onFieldUpdate } = this.props
+    if (data.focus) {
+      console.log('hora de focar! ' + field.name)
+      onFieldUpdate({ [field.name]: { ...data, focus: false } })
+    }
+  }
+
   handleChange = e => {
     const { field, data, onFieldUpdate } = this.props
     const { value } = e.target
