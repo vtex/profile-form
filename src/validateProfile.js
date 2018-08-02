@@ -1,3 +1,5 @@
+import msk from 'msk'
+
 export function addValidation(profile) {
   return Object.keys(profile)
     .map(field => ({ [field]: { value: profile[field] } }))
