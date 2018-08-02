@@ -28,6 +28,7 @@ class App extends Component {
         tradeName: null,
       },
       profileLocale: 'pt-BR',
+      submitted: false,
     }
   }
 
@@ -37,30 +38,44 @@ class App extends Component {
     }))
   }
 
-  handleSubmit = (valid, profile) => {}
+  handleSubmit = (valid, profile) => {
+    console.log('submitted')
+
+    if (!valid) return
+    this.setState({ profile, submitted: true })
+  }
 
   render() {
-    const { profile, profileLocale } = this.state
+    const { profile, profileLocale, submitted } = this.state
 
     if (!profile) return null
 
     return (
-      <div>
+      <div className="pa4">
         <h3>ProfileForm demo:</h3>
-        <div className="mb6">
-          <button onClick={this.toggleLocale}>
-            Set rules to {profileLocale === 'pt-BR' ? 'en-US' : 'pt-BR'}
-          </button>
-        </div>
+        {!submitted && (
+          <div className="mb6">
+            <button onClick={this.toggleLocale}>
+              Set rules to {profileLocale === 'pt-BR' ? 'en-US' : 'pt-BR'}
+            </button>
+          </div>
+        )}
         <IntlProvider locale={'pt-BR'} messages={ptTranslations}>
-          <ProfileRules
-            key={profileLocale}
-            locale={profileLocale}
-            fetch={locale => import('../../src/rules/' + locale)}
-          >
-            <ProfileContainer profile={profile} />
-          </ProfileRules>
-          <ProfileSummary profile={profile} />
+          <div>
+            {!submitted && (
+              <ProfileRules
+                key={profileLocale}
+                locale={profileLocale}
+                fetch={locale => import('../../src/rules/' + locale)}
+              >
+                <ProfileContainer
+                  profile={profile}
+                  onSubmit={this.handleSubmit}
+                />
+              </ProfileRules>
+            )}
+            {submitted && <ProfileSummary profile={profile} />}
+          </div>
         </IntlProvider>
       </div>
     )
