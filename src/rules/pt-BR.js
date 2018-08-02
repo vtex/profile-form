@@ -1,4 +1,7 @@
 import moment from 'moment'
+import msk from 'msk'
+import Phone from '@vtex/phone'
+import brazil from '@vtex/phone/countries/BRA'
 
 export default {
   country: 'BRA',
@@ -19,7 +22,7 @@ export default {
       name: 'document',
       maxLength: 50,
       label: 'cpf',
-      mask: () => '999.999.999-99',
+      mask: value => msk.fit(value, '999.999.999-99'),
     },
     {
       name: 'gender',
@@ -30,13 +33,18 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      mask: () => '99/99/9999',
+      mask: value => msk.fit(value, '99/99/9999'),
       validate: value => moment(value, 'DD/MM/YYYY', true).isValid(),
     },
     {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      mask: value =>
+        value.length === 14
+          ? msk.fit(value, '(99) 9999-9999')
+          : msk.fit(value, '(99) 99999-9999'),
+      validate: value => Phone.validate(value, '55'),
     },
     {
       name: 'businessPhone',

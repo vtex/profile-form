@@ -1,5 +1,3 @@
-import msk from 'msk'
-
 export function addValidation(profile) {
   return Object.keys(profile)
     .map(field => ({ [field]: { value: profile[field] } }))
@@ -13,11 +11,7 @@ export function removeValidation(profile) {
 }
 
 export function applyMask(field, value) {
-  if (field.mask) {
-    const mask = field.mask()
-    return msk.fit(value, mask)
-  }
-  return value
+  return field.mask ? field.mask(value) : value
 }
 
 export function applyValidation(field, value) {
