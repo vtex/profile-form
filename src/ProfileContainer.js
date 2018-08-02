@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import RuleShape from './propTypes/RuleShape'
 import ProfileShape from './propTypes/ProfileShape'
 import ProfileField from './ProfileField'
-import { addValidation } from './validateProfile'
+import { addValidation, removeValidation } from './validateProfile'
 import defaultRules from './rules/default'
+import StyleguideInput from './inputs/StyleguideInput'
 
 class ProfileContainer extends Component {
   constructor(props) {
@@ -34,8 +35,19 @@ class ProfileContainer extends Component {
     }))
   }
 
+  handleSubmit = () => {
+    const { onSubmit } = this.props
+    const { profile } = this.state
+
+    //validate the entire form
+
+    if (onSubmit) {
+      onSubmit({ valid: true, profile: removeValidation(profile) })
+    }
+  }
+
   render() {
-    const { rules } = this.props
+    const { rules, Input, renderSubmitButton } = this.props
     const { profile } = this.state
 
     if (!profile) return null
@@ -48,8 +60,10 @@ class ProfileContainer extends Component {
             field={field}
             data={profile[field.name]}
             onFieldUpdate={this.handleFieldUpdate}
+            Input={Input}
           />
         ))}
+        {renderSubmitButton && renderSubmitButton(this.handleSubmit)}
       </div>
     )
   }
@@ -57,6 +71,7 @@ class ProfileContainer extends Component {
 
 ProfileContainer.defaultProps = {
   rules: defaultRules,
+  Input: StyleguideInput,
 }
 
 ProfileContainer.propTypes = {
@@ -66,6 +81,12 @@ ProfileContainer.propTypes = {
   profile: ProfileShape.isRequired,
   /** Function to be called when profile data changes */
   onProfileChange: PropTypes.func,
+  /** Function to be called upon form submission */
+  onSubmit: PropTypes.func,
+  /** Component to be used as input for the form fields */
+  Input: PropTypes.func,
+  /** Function returning a component to be used as a submit button */
+  renderSubmitButton: PropTypes.func,
 }
 
 export default ProfileContainer

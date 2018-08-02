@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.0] - 2018-08-02
+
+### Added
+
+- Submission functionality
+- Customizable inputs
+
+### Changed
+
+- `ProfileInput` was renamed to `StyleguideInput` and moved to an `inputs` folder
+
 ## [0.3.0] - 2018-08-01
 
 ### Added

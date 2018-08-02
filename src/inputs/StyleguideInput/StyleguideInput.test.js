@@ -1,20 +1,24 @@
 import React from 'react'
 import { shallow, render } from 'enzyme'
 import { shallowWithIntl, loadTranslation } from 'enzyme-react-intl'
-import ProfileInput from './ProfileInput'
-import mockField from './__mocks__/ruleField'
-import mockData from './__mocks__/profileField'
+import StyleguideInput from './index'
+import mockField from '../../__mocks__/ruleField'
+import mockData from '../../__mocks__/profileField'
 import Input from '@vtex/styleguide/lib/Input'
 
 loadTranslation('./src/locales/pt.json')
 
-describe('ProfileInput', () => {
+describe('StyleguideInput', () => {
   let wrapper
   let mockChange
   beforeEach(() => {
     mockChange = jest.fn()
     wrapper = shallowWithIntl(
-      <ProfileInput field={mockField} data={mockData} onChange={mockChange} />,
+      <StyleguideInput
+        field={mockField}
+        data={mockData}
+        onChange={mockChange}
+      />,
     ).dive()
   })
 
@@ -28,7 +32,7 @@ describe('ProfileInput', () => {
 
   it('should display error if said so', () => {
     const errorWrapper = shallowWithIntl(
-      <ProfileInput
+      <StyleguideInput
         field={mockField}
         data={{ value: 'John', error: 'EMPTY_FIELD' }}
         onChange={mockChange}
@@ -40,7 +44,7 @@ describe('ProfileInput', () => {
 
   it('should not display hidden fields', () => {
     const emptyWrapper = shallowWithIntl(
-      <ProfileInput
+      <StyleguideInput
         field={{ name: 'firstName', label: 'firstName', hidden: true }}
         data={mockData}
         onChange={mockChange}

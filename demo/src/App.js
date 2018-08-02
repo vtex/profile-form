@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import ptLocaleData from 'react-intl/locale-data/pt'
+import Button from '@vtex/styleguide/lib/Button'
 import ptTranslations from '../../src/locales/pt'
 import ProfileContainer from '../../src/ProfileContainer'
 import ProfileRules from '../../src/ProfileRules'
+import ProfileSummary from './ProfileSummary'
 import 'vtex-tachyons'
 
 class App extends Component {
@@ -27,6 +29,7 @@ class App extends Component {
         tradeName: null,
       },
       profileLocale: 'pt-BR',
+      submitted: false,
     }
   }
 
@@ -36,27 +39,52 @@ class App extends Component {
     }))
   }
 
+  handleSubmit = ({ valid, profile }) => {
+    if (!valid) return
+    this.setState({ profile, submitted: true })
+  }
+
   render() {
-    const { profile, profileLocale } = this.state
+    const { profile, profileLocale, submitted } = this.state
 
     if (!profile) return null
 
     return (
-      <div>
+      <div className="pa4">
         <h3>ProfileForm demo:</h3>
-        <div className="mb6">
-          <button onClick={this.toggleLocale}>
-            Set rules to {profileLocale === 'pt-BR' ? 'en-US' : 'pt-BR'}
-          </button>
-        </div>
+        {!submitted && (
+          <div className="mb6">
+            <button onClick={this.toggleLocale}>
+              Set rules to {profileLocale === 'pt-BR' ? 'en-US' : 'pt-BR'}
+            </button>
+          </div>
+        )}
         <IntlProvider locale={'pt-BR'} messages={ptTranslations}>
-          <ProfileRules
-            key={profileLocale}
-            locale={profileLocale}
-            fetch={locale => import('../../src/rules/' + locale)}
-          >
-            <ProfileContainer profile={profile} />
-          </ProfileRules>
+          <div>
+            {!submitted && (
+              <ProfileRules
+                key={profileLocale}
+                locale={profileLocale}
+                fetch={locale => import('../../src/rules/' + locale)}
+              >
+                <ProfileContainer
+                  profile={profile}
+                  onSubmit={this.handleSubmit}
+                  renderSubmitButton={onSubmit => (
+                    <Button
+                      block
+                      variation="secondary"
+                      size="small"
+                      onClick={onSubmit}
+                    >
+                      Submit form
+                    </Button>
+                  )}
+                />
+              </ProfileRules>
+            )}
+            {submitted && <ProfileSummary profile={profile} />}
+          </div>
         </IntlProvider>
       </div>
     )
