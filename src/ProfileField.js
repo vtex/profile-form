@@ -10,10 +10,21 @@ class ProfileField extends Component {
     const { field, data, onFieldUpdate } = this.props
     const { value } = e.target
 
+    const error = data.touched ? this.applyValidation(field, value) : null
     const maskedValue = this.applyMask(field, value)
-    // validation will take place here
 
-    onFieldUpdate({ [field.name]: { ...data, value: maskedValue } })
+    onFieldUpdate({ [field.name]: { ...data, value: maskedValue, error } })
+  }
+
+  handleBlur = () => {
+    const { field, data, onFieldUpdate } = this.props
+    const error = this.applyValidation(field, data.value)
+
+    onFieldUpdate({ [field.name]: { ...data, touched: true, error } })
+  }
+
+  applyValidation = (field, value) => {
+    return null
   }
 
   applyMask = (field, value) => {
@@ -26,7 +37,14 @@ class ProfileField extends Component {
 
   render() {
     const { field, data, Input } = this.props
-    return <Input field={field} data={data} onChange={this.handleChange} />
+    return (
+      <Input
+        field={field}
+        data={data}
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+      />
+    )
   }
 }
 
