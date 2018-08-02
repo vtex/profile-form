@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Validation on input change and form submit
+- Masking
+- Lots of tests
+
 ## [0.4.0] - 2018-08-02
 
 ### Added
