@@ -14,15 +14,16 @@ export default {
       required: true,
     },
     {
-      name: 'gender',
-      maxLength: 30,
-      label: 'gender',
-      hidden: true,
-    },
-    {
       name: 'document',
       maxLength: 50,
       label: 'cpf',
+      mask: () => '999.999.999-99',
+    },
+    {
+      name: 'gender',
+      maxLength: 30,
+      label: 'gender',
+      required: true,
     },
   ],
 }
