@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import ProfileField from './ProfileField'
 import mockField from './__mocks__/ruleField'
 import mockData from './__mocks__/profileField'
-import ProfileInput from './ProfileInput'
+import StyleguideInput from './inputs/StyleguideInput'
 
 describe('ProfileField', () => {
   let wrapper
@@ -15,13 +15,14 @@ describe('ProfileField', () => {
         field={mockField}
         data={mockData}
         onFieldUpdate={mockChange}
+        Input={StyleguideInput}
       />,
     )
   })
 
   it('should pass down received rules and data', () => {
-    expect(wrapper.find(ProfileInput).props().field).toBe(mockField)
-    expect(wrapper.find(ProfileInput).props().data).toBe(mockData)
+    expect(wrapper.find(StyleguideInput).props().field).toBe(mockField)
+    expect(wrapper.find(StyleguideInput).props().data).toBe(mockData)
   })
 
   it('should call onFieldUpdate when receives new data', () => {

@@ -7,6 +7,7 @@ import { addValidation, removeValidation } from './validateProfile'
 import defaultRules from './rules/default'
 
 import Button from '@vtex/styleguide/lib/Button'
+import StyleguideInput from './inputs/StyleguideInput'
 
 class ProfileContainer extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    const { rules } = this.props
+    const { rules, Input } = this.props
     const { profile } = this.state
 
     if (!profile) return null
@@ -61,6 +62,7 @@ class ProfileContainer extends Component {
             field={field}
             data={profile[field.name]}
             onFieldUpdate={this.handleFieldUpdate}
+            Input={Input}
           />
         ))}
         <Button block size="small" onClick={this.handleSubmit}>
@@ -73,6 +75,7 @@ class ProfileContainer extends Component {
 
 ProfileContainer.defaultProps = {
   rules: defaultRules,
+  Input: StyleguideInput,
 }
 
 ProfileContainer.propTypes = {
@@ -84,6 +87,8 @@ ProfileContainer.propTypes = {
   onProfileChange: PropTypes.func,
   /** Function to be called upon form submission */
   onSubmit: PropTypes.func,
+  /** Component to be used as input for the form fields */
+  Input: PropTypes.func,
 }
 
 export default ProfileContainer
