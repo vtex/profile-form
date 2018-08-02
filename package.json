@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "@vtex/styleguide": "^5.4.3",
+    "moment": "^2.22.2",
     "msk": "^1.0.3",
     "react": "^16.4.1",
     "react-intl": "^2.4.0"
