@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 import RuleShape from './propTypes/RuleShape'
 import ProfileShape from './propTypes/ProfileShape'
 import ProfileField from './ProfileField'
-import { addValidation, removeValidation } from './validateProfile'
+import {
+  addValidation,
+  removeValidation,
+  applyFullValidation,
+} from './validateProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
 
@@ -39,21 +43,18 @@ class ProfileContainer extends Component {
     const { rules, onSubmit } = this.props
     const { profile } = this.state
 
-    //validate the entire form
-    console.log(profile)
-    console.log(rules)
+    const validatedProfile = applyFullValidation(rules, profile)
+    this.setState(prevState => ({
+      profile: { ...prevState.profile, ...validatedProfile },
+    }))
 
-<<<<<<< HEAD
     if (onSubmit) {
-      onSubmit({ valid: true, profile: removeValidation(profile) })
+      const isProfileValid =
+        Object.keys(validatedProfile).find(
+          fieldName => validatedProfile[fieldName].error != null,
+        ) == null
+      onSubmit(isProfileValid, removeValidation(profile))
     }
-=======
-    rules.map(field => {})
-
-    // if (onSubmit) {
-    //   onSubmit(true, removeValidation(profile))
-    // }
->>>>>>> Extract mask and validation to other file
   }
 
   render() {

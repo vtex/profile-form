@@ -23,3 +23,15 @@ export function applyValidation(field, value) {
   if (field.validate && !field.validate(value)) return 'INVALID_FIELD'
   return null
 }
+
+export function applyFullValidation(rules, profile) {
+  return Object.keys(profile)
+    .map(fieldName => {
+      const rule = rules.fields.find(rule => rule.name === fieldName)
+      if (rule) {
+        const error = applyValidation(rule, profile[fieldName].value)
+        return { [fieldName]: { ...profile[fieldName], error } }
+      }
+    })
+    .reduce((acc, cur) => ({ ...acc, ...cur }), {})
+}
