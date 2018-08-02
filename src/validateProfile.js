@@ -39,14 +39,14 @@ export function isProfileValid(profile) {
   return findFirstInvalidInput(profile) == null
 }
 
-function addFocusToFirstInvalidInput(profile) {
+export function findFirstInvalidInput(profile) {
+  return Object.keys(profile).find(field => profile[field].error != null)
+}
+
+export function addFocusToFirstInvalidInput(profile) {
   const firstInvalidInput = findFirstInvalidInput(profile)
   if (firstInvalidInput == null) return profile
 
   const focusedInput = { ...profile[firstInvalidInput], focus: true }
   return { ...profile, [firstInvalidInput]: focusedInput }
-}
-
-function findFirstInvalidInput(profile) {
-  return Object.keys(profile).find(field => profile[field].error != null)
 }
