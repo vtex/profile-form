@@ -1,6 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { mountWithIntl, loadTranslation } from 'enzyme-react-intl'
+import {
+  shallowWithIntl,
+  mountWithIntl,
+  loadTranslation,
+} from 'enzyme-react-intl'
 import ProfileContainer from './ProfileContainer'
 import mockRules from './__mocks__/rules'
 import mockProfile from './__mocks__/profile'
@@ -46,21 +50,51 @@ describe('ProfileContainer', () => {
     expect(wrapper.state().profile.firstName.value).toBe('Jack')
   })
 
-  /* Uncomment when Enzyme adds support for forwardRefs */
-  xit('should call onProfileChange when state changes', () => {
+  it('should call onProfileChange when state changes', () => {
     const mockChange = jest.fn()
-    const wrapperFn = mountWithIntl(
+    const wrapperFn = shallowWithIntl(
       <ProfileContainer
         rules={mockRules}
         profile={mockProfile}
         onProfileChange={mockChange}
       />,
     )
-    wrapperFn.instance().handleFieldUpdate({
+    const instance = wrapperFn.instance()
+    const prevState = wrapperFn.state()
+    instance.handleFieldUpdate({
       firstName: {
         value: 'Jack',
       },
     })
+    instance.componentDidUpdate(null, prevState)
     expect(mockChange).toHaveBeenCalled()
+  })
+
+  it('should call onSubmit with a validated profile when necessary', () => {
+    const mockSubmit = jest.fn()
+    const subRules = {
+      ...mockRules,
+      fields: [
+        ...mockRules.fields,
+        {
+          name: 'gender',
+          maxLength: 30,
+          label: 'gender',
+          required: true,
+        },
+      ],
+    }
+    const instance = shallowWithIntl(
+      <ProfileContainer
+        rules={subRules}
+        profile={mockProfile}
+        onSubmit={mockSubmit}
+      />,
+    ).instance()
+    instance.handleSubmit()
+    expect(mockSubmit).toHaveBeenCalledWith({
+      profile: { firstName: 'John', gender: null, lastName: 'Appleseed' },
+      valid: false,
+    })
   })
 })
