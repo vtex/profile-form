@@ -1,6 +1,6 @@
 // Components
-export ProfileRules from './ProfileRules'
-export ProfileContainer from './ProfileContainer'
+export { default as ProfileRules } from './ProfileRules'
+export { default as ProfileContainer } from './ProfileContainer'
 
 // Helper Functions
 export { addValidation, removeValidation } from './validateProfile'
