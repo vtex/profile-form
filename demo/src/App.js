@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import ptLocaleData from 'react-intl/locale-data/pt'
+import Button from '@vtex/styleguide/lib/Button'
 import ptTranslations from '../../src/locales/pt'
 import ProfileContainer from '../../src/ProfileContainer'
 import ProfileRules from '../../src/ProfileRules'
-import 'vtex-tachyons'
 import ProfileSummary from './ProfileSummary'
+import 'vtex-tachyons'
 
 class App extends Component {
   constructor(props) {
@@ -39,8 +40,6 @@ class App extends Component {
   }
 
   handleSubmit = (valid, profile) => {
-    console.log('submitted')
-
     if (!valid) return
     this.setState({ profile, submitted: true })
   }
@@ -71,6 +70,16 @@ class App extends Component {
                 <ProfileContainer
                   profile={profile}
                   onSubmit={this.handleSubmit}
+                  SubmitButton={onSubmit => (
+                    <Button
+                      block
+                      variation="secondary"
+                      size="small"
+                      onClick={onSubmit}
+                    >
+                      Submit form
+                    </Button>
+                  )}
                 />
               </ProfileRules>
             )}
