@@ -40,11 +40,17 @@ export function applyFullValidation(rules, profile) {
 }
 
 export function isProfileValid(profile) {
-  return (
-    Object.keys(profile).find(field => profile[field].error != null) == null
-  )
+  return findFirstInvalidInput(profile) == null
 }
 
 function addFocusToFirstInvalidInput(profile) {
-  const firstInvalid = Object.keys(profile).find(fieldName => {})
+  const firstInvalidInput = findFirstInvalidInput(profile)
+  if (firstInvalidInput == null) return profile
+
+  const focusedInput = { ...profile[firstInvalidInput], focus: true }
+  return { ...profile, [firstInvalidInput]: focusedInput }
+}
+
+function findFirstInvalidInput(profile) {
+  return Object.keys(profile).find(field => profile[field].error != null)
 }

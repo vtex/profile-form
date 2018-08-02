@@ -50,10 +50,10 @@ class ProfileContainer extends Component {
     })
 
     if (onSubmit) {
-      onSubmit(
-        isProfileValid(validatedProfile),
-        removeValidation(validatedProfile),
-      )
+      onSubmit({
+        valid: isProfileValid(validatedProfile),
+        profile: removeValidation(validatedProfile),
+      })
     }
   }
 
