@@ -4,7 +4,6 @@ import ProfileField from './ProfileField'
 import mockField from './__mocks__/ruleField'
 import mockData from './__mocks__/profileField'
 import StyleguideInput from './inputs/StyleguideInput'
-import msk from 'msk'
 
 describe('ProfileField', () => {
   let wrapper
@@ -34,7 +33,7 @@ describe('ProfileField', () => {
   it('should mask data if necessary before passing up', () => {
     const maskField = {
       ...mockField,
-      mask: value => msk.fit(value, '999.999.999'),
+      mask: value => '-' + value + '-',
     }
     const maskWrapper = shallow(
       <ProfileField
@@ -49,7 +48,7 @@ describe('ProfileField', () => {
     expect(mockChange).toHaveBeenCalledWith({
       [maskField.name]: {
         ...mockData,
-        value: '123.456.789',
+        value: '-123456789-',
         error: null,
       },
     })
