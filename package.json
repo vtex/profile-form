@@ -55,6 +55,7 @@
     }
   },
   "dependencies": {
+    "@vtex/phone": "^4.5.4",
     "@vtex/styleguide": "^5.4.3",
     "moment": "^2.22.2",
     "msk": "^1.0.3",
