@@ -19,9 +19,10 @@ export function applyMask(field, value) {
 }
 
 export function applyValidation(field, value) {
-  if (field.required && (!value || !value.trim())) return 'EMPTY_FIELD'
-  if (field.validate && !field.validate(value)) return 'INVALID_FIELD'
-  return null
+  if (!value || !value.trim()) {
+    return field.required ? 'EMPTY_FIELD' : null
+  }
+  return field.validate && !field.validate(value) ? 'INVALID_FIELD' : null
 }
 
 export function applyFullValidation(rules, profile) {
@@ -34,4 +35,10 @@ export function applyFullValidation(rules, profile) {
       }
     })
     .reduce((acc, cur) => ({ ...acc, ...cur }), {})
+}
+
+export function isProfileValid(profile) {
+  return (
+    Object.keys(profile).find(field => profile[field].error != null) == null
+  )
 }
