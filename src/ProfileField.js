@@ -7,8 +7,8 @@ import ProfileFieldShape from './propTypes/ProfileFieldShape'
 class ProfileField extends Component {
   componentDidUpdate() {
     const { field, data, onFieldUpdate } = this.props
-    if (data.focus) {
-      console.log('hora de focar! ' + field.name)
+    if (data.focus && this.el) {
+      this.el.focus()
       onFieldUpdate({ [field.name]: { ...data, focus: false } })
     }
   }
@@ -30,12 +30,17 @@ class ProfileField extends Component {
     onFieldUpdate({ [field.name]: { ...data, touched: true, error } })
   }
 
+  inputRef = el => {
+    this.el = el
+  }
+
   render() {
     const { field, data, Input } = this.props
     return (
       <Input
         field={field}
         data={data}
+        inputRef={this.inputRef}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
       />
