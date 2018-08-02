@@ -11,13 +11,16 @@ loadTranslation('./src/locales/pt.json')
 describe('StyleguideInput', () => {
   let wrapper
   let mockChange
+  let mockBlur
   beforeEach(() => {
     mockChange = jest.fn()
+    mockBlur = jest.fn()
     wrapper = shallowWithIntl(
       <StyleguideInput
         field={mockField}
         data={mockData}
         onChange={mockChange}
+        onBlur={mockBlur}
       />,
     ).dive()
   })
@@ -36,6 +39,7 @@ describe('StyleguideInput', () => {
         field={mockField}
         data={{ value: 'John', error: 'EMPTY_FIELD' }}
         onChange={mockChange}
+        onBlur={mockBlur}
       />,
     ).dive()
 
@@ -48,6 +52,7 @@ describe('StyleguideInput', () => {
         field={{ name: 'firstName', label: 'firstName', hidden: true }}
         data={mockData}
         onChange={mockChange}
+        onBlur={mockBlur}
       />,
     ).dive()
 

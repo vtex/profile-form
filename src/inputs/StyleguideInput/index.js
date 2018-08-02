@@ -44,7 +44,7 @@ StyleguideInput.propTypes = {
   /** Data this input will display */
   data: ProfileFieldShape.isRequired,
   /** Ref function to control this input from outside */
-  inputRef: PropTypes.func.isRequired,
+  inputRef: PropTypes.func,
   /** Function to be called when input changes */
   onChange: PropTypes.func.isRequired,
   /** Function to be called when input blurs */
