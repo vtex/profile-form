@@ -27,7 +27,7 @@ ProfileField.propTypes = {
   /** Function to be called when data changes */
   onFieldUpdate: PropTypes.func.isRequired,
   /** Component to be used as input for the field */
-  Input: PropTypes.func,
+  Input: PropTypes.func.isRequired,
 }
 
 export default ProfileField

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ProfileShape from '../../src/propTypes/ProfileShape'
 
 const ProfileSummary = ({ profile }) => {
   return (
@@ -13,6 +14,9 @@ const ProfileSummary = ({ profile }) => {
   )
 }
 
-ProfileSummary.propTypes = {}
+ProfileSummary.propTypes = {
+  /** Profile to be displayed */
+  profile: ProfileShape.isRequired,
+}
 
 export default ProfileSummary
