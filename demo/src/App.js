@@ -39,7 +39,7 @@ class App extends Component {
     }))
   }
 
-  handleSubmit = (valid, profile) => {
+  handleSubmit = ({ valid, profile }) => {
     if (!valid) return
     this.setState({ profile, submitted: true })
   }

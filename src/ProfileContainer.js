@@ -42,7 +42,7 @@ class ProfileContainer extends Component {
     //validate the entire form
 
     if (onSubmit) {
-      onSubmit(true, removeValidation(profile))
+      onSubmit({ valid: true, profile: removeValidation(profile) })
     }
   }
 
