@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default {
   country: 'BRA',
   fields: [
@@ -23,15 +25,13 @@ export default {
       name: 'gender',
       maxLength: 30,
       label: 'gender',
-      required: true,
-      validate: value => {
-        return value === 'male' || value === 'female'
-      },
     },
     {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
+      mask: () => '99/99/9999',
+      validate: value => moment(value, 'DD/MM/YYYY', true).isValid(),
     },
     {
       name: 'homePhone',
