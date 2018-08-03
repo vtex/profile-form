@@ -75,7 +75,10 @@ describe('validateProfile', () => {
   it('should apply focus to the first invalid input', () => {
     // Arrange
     const focusRules = {
-      fields: [...mockRules.fields, { name: 'gender', required: true }],
+      personalFields: [
+        ...mockRules.personalFields,
+        { name: 'gender', required: true },
+      ],
     }
 
     // Act

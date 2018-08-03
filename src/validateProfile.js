@@ -42,9 +42,9 @@ export function isProfileValid(profile) {
 }
 
 export function addFocusToFirstInvalidInput(rules, profile) {
-  const firstInvalidInput = rules.fields.find(
-    field => profile[field.name].error != null,
-  )
+  const firstInvalidInput =
+    rules.personalFields.find(field => profile[field.name].error != null) ||
+    rules.businessFields.find(field => profile[field.name].error != null)
 
   if (firstInvalidInput == null) return profile
 
