@@ -67,12 +67,28 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    const { rules, Input, renderSubmitButton, intl } = this.props
+    const {
+      rules,
+      Input,
+      ToggleBusinessButton,
+      SubmitButton,
+      intl,
+    } = this.props
     const { profile, showingBusinessFields } = this.state
 
     const businessButtonMessage = showingBusinessFields
       ? 'profile-form.hide-business'
       : 'profile-form.show-business'
+
+    const DefaultSubmitButton = (
+      <Button block size="small" onClick={this.handleSubmit}>
+        {intl.formatMessage({ id: 'profile-form.save-changes' })}
+      </Button>
+    )
+
+    const DefaultBusinessButton = (
+      <Button size="small" block variation="secondary" />
+    )
 
     if (!profile) return null
 
@@ -103,16 +119,18 @@ class ProfileContainer extends Component {
           </div>
         )}
         <div className="mb7">
-          <Button
-            size="small"
-            block
-            variation="secondary"
-            onClick={this.toggleBusinessFields}
-          >
-            {intl.formatMessage({ id: businessButtonMessage })}
-          </Button>
+          {ToggleBusinessButton
+            ? React.cloneElement(ToggleBusinessButton, {
+                onClick: this.toggleBusinessFields,
+                children: intl.formatMessage({ id: businessButtonMessage }),
+              })
+            : DefaultBusinessButton}
         </div>
-        {renderSubmitButton && renderSubmitButton(this.handleSubmit)}
+        {SubmitButton
+          ? React.cloneElement(SubmitButton, {
+              onClick: this.handleSubmit,
+            })
+          : DefaultSubmitButton}
       </div>
     )
   }
@@ -134,8 +152,10 @@ ProfileContainer.propTypes = {
   onSubmit: PropTypes.func,
   /** Component to be used as input for the form fields */
   Input: PropTypes.func,
-  /** Function returning a component to be used as a submit button */
-  renderSubmitButton: PropTypes.func,
+  /** Component to be used as a button for toggling business fields */
+  ToggleBusinessButton: PropTypes.element,
+  /** Component to be used as a submit button */
+  SubmitButton: PropTypes.element,
   /** React-intl utility */
   intl: intlShape.isRequired,
 }
