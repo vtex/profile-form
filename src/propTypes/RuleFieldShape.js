@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 
 export default PropTypes.shape({
-  /** Name for both the field and the property */
+  /** Name for both the field and the profile object property */
   name: PropTypes.string.isRequired,
   /** Maximum length of the field */
   maxLength: PropTypes.number,
@@ -15,6 +15,4 @@ export default PropTypes.shape({
   mask: PropTypes.func,
   /** A function to evaluate if the value is valid */
   validate: PropTypes.func,
-  /** Whether this is a business-related field */
-  isBusiness: PropTypes.bool,
 })
