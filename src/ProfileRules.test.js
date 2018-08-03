@@ -6,6 +6,7 @@ import defaultRules from './rules/default'
 
 describe('ProfileRules', () => {
   it('should load the defined rules', async () => {
+    // Arrange
     const instance = shallow(
       <ProfileRules
         locale={'pt-BR'}
@@ -15,11 +16,15 @@ describe('ProfileRules', () => {
       </ProfileRules>,
     ).instance()
 
+    // Act
     const rules = await instance.componentDidMount()
+
+    // Assert
     expect(rules).toEqual(brRules)
   })
 
   it('should render its children', async () => {
+    // Arrange
     const wrapper = shallow(
       <ProfileRules
         locale={'pt-BR'}
@@ -28,16 +33,18 @@ describe('ProfileRules', () => {
         <h1>It works!</h1>
       </ProfileRules>,
     )
-
     const instance = wrapper.instance()
 
+    // Act
     await instance.componentDidMount()
     wrapper.update()
 
+    // Assert
     expect(wrapper.find('h1')).toHaveLength(1)
   })
 
   it('should inject rules as a prop to its children', async () => {
+    // Arrange
     const wrapper = shallow(
       <ProfileRules
         locale={'pt-BR'}
@@ -46,18 +53,19 @@ describe('ProfileRules', () => {
         <h1>It works!</h1>
       </ProfileRules>,
     )
-
     const instance = wrapper.instance()
 
+    // Act
     await instance.componentDidMount()
     wrapper.update()
 
+    // Assert
     expect(wrapper.find('h1').props().rules).toBe(brRules)
   })
 
   it('should provide default rules when country is unrecognized', async () => {
+    // Arrange
     global.console = { warn: jest.fn() }
-
     const instance = shallow(
       <ProfileRules
         locale={'xx-YY'}
@@ -67,8 +75,10 @@ describe('ProfileRules', () => {
       </ProfileRules>,
     ).instance()
 
+    // Act
     const rules = await instance.componentDidMount()
 
+    // Assert
     expect(rules).toEqual(defaultRules)
   })
 })

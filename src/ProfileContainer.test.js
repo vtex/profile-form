@@ -15,42 +15,52 @@ loadTranslation('./src/locales/pt.json')
 describe('ProfileContainer', () => {
   let wrapper
   beforeEach(() => {
+    // Arrange
     wrapper = shallow(
       <ProfileContainer rules={mockRules} profile={mockProfile} />,
     )
   })
 
   it('should render fields based on rules', () => {
-    expect(wrapper.find(ProfileField)).toHaveLength(2)
+    // Act
+    const result = wrapper.find(ProfileField)
+
+    // Assert
+    expect(result).toHaveLength(2)
   })
 
   it('should pass down profile data to fields', () => {
+    // Act
     const firstName = wrapper
       .find(ProfileField)
       .first()
       .props().data.value
-
     const lastName = wrapper
       .find(ProfileField)
       .last()
       .props().data.value
 
+    // Assert
     expect(firstName).toBe('John')
     expect(lastName).toBe('Appleseed')
   })
 
   it('should update its state when receives changes', () => {
+    // Act
     wrapper.instance().handleFieldUpdate({
       firstName: {
         value: 'Jack',
       },
     })
     wrapper.update()
+    const result = wrapper.state().profile.firstName.value
 
-    expect(wrapper.state().profile.firstName.value).toBe('Jack')
+    // Assert
+    expect(result).toBe('Jack')
   })
 
   it('should call onProfileChange when state changes', () => {
+    // Arrange
     const mockChange = jest.fn()
     const wrapperFn = shallowWithIntl(
       <ProfileContainer
@@ -61,16 +71,21 @@ describe('ProfileContainer', () => {
     )
     const instance = wrapperFn.instance()
     const prevState = wrapperFn.state()
+
+    // Act
     instance.handleFieldUpdate({
       firstName: {
         value: 'Jack',
       },
     })
     instance.componentDidUpdate(null, prevState)
+
+    // Assert
     expect(mockChange).toHaveBeenCalled()
   })
 
   it('should call onSubmit with a validated profile when necessary', () => {
+    // Arrange
     const mockSubmit = jest.fn()
     const subRules = {
       ...mockRules,
@@ -91,7 +106,11 @@ describe('ProfileContainer', () => {
         onSubmit={mockSubmit}
       />,
     ).instance()
+
+    // Act
     instance.handleSubmit()
+
+    // Assert
     expect(mockSubmit).toHaveBeenCalledWith({
       profile: { firstName: 'John', gender: null, lastName: 'Appleseed' },
       valid: false,

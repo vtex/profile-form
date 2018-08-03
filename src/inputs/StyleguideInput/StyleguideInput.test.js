@@ -13,6 +13,7 @@ describe('StyleguideInput', () => {
   let mockChange
   let mockBlur
   beforeEach(() => {
+    // Arrange
     mockChange = jest.fn()
     mockBlur = jest.fn()
     wrapper = shallowWithIntl(
@@ -26,14 +27,23 @@ describe('StyleguideInput', () => {
   })
 
   it('should render input based on rules', () => {
-    expect(wrapper.children().props().name).toBe(mockField.name)
+    // Act
+    const result = wrapper.children().props().name
+
+    // Assert
+    expect(result).toBe(mockField.name)
   })
 
   it('should fill input with received data', () => {
-    expect(wrapper.children().props().value).toBe(mockData.value)
+    // Act
+    const result = wrapper.children().props().value
+
+    // Assert
+    expect(result).toBe(mockData.value)
   })
 
   it('should display error if said so', () => {
+    // Arrange
     const errorWrapper = shallowWithIntl(
       <StyleguideInput
         field={mockField}
@@ -43,10 +53,15 @@ describe('StyleguideInput', () => {
       />,
     ).dive()
 
-    expect(errorWrapper.children().props().errorMessage).toBeTruthy()
+    // Act
+    const result = errorWrapper.children().props().errorMessage
+
+    // Assert
+    expect(result).toBeTruthy()
   })
 
   it('should not display hidden fields', () => {
+    // Arrange
     const emptyWrapper = shallowWithIntl(
       <StyleguideInput
         field={{ name: 'firstName', label: 'firstName', hidden: true }}
@@ -56,6 +71,7 @@ describe('StyleguideInput', () => {
       />,
     ).dive()
 
+    // Assert
     expect(emptyWrapper).toHaveClassName('dn')
   })
 })
