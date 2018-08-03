@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 import RuleShape from './propTypes/RuleShape'
 import ProfileShape from './propTypes/ProfileShape'
 import ProfileField from './ProfileField'
-import { addValidation, removeValidation } from './validateProfile'
+import {
+  addValidation,
+  removeValidation,
+  applyFullValidation,
+  isProfileValid,
+} from './validateProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
 
@@ -36,13 +41,19 @@ class ProfileContainer extends Component {
   }
 
   handleSubmit = () => {
-    const { onSubmit } = this.props
+    const { rules, onSubmit } = this.props
     const { profile } = this.state
 
-    //validate the entire form
+    const validatedProfile = applyFullValidation(rules, profile)
+    this.setState({
+      profile: validatedProfile,
+    })
 
     if (onSubmit) {
-      onSubmit({ valid: true, profile: removeValidation(profile) })
+      onSubmit({
+        valid: isProfileValid(validatedProfile),
+        profile: removeValidation(validatedProfile),
+      })
     }
   }
 

@@ -5,7 +5,7 @@ import Input from '@vtex/styleguide/lib/Input'
 import RuleFieldShape from '../../propTypes/RuleFieldShape'
 import ProfileFieldShape from '../../propTypes/ProfileFieldShape'
 
-const StyleguideInput = ({ field, intl, data, onChange }) => {
+const StyleguideInput = ({ field, data, inputRef, onChange, onBlur, intl }) => {
   return (
     <div
       className={`vtex-profile-form__${field.name} ${
@@ -30,6 +30,9 @@ const StyleguideInput = ({ field, intl, data, onChange }) => {
             : null
         }
         onChange={onChange}
+        onBlur={onBlur}
+        ref={inputRef}
+        maxLength={field.maxLength}
       />
     </div>
   )
@@ -40,8 +43,12 @@ StyleguideInput.propTypes = {
   field: RuleFieldShape.isRequired,
   /** Data this input will display */
   data: ProfileFieldShape.isRequired,
+  /** Ref function to control this input from outside */
+  inputRef: PropTypes.func,
   /** Function to be called when input changes */
   onChange: PropTypes.func.isRequired,
+  /** Function to be called when input blurs */
+  onBlur: PropTypes.func.isRequired,
   /** React-intl utility */
   intl: intlShape.isRequired,
 }

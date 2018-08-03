@@ -20,7 +20,6 @@ class App extends Component {
         corporateDocument: null,
         corporateName: null,
         document: null,
-        email: null,
         firstName: 'Gustavo',
         gender: null,
         homePhone: null,

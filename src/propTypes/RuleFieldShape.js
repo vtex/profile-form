@@ -11,8 +11,8 @@ export default PropTypes.shape({
   required: PropTypes.bool,
   /** Whether the field should be hidden or not */
   hidden: PropTypes.bool,
-  /** Mask to be applied on the value */
-  mask: PropTypes.string,
+  /** Function returning a mask to be applied on the value */
+  mask: PropTypes.func,
   /** A function to evaluate if the value is valid */
   validate: PropTypes.func,
 })

@@ -1,21 +1,50 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { applyMask, applyValidation } from './validateProfile'
 import RuleFieldShape from './propTypes/RuleFieldShape'
 import ProfileFieldShape from './propTypes/ProfileFieldShape'
 
 class ProfileField extends Component {
+  componentDidUpdate() {
+    const { field, data, onFieldUpdate } = this.props
+    if (data.focus && this.el) {
+      this.el.focus()
+      onFieldUpdate({ [field.name]: { ...data, focus: false } })
+    }
+  }
+
   handleChange = e => {
     const { field, data, onFieldUpdate } = this.props
     const { value } = e.target
 
-    // validation will take place here
+    const error = data.touched ? applyValidation(field, value) : null
+    const maskedValue = applyMask(field, value)
 
-    onFieldUpdate({ [field.name]: { ...data, value } })
+    onFieldUpdate({ [field.name]: { ...data, value: maskedValue, error } })
+  }
+
+  handleBlur = () => {
+    const { field, data, onFieldUpdate } = this.props
+    const error = applyValidation(field, data.value)
+
+    onFieldUpdate({ [field.name]: { ...data, touched: true, error } })
+  }
+
+  inputRef = el => {
+    this.el = el
   }
 
   render() {
     const { field, data, Input } = this.props
-    return <Input field={field} data={data} onChange={this.handleChange} />
+    return (
+      <Input
+        field={field}
+        data={data}
+        inputRef={this.inputRef}
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+      />
+    )
   }
 }
 
