@@ -15,6 +15,7 @@ loadTranslation('./src/locales/pt.json')
 describe('ProfileContainer', () => {
   let wrapper
   beforeEach(() => {
+    // Arrange
     wrapper = shallowWithIntl(
       <ProfileContainer rules={mockRules} profile={mockProfile} />,
     ).dive()
@@ -107,6 +108,8 @@ describe('ProfileContainer', () => {
     )
       .dive()
       .instance()
+
+    // Act
     instance.handleSubmit()
 
     // Assert
