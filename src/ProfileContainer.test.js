@@ -15,10 +15,9 @@ loadTranslation('./src/locales/pt.json')
 describe('ProfileContainer', () => {
   let wrapper
   beforeEach(() => {
-    // Arrange
-    wrapper = shallow(
+    wrapper = shallowWithIntl(
       <ProfileContainer rules={mockRules} profile={mockProfile} />,
-    )
+    ).dive()
   })
 
   it('should render fields based on rules', () => {
@@ -68,7 +67,7 @@ describe('ProfileContainer', () => {
         profile={mockProfile}
         onProfileChange={mockChange}
       />,
-    )
+    ).dive()
     const instance = wrapperFn.instance()
     const prevState = wrapperFn.state()
 
@@ -105,9 +104,9 @@ describe('ProfileContainer', () => {
         profile={mockProfile}
         onSubmit={mockSubmit}
       />,
-    ).instance()
-
-    // Act
+    )
+      .dive()
+      .instance()
     instance.handleSubmit()
 
     // Assert

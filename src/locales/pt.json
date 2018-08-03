@@ -1,5 +1,7 @@
 {
   "profile-form.optional": "Opcional",
+  "profile-form.show-business": "Exibir campos de pessoa jurídica",
+  "profile-form.hide-business": "Ocultar campos de pessoa jurídica",
 
   "profile-form.field.firstName": "Nome",
   "profile-form.field.lastName": "Sobrenome",
