@@ -89,8 +89,8 @@ describe('ProfileContainer', () => {
     const mockSubmit = jest.fn()
     const subRules = {
       ...mockRules,
-      fields: [
-        ...mockRules.fields,
+      personalFields: [
+        ...mockRules.personalFields,
         {
           name: 'gender',
           maxLength: 30,

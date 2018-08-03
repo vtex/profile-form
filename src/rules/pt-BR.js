@@ -5,7 +5,7 @@ import brazil from '@vtex/phone/countries/BRA'
 
 export default {
   country: 'BRA',
-  fields: [
+  personalFields: [
     {
       name: 'firstName',
       maxLength: 100,
@@ -46,35 +46,32 @@ export default {
           : msk.fit(value, '(99) 99999-9999'),
       validate: value => Phone.validate(value, '55'),
     },
+  ],
+  businessFields: [
     {
-      name: 'businessPhone',
-      maxLength: 30,
-      label: 'businessPhone',
-      hidden: true,
+      name: 'corporateName',
+      maxLength: 100,
+      label: 'corporateName',
     },
     {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'cnpj',
-      hidden: true,
     },
     {
-      name: 'corporateName',
+      name: 'businessPhone',
       maxLength: 30,
-      label: 'corporateName',
-      hidden: true,
+      label: 'businessPhone',
     },
     {
       name: 'stateRegistration',
-      maxLength: 30,
+      maxLength: 50,
       label: 'stateRegistration',
-      hidden: true,
     },
     {
       name: 'tradeName',
-      maxLength: 30,
+      maxLength: 100,
       label: 'tradeName',
-      hidden: true,
     },
   ],
 }

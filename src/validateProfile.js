@@ -24,7 +24,9 @@ export function applyValidation(field, value) {
 export function applyFullValidation(rules, profile) {
   const validatedProfile = Object.keys(profile)
     .map(fieldName => {
-      const rule = rules.fields.find(rule => rule.name === fieldName)
+      const rule =
+        rules.personalFields.find(rule => rule.name === fieldName) ||
+        rules.businessFields.find(rule => rule.name === fieldName)
       if (rule) {
         const error = applyValidation(rule, profile[fieldName].value)
         return { [fieldName]: { ...profile[fieldName], error } }

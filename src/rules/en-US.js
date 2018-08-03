@@ -1,6 +1,6 @@
 export default {
   country: 'BRA',
-  fields: [
+  personalFields: [
     {
       name: 'firstName',
       maxLength: 100,
@@ -25,4 +25,5 @@ export default {
       label: 'ssn',
     },
   ],
+  businessFields: [],
 }

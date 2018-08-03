@@ -1,5 +1,5 @@
 export default {
-  fields: [
+  personalFields: [
     {
       name: 'firstName',
       maxLength: 100,
@@ -24,4 +24,5 @@ export default {
       hidden: true,
     },
   ],
+  businessFields: [],
 }

@@ -15,4 +15,6 @@ export default PropTypes.shape({
   mask: PropTypes.func,
   /** A function to evaluate if the value is valid */
   validate: PropTypes.func,
+  /** Whether this is a business-related field */
+  isBusiness: PropTypes.bool,
 })
