@@ -87,7 +87,14 @@ class ProfileContainer extends Component {
     )
 
     const DefaultBusinessButton = (
-      <Button size="small" block variation="secondary" />
+      <Button
+        size="small"
+        block
+        variation="secondary"
+        onClick={this.toggleBusinessFields}
+      >
+        {intl.formatMessage({ id: businessButtonMessage })}
+      </Button>
     )
 
     if (!profile) return null
