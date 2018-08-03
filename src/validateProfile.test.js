@@ -5,10 +5,12 @@ import {
   applyValidation,
   findFirstInvalidInput,
   addFocusToFirstInvalidInput,
+  isProfileValid,
 } from './validateProfile'
 import cleanProfile from './__mocks__/profile'
 import validatedProfile from './__mocks__/validatedProfile'
 import invalidProfile from './__mocks__/invalidProfile'
+import mockRules from './__mocks__/rules'
 
 describe('validateProfile', () => {
   it('should add validation data to a clean profile', () => {
@@ -35,12 +37,18 @@ describe('validateProfile', () => {
     expect(applyValidation(mockField, 'AAAA')).toBe('INVALID_FIELD')
   })
 
-  it('should find the first invalid input', () => {
-    expect(findFirstInvalidInput(invalidProfile)).toBe('gender')
+  it('should check if a profile is valid', () => {
+    expect(isProfileValid(invalidProfile)).toBe(false)
   })
 
   it('should apply focus to the first invalid input', () => {
-    const focusedProfile = addFocusToFirstInvalidInput(invalidProfile)
+    const focusRules = {
+      fields: [...mockRules.fields, { name: 'gender', required: true }],
+    }
+    const focusedProfile = addFocusToFirstInvalidInput(
+      focusRules,
+      invalidProfile,
+    )
     expect(focusedProfile.gender.focus).toBe(true)
   })
 })

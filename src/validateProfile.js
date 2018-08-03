@@ -32,21 +32,20 @@ export function applyFullValidation(rules, profile) {
     })
     .reduce((acc, cur) => ({ ...acc, ...cur }), {})
 
-  return addFocusToFirstInvalidInput(validatedProfile)
+  return addFocusToFirstInvalidInput(rules, validatedProfile)
 }
 
 export function isProfileValid(profile) {
-  return findFirstInvalidInput(profile) == null
+  return !Object.keys(profile).some(field => profile[field].error != null)
 }
 
-export function findFirstInvalidInput(profile) {
-  return Object.keys(profile).find(field => profile[field].error != null)
-}
+export function addFocusToFirstInvalidInput(rules, profile) {
+  const firstInvalidInput = rules.fields.find(
+    field => profile[field.name].error != null,
+  )
 
-export function addFocusToFirstInvalidInput(profile) {
-  const firstInvalidInput = findFirstInvalidInput(profile)
   if (firstInvalidInput == null) return profile
 
-  const focusedInput = { ...profile[firstInvalidInput], focus: true }
-  return { ...profile, [firstInvalidInput]: focusedInput }
+  const focusedInput = { ...profile[firstInvalidInput.name], focus: true }
+  return { ...profile, [firstInvalidInput.name]: focusedInput }
 }
