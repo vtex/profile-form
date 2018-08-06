@@ -14,11 +14,17 @@ loadTranslation('./src/locales/pt.json')
 
 describe('ProfileContainer', () => {
   let wrapper
+  let mockSubmit
   beforeEach(() => {
     // Arrange
-    wrapper = shallow(
-      <ProfileContainer rules={mockRules} profile={mockProfile} />,
-    )
+    mockSubmit = jest.fn()
+    wrapper = shallowWithIntl(
+      <ProfileContainer
+        rules={mockRules}
+        defaultProfile={mockProfile}
+        onSubmit={mockSubmit}
+      />,
+    ).dive()
   })
 
   it('should render fields based on rules', () => {
@@ -59,38 +65,12 @@ describe('ProfileContainer', () => {
     expect(result).toBe('Jack')
   })
 
-  it('should call onProfileChange when state changes', () => {
-    // Arrange
-    const mockChange = jest.fn()
-    const wrapperFn = shallowWithIntl(
-      <ProfileContainer
-        rules={mockRules}
-        profile={mockProfile}
-        onProfileChange={mockChange}
-      />,
-    )
-    const instance = wrapperFn.instance()
-    const prevState = wrapperFn.state()
-
-    // Act
-    instance.handleFieldUpdate({
-      firstName: {
-        value: 'Jack',
-      },
-    })
-    instance.componentDidUpdate(null, prevState)
-
-    // Assert
-    expect(mockChange).toHaveBeenCalled()
-  })
-
   it('should call onSubmit with a validated profile when necessary', () => {
     // Arrange
-    const mockSubmit = jest.fn()
     const subRules = {
       ...mockRules,
-      fields: [
-        ...mockRules.fields,
+      personalFields: [
+        ...mockRules.personalFields,
         {
           name: 'gender',
           maxLength: 30,
@@ -102,10 +82,12 @@ describe('ProfileContainer', () => {
     const instance = shallowWithIntl(
       <ProfileContainer
         rules={subRules}
-        profile={mockProfile}
+        defaultProfile={mockProfile}
         onSubmit={mockSubmit}
       />,
-    ).instance()
+    )
+      .dive()
+      .instance()
 
     // Act
     instance.handleSubmit()

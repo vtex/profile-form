@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import ptLocaleData from 'react-intl/locale-data/pt'
-import Button from '@vtex/styleguide/lib/Button'
 import ptTranslations from '../../src/locales/pt'
 import ProfileContainer from '../../src/ProfileContainer'
 import ProfileRules from '../../src/ProfileRules'
@@ -14,27 +13,15 @@ class App extends Component {
     addLocaleData(ptLocaleData)
 
     this.state = {
-      profile: {
-        birthDate: null,
-        businessPhone: null,
-        corporateDocument: null,
-        corporateName: null,
-        document: null,
-        firstName: 'Gustavo',
-        gender: null,
-        homePhone: null,
-        lastName: 'Silva',
-        stateRegistration: null,
-        tradeName: null,
-      },
-      profileLocale: 'pt-BR',
+      profile: null,
+      profileCountry: 'BRA',
       submitted: false,
     }
   }
 
   toggleLocale = () => {
     this.setState(prevState => ({
-      profileLocale: prevState.profileLocale === 'pt-BR' ? 'en-US' : 'pt-BR',
+      profileCountry: prevState.profileCountry === 'BRA' ? 'USA' : 'BRA',
     }))
   }
 
@@ -44,9 +31,7 @@ class App extends Component {
   }
 
   render() {
-    const { profile, profileLocale, submitted } = this.state
-
-    if (!profile) return null
+    const { profile, profileCountry, submitted } = this.state
 
     return (
       <div className="pa4">
@@ -54,7 +39,7 @@ class App extends Component {
         {!submitted && (
           <div className="mb6">
             <button onClick={this.toggleLocale}>
-              Set rules to {profileLocale === 'pt-BR' ? 'en-US' : 'pt-BR'}
+              Set rules to {profileCountry === 'BRA' ? 'USA' : 'BRA'}
             </button>
           </div>
         )}
@@ -62,23 +47,13 @@ class App extends Component {
           <div>
             {!submitted && (
               <ProfileRules
-                key={profileLocale}
-                locale={profileLocale}
-                fetch={locale => import('../../src/rules/' + locale)}
+                key={profileCountry}
+                country={profileCountry}
+                fetch={country => import('../../src/rules/' + country)}
               >
                 <ProfileContainer
                   profile={profile}
                   onSubmit={this.handleSubmit}
-                  renderSubmitButton={onSubmit => (
-                    <Button
-                      block
-                      variation="secondary"
-                      size="small"
-                      onClick={onSubmit}
-                    >
-                      Submit form
-                    </Button>
-                  )}
                 />
               </ProfileRules>
             )}

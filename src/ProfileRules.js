@@ -16,9 +16,9 @@ class ProfileRules extends Component {
   }
 
   updateRules() {
-    const { locale, fetch } = this.props
+    const { country, fetch } = this.props
 
-    return fetch(locale)
+    return fetch(country)
       .then(ruleData => {
         const rules = ruleData.default || ruleData
 
@@ -30,7 +30,7 @@ class ProfileRules extends Component {
         if (errorType) {
           if (process.env.NODE_ENV !== 'production') {
             console.warn(
-              `Couldn't load rules for locale ${errorType}, using default rules instead.`,
+              `Couldn't load rules for country ${errorType}, using default rules instead.`,
             )
           }
           this.setState({
@@ -62,8 +62,8 @@ class ProfileRules extends Component {
 ProfileRules.propTypes = {
   /** Components that will receive the rules */
   children: PropTypes.element.isRequired,
-  /** The locale whose rules will be fetched and applied */
-  locale: PropTypes.string.isRequired,
+  /** The country whose rules will be fetched and applied */
+  country: PropTypes.string.isRequired,
   /** Functionality for importing the rule files */
   fetch: PropTypes.func.isRequired,
 }
