@@ -80,23 +80,6 @@ class ProfileContainer extends Component {
       ? 'profile-form.hide-business'
       : 'profile-form.show-business'
 
-    const DefaultSubmitButton = (
-      <Button block size="small" onClick={this.handleSubmit}>
-        {intl.formatMessage({ id: 'profile-form.save-changes' })}
-      </Button>
-    )
-
-    const DefaultBusinessButton = (
-      <Button
-        size="small"
-        block
-        variation="secondary"
-        onClick={this.toggleBusinessFields}
-      >
-        {intl.formatMessage({ id: businessButtonMessage })}
-      </Button>
-    )
-
     if (!profile) return null
 
     return (
@@ -113,12 +96,21 @@ class ProfileContainer extends Component {
           ))}
         </div>
         <div className="mb7">
-          {ToggleBusinessButton
-            ? React.cloneElement(ToggleBusinessButton, {
-                onClick: this.toggleBusinessFields,
-                children: intl.formatMessage({ id: businessButtonMessage }),
-              })
-            : DefaultBusinessButton}
+          {ToggleBusinessButton ? (
+            React.cloneElement(ToggleBusinessButton, {
+              onClick: this.toggleBusinessFields,
+              children: intl.formatMessage({ id: businessButtonMessage }),
+            })
+          ) : (
+            <Button
+              size="small"
+              block
+              variation="secondary"
+              onClick={this.toggleBusinessFields}
+            >
+              {intl.formatMessage({ id: businessButtonMessage })}
+            </Button>
+          )}
         </div>
         {showingBusinessFields && (
           <div className="vtex-profile-form__business-fields">
@@ -133,11 +125,15 @@ class ProfileContainer extends Component {
             ))}
           </div>
         )}
-        {SubmitButton
-          ? React.cloneElement(SubmitButton, {
-              onClick: this.handleSubmit,
-            })
-          : DefaultSubmitButton}
+        {SubmitButton ? (
+          React.cloneElement(SubmitButton, {
+            onClick: this.handleSubmit,
+          })
+        ) : (
+          <Button block size="small" onClick={this.handleSubmit}>
+            {intl.formatMessage({ id: 'profile-form.save-changes' })}
+          </Button>
+        )}
       </div>
     )
   }
