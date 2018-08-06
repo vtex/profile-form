@@ -14,10 +14,16 @@ loadTranslation('./src/locales/pt.json')
 
 describe('ProfileContainer', () => {
   let wrapper
+  let mockSubmit
   beforeEach(() => {
     // Arrange
+    mockSubmit = jest.fn()
     wrapper = shallowWithIntl(
-      <ProfileContainer rules={mockRules} profile={mockProfile} />,
+      <ProfileContainer
+        rules={mockRules}
+        defaultProfile={mockProfile}
+        onSubmit={mockSubmit}
+      />,
     ).dive()
   })
 
@@ -61,7 +67,6 @@ describe('ProfileContainer', () => {
 
   it('should call onSubmit with a validated profile when necessary', () => {
     // Arrange
-    const mockSubmit = jest.fn()
     const subRules = {
       ...mockRules,
       personalFields: [
@@ -77,7 +82,7 @@ describe('ProfileContainer', () => {
     const instance = shallowWithIntl(
       <ProfileContainer
         rules={subRules}
-        profile={mockProfile}
+        defaultProfile={mockProfile}
         onSubmit={mockSubmit}
       />,
     )

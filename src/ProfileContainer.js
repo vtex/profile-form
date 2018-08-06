@@ -11,6 +11,7 @@ import {
   applyFullValidation,
   isProfileValid,
 } from './validateProfile'
+import emptyProfile from './emptyProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
 
@@ -24,8 +25,8 @@ class ProfileContainer extends Component {
   }
 
   componentDidMount() {
-    const { profile } = this.props
-    this.setState({ profile: addValidation(profile) })
+    const { defaultProfile } = this.props
+    this.setState({ profile: addValidation(defaultProfile) })
   }
 
   handleFieldUpdate = field => {
@@ -131,6 +132,7 @@ class ProfileContainer extends Component {
 }
 
 ProfileContainer.defaultProps = {
+  defaultProfile: emptyProfile,
   rules: defaultRules,
   Input: StyleguideInput,
 }
@@ -138,8 +140,8 @@ ProfileContainer.defaultProps = {
 ProfileContainer.propTypes = {
   /** Set of rules for this form */
   rules: RuleShape.isRequired,
-  /** Profile data to be managed */
-  profile: ProfileShape.isRequired,
+  /** Initial data for the profile object */
+  defaultProfile: ProfileShape,
   /** Function to be called upon form submission */
   onSubmit: PropTypes.func.isRequired,
   /** Component to be used as input for the form fields */

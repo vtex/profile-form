@@ -13,19 +13,7 @@ class App extends Component {
     addLocaleData(ptLocaleData)
 
     this.state = {
-      profile: {
-        birthDate: null,
-        businessPhone: null,
-        corporateDocument: null,
-        corporateName: null,
-        document: null,
-        firstName: 'Gustavo',
-        gender: null,
-        homePhone: null,
-        lastName: 'Silva',
-        stateRegistration: null,
-        tradeName: null,
-      },
+      profile: null,
       profileCountry: 'BRA',
       submitted: false,
     }
@@ -44,8 +32,6 @@ class App extends Component {
 
   render() {
     const { profile, profileCountry, submitted } = this.state
-
-    if (!profile) return null
 
     return (
       <div className="pa4">

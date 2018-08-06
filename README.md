@@ -49,7 +49,7 @@ Inputs and buttons inside `ProfileContainer` can be customized to fit the style 
 #### Props
 
 - **rules**: (default: the default rules) Set of rules for this form
-- **profile**: Profile data to be managed
+- **defaultProfile**: Initial data for the profile object
 - **onSubmit**: Function to be called upon form submission. Receives as argument an object containing a `valid` boolean representing the state of the profile object, and a clean profile (shape: `ProfileShape`)
 - **Input**: (default: `StyleguideInput`) Component to be used as input for the form fields
 - **ToggleBusinessButton**: Component to be used as a button for toggling business fields
@@ -59,7 +59,7 @@ Inputs and buttons inside `ProfileContainer` can be customized to fit the style 
 ```js
 ProfileContainer.propTypes = {
   rules: RuleShape.isRequired,
-  profile: ProfileShape.isRequired,
+  defaultProfile: ProfileShape,
   onSubmit: PropTypes.func.isRequired,
   Input: PropTypes.func,
   ToggleBusinessButton: PropTypes.element,
@@ -105,7 +105,7 @@ This component contains functionality for easily fetching the profile rules for 
 
 - **`children`**: The component which will be rendered inside this component and, therefore, receive the provided rules (you probably want this to be a `ProfileContainer` instance)
 - **`country`**: The string identifier for the country which rules are to be provided, must use `ISO Alpha3` standard (e.g. `BRA`, `USA`, etc.)
-- **`fetch`**:Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/profile-form/lib/rules/' + country)}` as its value
+- **`fetch`**: Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/profile-form/lib/rules/' + country)}` as its value
 
 ```js
 ProfileRules.propTypes = {
