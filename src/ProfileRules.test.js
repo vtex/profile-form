@@ -1,7 +1,7 @@
 import React from 'react'
 import ProfileRules from './ProfileRules'
 import { shallow } from 'enzyme'
-import brRules from './rules/pt-BR'
+import brRules from './rules/BRA'
 import defaultRules from './rules/default'
 
 describe('ProfileRules', () => {
@@ -9,8 +9,8 @@ describe('ProfileRules', () => {
     // Arrange
     const instance = shallow(
       <ProfileRules
-        locale={'pt-BR'}
-        fetch={locale => import('./rules/' + locale)}
+        country={'BRA'}
+        fetch={country => import('./rules/' + country)}
       >
         <h1>It works!</h1>
       </ProfileRules>,
@@ -27,8 +27,8 @@ describe('ProfileRules', () => {
     // Arrange
     const wrapper = shallow(
       <ProfileRules
-        locale={'pt-BR'}
-        fetch={locale => import('./rules/' + locale)}
+        country={'BRA'}
+        fetch={country => import('./rules/' + country)}
       >
         <h1>It works!</h1>
       </ProfileRules>,
@@ -47,8 +47,8 @@ describe('ProfileRules', () => {
     // Arrange
     const wrapper = shallow(
       <ProfileRules
-        locale={'pt-BR'}
-        fetch={locale => import('./rules/' + locale)}
+        country={'BRA'}
+        fetch={country => import('./rules/' + country)}
       >
         <h1>It works!</h1>
       </ProfileRules>,
@@ -68,8 +68,8 @@ describe('ProfileRules', () => {
     global.console = { warn: jest.fn() }
     const instance = shallow(
       <ProfileRules
-        locale={'xx-YY'}
-        fetch={locale => import('./rules/' + locale)}
+        country={'XXX'}
+        fetch={country => import('./rules/' + country)}
       >
         <h1>It works!</h1>
       </ProfileRules>,

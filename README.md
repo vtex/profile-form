@@ -99,7 +99,7 @@ An example with customized buttons:
 />
 ```
 
-Note that the `onClick` hook for both buttons is automatically injected by the container. Also, the text for the `ToggleBusinessButton` is standardized; you don't need to pass any text inside your button (and if you will, it will be overwritten).
+Note that the `onClick` hook for both buttons is automatically injected by the container. Also, the text for the `ToggleBusinessButton` is standardized; you don't need to pass any text inside your button (and if you do, it will be overwritten).
 
 ### ProfileRules
 
@@ -108,8 +108,8 @@ This component contains functionality for easily fetching the profile rules for 
 #### Props
 
 - **`children`**: The component which will be rendered inside this component and, therefore, receive the provided rules (you probably want this to be a `ProfileContainer` instance)
-- **`locale`**: The string identifier for the country which rules are to be provided, must use `ISO Language Code` standard (e.g. `pt-BR`, `en-US`, etc.)
-- **`fetch`**:Functionality for fetching the rule files. It **must** receive the function `{locale => import('@vtex/profile-form/lib/rules/' + locale)}` as its value
+- **`country`**: The string identifier for the country which rules are to be provided, must use `ISO Alpha3` standard (e.g. `BRA`, `USA`, etc.)
+- **`fetch`**:Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/profile-form/lib/rules/' + country)}` as its value
 
 ```js
 ProfileRules.propTypes = {
