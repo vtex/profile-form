@@ -28,15 +28,6 @@ class ProfileContainer extends Component {
     this.setState({ profile: addValidation(profile) })
   }
 
-  componentDidUpdate(_, prevState) {
-    const { onProfileChange } = this.props
-    const { profile } = this.state
-
-    if (prevState.profile !== profile && onProfileChange) {
-      onProfileChange(profile)
-    }
-  }
-
   handleFieldUpdate = field => {
     this.setState(prevState => ({
       profile: { ...prevState.profile, ...field },
@@ -149,10 +140,8 @@ ProfileContainer.propTypes = {
   rules: RuleShape.isRequired,
   /** Profile data to be managed */
   profile: ProfileShape.isRequired,
-  /** Function to be called when profile data changes */
-  onProfileChange: PropTypes.func,
   /** Function to be called upon form submission */
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
   /** Component to be used as input for the form fields */
   Input: PropTypes.func,
   /** Component to be used as a button for toggling business fields */

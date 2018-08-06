@@ -42,9 +42,7 @@ $ npm install @vtex/profile-form
 
 This is the main component of `profile-form`. It will render inputs based on the rules provided, and fill them with data from the profile object passed to it. It also spawns internal child components that perform validation on such inputs, also based on the rules.
 
-`ProfileContainer` keeps the current profile being managed in its internal state; the `profile` prop is only accessed at mount time. If you need to update the prop at some other time, use the special `key` prop to force the recreation of the whole container with the new profile.
-
-It provides an `onProfileChange()` function to notify the host application of any changes happening inside the form. It also provides an optional `onSubmit()` function to call a function in the host component when the user submits the form.
+`ProfileContainer` keeps the current profile being managed in its internal state; the `profile` prop is only accessed at mount time. If you need to update the prop at some other time, use the special `key` prop to force the recreation of the whole container with the new profile. It also provides an optional `onSubmit()` function to call a function in the host component when the user submits the form.
 
 Inputs and buttons inside `ProfileContainer` can be customized to fit the style of different host applications.
 
@@ -52,7 +50,6 @@ Inputs and buttons inside `ProfileContainer` can be customized to fit the style 
 
 - **rules**: (default: the default rules) Set of rules for this form
 - **profile**: Profile data to be managed
-- **onProfileChange**: Function to be called when profile data changes. Receives as argument the current profile state (shape: `ProfileWithValidationShape`)
 - **onSubmit**: Function to be called upon form submission. Receives as argument an object containing a `valid` boolean representing the state of the profile object, and a clean profile (shape: `ProfileShape`)
 - **Input**: (default: `StyleguideInput`) Component to be used as input for the form fields
 - **ToggleBusinessButton**: Component to be used as a button for toggling business fields
@@ -63,8 +60,7 @@ Inputs and buttons inside `ProfileContainer` can be customized to fit the style 
 ProfileContainer.propTypes = {
   rules: RuleShape.isRequired,
   profile: ProfileShape.isRequired,
-  onProfileChange: PropTypes.func,
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
   Input: PropTypes.func,
   ToggleBusinessButton: PropTypes.element,
   SubmitButton: PropTypes.element,

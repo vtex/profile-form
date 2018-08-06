@@ -59,31 +59,6 @@ describe('ProfileContainer', () => {
     expect(result).toBe('Jack')
   })
 
-  it('should call onProfileChange when state changes', () => {
-    // Arrange
-    const mockChange = jest.fn()
-    const wrapperFn = shallowWithIntl(
-      <ProfileContainer
-        rules={mockRules}
-        profile={mockProfile}
-        onProfileChange={mockChange}
-      />,
-    ).dive()
-    const instance = wrapperFn.instance()
-    const prevState = wrapperFn.state()
-
-    // Act
-    instance.handleFieldUpdate({
-      firstName: {
-        value: 'Jack',
-      },
-    })
-    instance.componentDidUpdate(null, prevState)
-
-    // Assert
-    expect(mockChange).toHaveBeenCalled()
-  })
-
   it('should call onSubmit with a validated profile when necessary', () => {
     // Arrange
     const mockSubmit = jest.fn()
