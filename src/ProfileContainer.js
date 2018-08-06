@@ -11,7 +11,7 @@ import {
   applyFullValidation,
   isProfileValid,
 } from './validateProfile'
-import emptyProfile from './emptyProfile'
+import emptyProfile from './data/emptyProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
 
