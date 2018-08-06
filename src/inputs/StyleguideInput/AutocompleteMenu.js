@@ -4,7 +4,7 @@ import AutocompleteEntry from './AutocompleteEntry'
 
 class AutocompleteMenu extends Component {
   render() {
-    const { items, getMenuProps, getItemProps, highlightedIndex } = this.props
+    const { items, highlightedIndex, getMenuProps, getItemProps } = this.props
 
     if (!items.length) return null
 
@@ -19,10 +19,10 @@ class AutocompleteMenu extends Component {
               key: item.value,
               index,
               item,
-              isSelected: highlightedIndex === index,
+              isHighlighted: highlightedIndex === index,
             })}
           >
-            {item.value}
+            {item.text}
           </AutocompleteEntry>
         ))}
       </div>
@@ -30,6 +30,15 @@ class AutocompleteMenu extends Component {
   }
 }
 
-AutocompleteMenu.propTypes = {}
+AutocompleteMenu.propTypes = {
+  /** The items this menu contains */
+  items: PropTypes.array,
+  /** The index of the item currently highlighted */
+  highlightedIndex: PropTypes.number,
+  /** Function that returns some acessibility props for the menu */
+  getMenuProps: PropTypes.func,
+  /** Function that returns some acessibility props for the items */
+  getItemProps: PropTypes.func,
+}
 
 export default AutocompleteMenu

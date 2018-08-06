@@ -20,5 +20,22 @@
   "profile-form.field.tradeName": "Nome fantasia",
 
   "profile-form.error.EMPTY_FIELD": "Este campo é obrigatório.",
-  "profile-form.error.INVALID_FIELD": "Valor inválido."
+  "profile-form.error.INVALID_FIELD": "Valor inválido.",
+
+  "profile-form.gender.male": "Masculino",
+  "profile-form.gender.female": "Feminino",
+  "profile-form.gender.agender": "Agênero",
+  "profile-form.gender.androgyne": "Andrógino",
+  "profile-form.gender.bigender": "Bigênero",
+  "profile-form.gender.genderfluid": "Gênero Fluido",
+  "profile-form.gender.nonconforming": "Gênero Não-conformante",
+  "profile-form.gender.questioning": "Questionador de Gênero",
+  "profile-form.gender.variant": "Variante de Gênero",
+  "profile-form.gender.genderqueer": "Não-binário",
+  "profile-form.gender.neutrois": "Neutro",
+  "profile-form.gender.other": "Outros",
+  "profile-form.gender.pangender": "Pangênero",
+  "profile-form.gender.transgender": "Transgênero",
+  "profile-form.gender.transsexual": "Transsexual"
+
 }

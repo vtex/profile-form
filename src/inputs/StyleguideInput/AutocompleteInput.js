@@ -15,20 +15,12 @@ class AutocompleteInput extends Component {
   }
 
   render() {
-    const { field, data, inputRef, onBlur, intl } = this.props
-
-    const items = [
-      { value: 'apple' },
-      { value: 'pear' },
-      { value: 'orange' },
-      { value: 'grape' },
-      { value: 'banana' },
-    ]
+    const { field, data, items, inputRef, onBlur, intl } = this.props
 
     return (
       <Downshift
         onChange={this.handleChange}
-        itemToString={item => (item ? item.value : '')}
+        itemToString={item => (item ? item.text : '')}
         defaultInputValue={data.value || ''}
       >
         {({
@@ -66,7 +58,7 @@ class AutocompleteInput extends Component {
             {isOpen ? (
               <AutocompleteMenu
                 items={items.filter(
-                  item => !inputValue || item.value.includes(inputValue),
+                  item => !inputValue || item.text.includes(inputValue),
                 )}
                 getMenuProps={getMenuProps}
                 getItemProps={getItemProps}
@@ -85,6 +77,8 @@ AutocompleteInput.propTypes = {
   field: RuleFieldShape.isRequired,
   /** Data this input will display */
   data: ProfileFieldShape.isRequired,
+  /** Options for this autocomplete component */
+  items: PropTypes.array.isRequired,
   /** Ref function to control this input from outside */
   inputRef: PropTypes.func,
   /** Function to be called when input changes */
@@ -96,29 +90,3 @@ AutocompleteInput.propTypes = {
 }
 
 export default injectIntl(AutocompleteInput)
-
-{
-  /* <div
-                {...getMenuProps({
-                  className:
-                    'bw1 br2 b--solid outline-0 b--gray overflow-hidden absolute w-100 z-1',
-                })}
-              >
-                {items
-                  .filter(
-                    item => !inputValue || item.value.includes(inputValue),
-                  )
-                  .map((item, index) => (
-                    <AutocompleteEntry
-                      {...getItemProps({
-                        key: item.value,
-                        index,
-                        item,
-                        isSelected: highlightedIndex === index,
-                      })}
-                    >
-                      {item.value}
-                    </AutocompleteEntry>
-                  ))}
-              </div> */
-}
