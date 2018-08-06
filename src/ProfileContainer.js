@@ -112,6 +112,14 @@ class ProfileContainer extends Component {
             />
           ))}
         </div>
+        <div className="mb7">
+          {ToggleBusinessButton
+            ? React.cloneElement(ToggleBusinessButton, {
+                onClick: this.toggleBusinessFields,
+                children: intl.formatMessage({ id: businessButtonMessage }),
+              })
+            : DefaultBusinessButton}
+        </div>
         {showingBusinessFields && (
           <div className="vtex-profile-form__business-fields">
             {rules.businessFields.map(field => (
@@ -125,14 +133,6 @@ class ProfileContainer extends Component {
             ))}
           </div>
         )}
-        <div className="mb7">
-          {ToggleBusinessButton
-            ? React.cloneElement(ToggleBusinessButton, {
-                onClick: this.toggleBusinessFields,
-                children: intl.formatMessage({ id: businessButtonMessage }),
-              })
-            : DefaultBusinessButton}
-        </div>
         {SubmitButton
           ? React.cloneElement(SubmitButton, {
               onClick: this.handleSubmit,
