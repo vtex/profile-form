@@ -10,7 +10,7 @@ class AutocompleteMenu extends Component {
     return (
       <div
         {...getMenuProps()}
-        className="bw1 br2 b--solid outline-0 b--gray overflow-hidden absolute w-100 z-1"
+        className="bw1 br2 br--bottom bb br bl b--gray outline-0 overflow-hidden absolute w-100 z-1"
       >
         {items.map((item, index) => (
           <div
@@ -18,7 +18,6 @@ class AutocompleteMenu extends Component {
               key: item.value,
               index,
               item,
-              isHighlighted: highlightedIndex === index,
               className: `f6 ph5 pv5 ${
                 highlightedIndex === index ? 'bg-light-silver' : 'bg-white'
               }`,

@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import Downshift from 'downshift'
 import matchSorter from 'match-sorter'
 import Input from '@vtex/styleguide/lib/Input'
-import CaretDown from '@vtex/styleguide/lib/icon/CaretDown'
-import RuleFieldShape from '../../propTypes/RuleFieldShape'
-import ProfileFieldShape from '../../propTypes/ProfileFieldShape'
 import AutocompleteMenu from './AutocompleteMenu'
 
 class AutocompleteInput extends Component {
@@ -19,11 +16,10 @@ class AutocompleteInput extends Component {
     const {
       name,
       label,
-      ref,
-      maxLength,
+      items,
+      value,
       placeholder,
       suffixIcon,
-      items,
       listSize,
       forwardedRef,
     } = this.props
@@ -32,7 +28,7 @@ class AutocompleteInput extends Component {
       <Downshift
         onChange={this.handleChange}
         itemToString={item => (item ? item.label : '')}
-        defaultInputValue={data.value || ''}
+        defaultInputValue={value}
       >
         {({
           getInputProps,
@@ -42,13 +38,11 @@ class AutocompleteInput extends Component {
           inputValue,
           highlightedIndex,
         }) => (
-          <div>
+          <div className="relative">
             <Input
               {...getInputProps({
                 name,
                 label,
-                ref,
-                maxLength,
                 placeholder,
                 suffixIcon,
                 ref: forwardedRef,
@@ -56,10 +50,9 @@ class AutocompleteInput extends Component {
             />
             {isOpen ? (
               <AutocompleteMenu
-                items={matchSorter(items, inputValue, { keys: ['text'] }).slice(
-                  0,
-                  listSize,
-                )}
+                items={matchSorter(items, inputValue, {
+                  keys: ['label'],
+                }).slice(0, listSize)}
                 getMenuProps={getMenuProps}
                 getItemProps={getItemProps}
                 highlightedIndex={highlightedIndex}
@@ -72,19 +65,29 @@ class AutocompleteInput extends Component {
   }
 }
 
+AutocompleteInput.defaultProps = {
+  listSize: 5,
+}
+
 AutocompleteInput.propTypes = {
-  /** Rules for the field this input represents */
-  field: RuleFieldShape.isRequired,
-  /** Data this input will display */
-  data: ProfileFieldShape.isRequired,
-  /** Options for this autocomplete component */
+  /** Name for this input */
+  name: PropTypes.string.isRequired,
+  /** List of items to feed the autocompletion */
   items: PropTypes.array.isRequired,
-  /** Ref function to control this input from outside */
-  inputRef: PropTypes.func,
-  /** Function to be called when input changes */
-  onChange: PropTypes.func.isRequired,
-  /** Function to be called when input blurs */
-  onBlur: PropTypes.func.isRequired,
+  /** The default selected value */
+  value: PropTypes.string.isRequired,
+  /** Label for this input */
+  label: PropTypes.string,
+  /** Placeholder text for the input box */
+  placeholder: PropTypes.string,
+  /** An icon that can be added to the right corner of the input */
+  suffixIcon: PropTypes.any,
+  /** The maximum number of suggestions to be shown at a time */
+  listSize: PropTypes.number,
+  /** Function to be called on data change */
+  onChange: PropTypes.func,
+  /** A ref function to control this input from outside */
+  forwardedRef: PropTypes.func,
 }
 
 export default React.forwardRef((props, ref) => (

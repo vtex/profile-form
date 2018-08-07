@@ -4,21 +4,16 @@ import { intlShape, injectIntl } from 'react-intl'
 import Input from '@vtex/styleguide/lib/Input'
 import RuleFieldShape from '../../propTypes/RuleFieldShape'
 import ProfileFieldShape from '../../propTypes/ProfileFieldShape'
-import AutocompleteInput from './AutocompleteInput'
-import genders from '../../data/genders'
+import GenderInput from './GenderInput'
 
 const StyleguideInput = props => {
   const { field, data, inputRef, onChange, onBlur, intl } = props
 
   if (field.name === 'gender') {
     return (
-      <AutocompleteInput
-        {...props}
-        items={genders.map(gender => ({
-          value: gender,
-          text: intl.formatMessage({ id: 'profile-form.gender.' + gender }),
-        }))}
-      />
+      <div>
+        <GenderInput {...props} />
+      </div>
     )
   }
 
