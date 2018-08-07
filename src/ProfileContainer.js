@@ -64,6 +64,7 @@ class ProfileContainer extends Component {
       Input,
       ToggleBusinessButton,
       SubmitButton,
+      shouldShowExtendedGenders,
       intl,
     } = this.props
     const { profile, showingBusinessFields } = this.state
@@ -71,6 +72,8 @@ class ProfileContainer extends Component {
     const businessButtonMessage = showingBusinessFields
       ? 'profile-form.hide-business'
       : 'profile-form.show-business'
+
+    const options = { gender: { shouldShowExtendedGenders } }
 
     if (!profile) return null
 
@@ -82,6 +85,7 @@ class ProfileContainer extends Component {
               key={field.name}
               field={field}
               data={profile[field.name]}
+              options={options[field.name]}
               onFieldUpdate={this.handleFieldUpdate}
               Input={Input}
             />
@@ -135,6 +139,7 @@ ProfileContainer.defaultProps = {
   defaultProfile: emptyProfile,
   rules: defaultRules,
   Input: StyleguideInput,
+  shouldShowExtendedGenders: false,
 }
 
 ProfileContainer.propTypes = {
@@ -150,6 +155,8 @@ ProfileContainer.propTypes = {
   ToggleBusinessButton: PropTypes.element,
   /** Component to be used as a submit button */
   SubmitButton: PropTypes.element,
+  /** Whether to display extended genders or just M/F */
+  shouldShowExtendedGenders: PropTypes.bool,
   /** React-intl utility */
   intl: intlShape.isRequired,
 }

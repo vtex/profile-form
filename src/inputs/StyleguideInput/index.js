@@ -7,10 +7,15 @@ import ProfileFieldShape from '../../propTypes/ProfileFieldShape'
 import GenderInput from './GenderInput'
 
 const StyleguideInput = props => {
-  const { field, data, inputRef, onChange, onBlur, intl } = props
+  const { field, data, options, inputRef, onChange, onBlur, intl } = props
 
   if (field.name === 'gender') {
-    return <GenderInput {...props} shouldShowExtendedGenders={true} />
+    return (
+      <GenderInput
+        {...props}
+        shouldShowExtendedGenders={options.shouldShowExtendedGenders}
+      />
+    )
   }
 
   return (
@@ -50,6 +55,8 @@ StyleguideInput.propTypes = {
   field: RuleFieldShape.isRequired,
   /** Data this input will display */
   data: ProfileFieldShape.isRequired,
+  /** Additional options to modify this input */
+  options: PropTypes.object,
   /** Ref function to control this input from outside */
   inputRef: PropTypes.func,
   /** Function to be called when input changes */
