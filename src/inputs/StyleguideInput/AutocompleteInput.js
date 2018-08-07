@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Downshift from 'downshift'
 import matchSorter from 'match-sorter'
 import Input from '@vtex/styleguide/lib/Input'
-import Button from '@vtex/styleguide/lib/Button'
 import CaretDown from '@vtex/styleguide/lib/icon/CaretDown'
 import AutocompleteMenu from './AutocompleteMenu'
 
@@ -13,16 +12,7 @@ class AutocompleteInput extends Component {
   }
 
   render() {
-    const {
-      name,
-      label,
-      items,
-      value,
-      placeholder,
-      suffixIcon,
-      listSize,
-      forwardedRef,
-    } = this.props
+    const { name, label, items, value, placeholder, forwardedRef } = this.props
 
     return (
       <Downshift
@@ -49,7 +39,6 @@ class AutocompleteInput extends Component {
                 suffixIcon: (
                   <button
                     {...getToggleButtonProps({
-                      variation: 'tertiary',
                       className: 'blue b--none bg-transparent pointer',
                     })}
                   >
@@ -62,7 +51,7 @@ class AutocompleteInput extends Component {
               <AutocompleteMenu
                 items={matchSorter(items, inputValue, {
                   keys: ['label'],
-                }).slice(0, listSize)}
+                })}
                 getMenuProps={getMenuProps}
                 getItemProps={getItemProps}
                 highlightedIndex={highlightedIndex}
@@ -73,10 +62,6 @@ class AutocompleteInput extends Component {
       </Downshift>
     )
   }
-}
-
-AutocompleteInput.defaultProps = {
-  listSize: 5,
 }
 
 AutocompleteInput.propTypes = {
@@ -92,8 +77,6 @@ AutocompleteInput.propTypes = {
   placeholder: PropTypes.string,
   /** An icon that can be added to the right corner of the input */
   suffixIcon: PropTypes.any,
-  /** The maximum number of suggestions to be shown at a time */
-  listSize: PropTypes.number,
   /** Function to be called on data change */
   onChange: PropTypes.func,
   /** A ref function to control this input from outside */
