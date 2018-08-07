@@ -11,24 +11,23 @@ class GenderInput extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showCustomGenders: false,
+      showExtendedGenders: false,
     }
   }
 
   componentDidMount() {
-    if (
-      this.props.data.value &&
-      !['male', 'female'].includes(this.props.data.value)
-    ) {
-      this.setState({ showCustomGenders: true })
-    }
+    const { value } = this.props
+
+    this.setState({
+      showExtendedGenders: value !== 'male' && value !== 'female',
+    })
   }
 
   handleChange = e => {
     const { value } = e.target
 
     this.setState({
-      showCustomGenders: value !== 'male' && value !== 'female',
+      showExtendedGenders: value !== 'male' && value !== 'female',
     })
 
     this.props.onChange(e)
@@ -56,7 +55,7 @@ class GenderInput extends Component {
       intl,
       shouldShowExtendedGenders,
     } = this.props
-    const { showCustomGenders } = this.state
+    const { showExtendedGenders } = this.state
 
     const baseGenders = ['male', 'female', 'custom']
       .map(gender => ({
@@ -89,7 +88,7 @@ class GenderInput extends Component {
           onBlur={onBlur}
           options={baseGenders}
         />
-        {showCustomGenders && (
+        {showExtendedGenders && (
           <div className="vtex-profile-form__custom-gender bg-light-silver pa5 mt4 br2">
             <AutocompleteInput
               name="custom-gender"
