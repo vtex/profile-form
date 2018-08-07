@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Downshift from 'downshift'
 import matchSorter from 'match-sorter'
 import Input from '@vtex/styleguide/lib/Input'
+import Button from '@vtex/styleguide/lib/Button'
+import CaretDown from '@vtex/styleguide/lib/icon/CaretDown'
 import AutocompleteMenu from './AutocompleteMenu'
 
 class AutocompleteInput extends Component {
@@ -11,8 +13,6 @@ class AutocompleteInput extends Component {
   }
 
   render() {
-    const { field, data, inputRef, intl } = this.props
-
     const {
       name,
       label,
@@ -34,6 +34,7 @@ class AutocompleteInput extends Component {
           getInputProps,
           getItemProps,
           getMenuProps,
+          getToggleButtonProps,
           isOpen,
           inputValue,
           highlightedIndex,
@@ -44,8 +45,17 @@ class AutocompleteInput extends Component {
                 name,
                 label,
                 placeholder,
-                suffixIcon,
                 ref: forwardedRef,
+                suffixIcon: (
+                  <button
+                    {...getToggleButtonProps({
+                      variation: 'tertiary',
+                      className: 'blue b--none bg-transparent pointer',
+                    })}
+                  >
+                    <CaretDown color="currentColor" size={10} />
+                  </button>
+                ),
               })}
             />
             {isOpen ? (

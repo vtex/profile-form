@@ -97,13 +97,8 @@ class GenderInput extends Component {
               })}
               value={this.getAutocompleteValue()}
               ref={inputRef}
-              suffixIcon={
-                <span className="blue">
-                  <CaretDown color="currentColor" size={10} />
-                </span>
-              }
               items={extendedGenders}
-              listSize={5}
+              listSize={20}
               onChange={this.handleChange}
             />
           </div>
