@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Gender picker
+
 ## [0.6.0] - 2018-08-06
+
+### Added
+
+- Business inputs and toggling
+- Validators for CPF and CNPJ
+- README documentation
 
 ## [0.5.0] - 2018-08-03
 
