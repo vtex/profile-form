@@ -5,7 +5,8 @@ import Button from '@vtex/styleguide/lib/Button'
 import ptTranslations from '../../src/locales/pt'
 import ProfileContainer from '../../src/ProfileContainer'
 import ProfileRules from '../../src/ProfileRules'
-import ProfileSummary from './ProfileSummary'
+import ProfileSummary from '../../src/ProfileSummary'
+import DisplaySlice from './DisplaySlice'
 import 'vtex-tachyons'
 
 class App extends Component {
@@ -36,7 +37,7 @@ class App extends Component {
 
     return (
       <div className="pa4">
-        <h3>ProfileForm demo:</h3>
+        <h2 className="dark-gray">ProfileForm demo:</h2>
         {!submitted && (
           <div className="mb6">
             <Button
@@ -50,20 +51,40 @@ class App extends Component {
         )}
         <IntlProvider locale={'pt-BR'} messages={ptTranslations}>
           <div>
-            {!submitted && (
-              <ProfileRules
-                key={profileCountry}
-                country={profileCountry}
-                fetch={country => import('../../src/rules/' + country)}
-              >
+            <ProfileRules
+              key={profileCountry}
+              country={profileCountry}
+              fetch={country => import('../../src/rules/' + country)}
+            >
+              {submitted ? (
+                <ProfileSummary profile={profile}>
+                  {({ personalData, businessData }) => (
+                    <div>
+                      <h3 className="heavy-rebel-pink">Personal Data:</h3>
+                      {Object.keys(personalData).map(fieldName => (
+                        <DisplaySlice
+                          key={fieldName}
+                          slice={personalData[fieldName]}
+                        />
+                      ))}
+                      <h3 className="heavy-rebel-pink">Business Data:</h3>
+                      {Object.keys(businessData).map(fieldName => (
+                        <DisplaySlice
+                          key={fieldName}
+                          slice={businessData[fieldName]}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </ProfileSummary>
+              ) : (
                 <ProfileContainer
                   profile={profile}
                   onSubmit={this.handleSubmit}
                   shouldShowExtendedGenders={true}
                 />
-              </ProfileRules>
-            )}
-            {submitted && <ProfileSummary profile={profile} />}
+              )}
+            </ProfileRules>
           </div>
         </IntlProvider>
       </div>
