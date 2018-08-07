@@ -54,6 +54,7 @@ Inputs and buttons inside `ProfileContainer` can be customized to fit the style 
 - **Input**: (default: `StyleguideInput`) Component to be used as input for the form fields
 - **ToggleBusinessButton**: Component to be used as a button for toggling business fields
 - **SubmitButton**: Component to be used as a submit button
+- **shouldShowExtendedGenders**: (default: `false`) Whether the gender input should display a wide list of genders or just male/female
 - **intl**: `react-intl` automatically injected util
 
 ```js
@@ -64,6 +65,7 @@ ProfileContainer.propTypes = {
   Input: PropTypes.func,
   ToggleBusinessButton: PropTypes.element,
   SubmitButton: PropTypes.element,
+  shouldShowExtendedGenders: PropTypes.bool,
   intl: intlShape.isRequired,
 }
 ```
