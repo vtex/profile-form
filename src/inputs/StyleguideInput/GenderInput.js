@@ -25,11 +25,8 @@ class GenderInput extends Component {
   }
 
   handleChange = e => {
-    console.log('ping')
-
     const { value } = e.target
 
-    console.log(value)
     this.setState({
       showCustomGenders: value !== 'male' && value !== 'female',
     })
@@ -52,15 +49,13 @@ class GenderInput extends Component {
   }
 
   render() {
-    const { field, data, inputRef, onBlur, intl } = this.props
+    const { field, inputRef, onBlur, intl } = this.props
     const { showCustomGenders } = this.state
 
-    const options = ['male', 'female', 'custom'].map(gender => {
-      return {
-        value: gender,
-        label: intl.formatMessage({ id: 'profile-form.gender.' + gender }),
-      }
-    })
+    const genders = ['male', 'female', 'custom'].map(gender => ({
+      value: gender,
+      label: intl.formatMessage({ id: 'profile-form.gender.' + gender }),
+    }))
 
     const extendedGenders = genders.map(gender => ({
       value: gender,
@@ -84,7 +79,7 @@ class GenderInput extends Component {
           }
           onChange={this.handleChange}
           onBlur={onBlur}
-          options={options}
+          options={genders}
         />
         {showCustomGenders && (
           <div className="vtex-profile-form__custom-gender bg-light-silver pa5 mt4 br2">
@@ -96,7 +91,6 @@ class GenderInput extends Component {
               value={this.getAutocompleteValue()}
               ref={inputRef}
               items={extendedGenders}
-              listSize={20}
               onChange={this.handleChange}
             />
           </div>

@@ -47,7 +47,7 @@ class AutocompleteInput extends Component {
                 ),
               })}
             />
-            {isOpen ? (
+            {isOpen && (
               <AutocompleteMenu
                 items={matchSorter(items, inputValue, {
                   keys: ['label'],
@@ -56,7 +56,7 @@ class AutocompleteInput extends Component {
                 getItemProps={getItemProps}
                 highlightedIndex={highlightedIndex}
               />
-            ) : null}
+            )}
           </div>
         )}
       </Downshift>

@@ -10,11 +10,7 @@ const StyleguideInput = props => {
   const { field, data, inputRef, onChange, onBlur, intl } = props
 
   if (field.name === 'gender') {
-    return (
-      <div>
-        <GenderInput {...props} />
-      </div>
-    )
+    return <GenderInput {...props} />
   }
 
   return (
