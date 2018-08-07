@@ -9,24 +9,43 @@ class ProfileSummary extends Component {
     const { profile, intl } = this.props
 
     return fields
-      .map(field => ({
-        [field.name]: {
-          label: intl.formatMessage({
-            id: 'profile-form.field.' + field.name,
-          }),
-          value: profile[field.name],
-          hidden: field.hidden,
-        },
-      }))
+      .map(field => {
+        const data = profile[field.name]
+        return {
+          [field.name]: {
+            label: intl.formatMessage({
+              id: 'profile-form.field.' + field.name,
+            }),
+            value: field.mask && data ? field.mask(data) : data,
+            hidden: field.hidden,
+          },
+        }
+      })
       .reduce((acc, cur) => ({ ...acc, ...cur }), {})
+  }
+
+  translateGender(mappedData) {
+    return {
+      ...mappedData,
+      gender: {
+        ...mappedData.gender,
+        value: mappedData.gender.value
+          ? this.props.intl.formatMessage({
+              id: 'profile-form.gender.' + mappedData.gender.value,
+            })
+          : '',
+      },
+    }
   }
 
   render() {
     const { rules, children } = this.props
-    const personalData = this.mapFields(rules.personalFields)
+    const personalData = this.translateGender(
+      this.mapFields(rules.personalFields),
+    )
     const businessData = this.mapFields(rules.businessFields)
 
-    return <div>{children({ displayData, businessData })}</div>
+    return <div>{children({ personalData, businessData })}</div>
   }
 }
 
