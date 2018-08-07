@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Downshift from 'downshift'
-import { intlShape, injectIntl } from 'react-intl'
+import matchSorter from 'match-sorter'
 import Input from '@vtex/styleguide/lib/Input'
 import CaretDown from '@vtex/styleguide/lib/icon/CaretDown'
 import RuleFieldShape from '../../propTypes/RuleFieldShape'
 import ProfileFieldShape from '../../propTypes/ProfileFieldShape'
-import AutocompleteEntry from './AutocompleteEntry'
 import AutocompleteMenu from './AutocompleteMenu'
 
 class AutocompleteInput extends Component {
@@ -15,12 +14,24 @@ class AutocompleteInput extends Component {
   }
 
   render() {
-    const { field, data, items, inputRef, onBlur, intl } = this.props
+    const { field, data, inputRef, intl } = this.props
+
+    const {
+      name,
+      label,
+      ref,
+      maxLength,
+      placeholder,
+      suffixIcon,
+      items,
+      listSize,
+      forwardedRef,
+    } = this.props
 
     return (
       <Downshift
         onChange={this.handleChange}
-        itemToString={item => (item ? item.text : '')}
+        itemToString={item => (item ? item.label : '')}
         defaultInputValue={data.value || ''}
       >
         {({
@@ -31,34 +42,23 @@ class AutocompleteInput extends Component {
           inputValue,
           highlightedIndex,
         }) => (
-          <div
-            className={`vtex-profile-form__${field.name} relative ${
-              field.hidden ? 'dn' : ''
-            } pb7`}
-          >
+          <div>
             <Input
               {...getInputProps({
-                name: field.name,
-                label: intl.formatMessage({
-                  id: `profile-form.field.${field.name}`,
-                }),
-                ref: inputRef,
-                maxLength: field.maxLength,
-                suffixIcon: (
-                  <span className="blue">
-                    <CaretDown color="currentColor" size={10} />
-                  </span>
-                ),
-                placeholder: !field.required
-                  ? intl.formatMessage({ id: 'profile-form.optional' })
-                  : null,
-                onBlur: onBlur,
+                name,
+                label,
+                ref,
+                maxLength,
+                placeholder,
+                suffixIcon,
+                ref: forwardedRef,
               })}
             />
             {isOpen ? (
               <AutocompleteMenu
-                items={items.filter(
-                  item => !inputValue || item.text.includes(inputValue),
+                items={matchSorter(items, inputValue, { keys: ['text'] }).slice(
+                  0,
+                  listSize,
                 )}
                 getMenuProps={getMenuProps}
                 getItemProps={getItemProps}
@@ -85,8 +85,8 @@ AutocompleteInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   /** Function to be called when input blurs */
   onBlur: PropTypes.func.isRequired,
-  /** React-intl utility */
-  intl: intlShape.isRequired,
 }
 
-export default injectIntl(AutocompleteInput)
+export default React.forwardRef((props, ref) => (
+  <AutocompleteInput {...props} forwardedRef={ref} />
+))

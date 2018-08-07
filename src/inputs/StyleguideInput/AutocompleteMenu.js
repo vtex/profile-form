@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AutocompleteEntry from './AutocompleteEntry'
 
 class AutocompleteMenu extends Component {
   render() {
@@ -14,16 +13,19 @@ class AutocompleteMenu extends Component {
         className="bw1 br2 b--solid outline-0 b--gray overflow-hidden absolute w-100 z-1"
       >
         {items.map((item, index) => (
-          <AutocompleteEntry
+          <div
             {...getItemProps({
               key: item.value,
               index,
               item,
               isHighlighted: highlightedIndex === index,
+              className: `f6 ph5 pv5 ${
+                highlightedIndex === index ? 'bg-light-silver' : 'bg-white'
+              }`,
             })}
           >
-            {item.text}
-          </AutocompleteEntry>
+            {item.label}
+          </div>
         ))}
       </div>
     )
