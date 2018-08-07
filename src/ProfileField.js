@@ -35,11 +35,12 @@ class ProfileField extends Component {
   }
 
   render() {
-    const { field, data, Input } = this.props
+    const { field, data, options, Input } = this.props
     return (
       <Input
         field={field}
         data={data}
+        options={options}
         inputRef={this.inputRef}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
@@ -53,6 +54,8 @@ ProfileField.propTypes = {
   field: RuleFieldShape.isRequired,
   /** Data to be displayed by this component */
   data: ProfileFieldShape.isRequired,
+  /** Additional options to modify this input */
+  options: PropTypes.object,
   /** Function to be called when data changes */
   onFieldUpdate: PropTypes.func.isRequired,
   /** Component to be used as input for the field */

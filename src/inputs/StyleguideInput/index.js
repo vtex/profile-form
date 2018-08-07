@@ -4,8 +4,20 @@ import { intlShape, injectIntl } from 'react-intl'
 import Input from '@vtex/styleguide/lib/Input'
 import RuleFieldShape from '../../propTypes/RuleFieldShape'
 import ProfileFieldShape from '../../propTypes/ProfileFieldShape'
+import GenderInput from './GenderInput'
 
-const StyleguideInput = ({ field, data, inputRef, onChange, onBlur, intl }) => {
+const StyleguideInput = props => {
+  const { field, data, options, inputRef, onChange, onBlur, intl } = props
+
+  if (field.name === 'gender') {
+    return (
+      <GenderInput
+        {...props}
+        shouldShowExtendedGenders={options.shouldShowExtendedGenders}
+      />
+    )
+  }
+
   return (
     <div
       className={`vtex-profile-form__${field.name} ${
@@ -43,6 +55,8 @@ StyleguideInput.propTypes = {
   field: RuleFieldShape.isRequired,
   /** Data this input will display */
   data: ProfileFieldShape.isRequired,
+  /** Additional options to modify this input */
+  options: PropTypes.object,
   /** Ref function to control this input from outside */
   inputRef: PropTypes.func,
   /** Function to be called when input changes */

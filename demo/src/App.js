@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import ptLocaleData from 'react-intl/locale-data/pt'
+import Button from '@vtex/styleguide/lib/Button'
 import ptTranslations from '../../src/locales/pt'
 import ProfileContainer from '../../src/ProfileContainer'
 import ProfileRules from '../../src/ProfileRules'
@@ -38,9 +39,13 @@ class App extends Component {
         <h3>ProfileForm demo:</h3>
         {!submitted && (
           <div className="mb6">
-            <button onClick={this.toggleLocale}>
+            <Button
+              size="small"
+              variation="secondary"
+              onClick={this.toggleLocale}
+            >
               Set rules to {profileCountry === 'BRA' ? 'USA' : 'BRA'}
-            </button>
+            </Button>
           </div>
         )}
         <IntlProvider locale={'pt-BR'} messages={ptTranslations}>
@@ -54,6 +59,7 @@ class App extends Component {
                 <ProfileContainer
                   profile={profile}
                   onSubmit={this.handleSubmit}
+                  shouldShowExtendedGenders={true}
                 />
               </ProfileRules>
             )}
