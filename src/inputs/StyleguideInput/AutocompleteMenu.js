@@ -7,10 +7,13 @@ class AutocompleteMenu extends Component {
 
     if (!items.length) return null
 
+    const listHeight = items.length > 4 ? 'h5' : ''
+
     return (
       <div
-        {...getMenuProps()}
-        className="bw1 br2 br--bottom bb br bl b--gray outline-0 overflow-hidden absolute w-100 z-1"
+        {...getMenuProps({
+          className: `br2 br--bottom bb br bl b--gray bw1 outline-0 overflow-y-scroll ${listHeight} absolute w-100 z-1 bg-white`,
+        })}
       >
         {items.map((item, index) => (
           <div
@@ -18,7 +21,7 @@ class AutocompleteMenu extends Component {
               key: item.value,
               index,
               item,
-              className: `f6 ph5 pv5 ${
+              className: `f6 ph5 pv5 dark-gray ${
                 highlightedIndex === index ? 'bg-light-silver' : 'bg-white'
               }`,
             })}
