@@ -49,13 +49,21 @@ class GenderInput extends Component {
   }
 
   render() {
-    const { field, inputRef, onBlur, intl } = this.props
+    const {
+      field,
+      inputRef,
+      onBlur,
+      intl,
+      shouldShowExtendedGenders,
+    } = this.props
     const { showCustomGenders } = this.state
 
-    const genders = ['male', 'female', 'custom'].map(gender => ({
-      value: gender,
-      label: intl.formatMessage({ id: 'profile-form.gender.' + gender }),
-    }))
+    const baseGenders = ['male', 'female', 'custom']
+      .map(gender => ({
+        value: gender,
+        label: intl.formatMessage({ id: 'profile-form.gender.' + gender }),
+      }))
+      .slice(0, shouldShowExtendedGenders ? 3 : 2)
 
     const extendedGenders = genders.map(gender => ({
       value: gender,
@@ -79,7 +87,7 @@ class GenderInput extends Component {
           }
           onChange={this.handleChange}
           onBlur={onBlur}
-          options={genders}
+          options={baseGenders}
         />
         {showCustomGenders && (
           <div className="vtex-profile-form__custom-gender bg-light-silver pa5 mt4 br2">
@@ -111,6 +119,8 @@ GenderInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   /** Function to be called when input blurs */
   onBlur: PropTypes.func.isRequired,
+  /** Whether to show the full list of genders or just M/F */
+  shouldShowExtendedGenders: PropTypes.bool.isRequired,
   /** React-intl utility */
   intl: intlShape.isRequired,
 }
