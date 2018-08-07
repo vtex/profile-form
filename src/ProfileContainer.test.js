@@ -1,10 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import {
-  shallowWithIntl,
-  mountWithIntl,
-  loadTranslation,
-} from 'enzyme-react-intl'
+import { shallowWithIntl, loadTranslation } from 'enzyme-react-intl'
 import ProfileContainer from './ProfileContainer'
 import mockRules from './__mocks__/rules'
 import mockProfile from './__mocks__/profile'
