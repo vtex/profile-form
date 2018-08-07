@@ -16,10 +16,12 @@ class GenderInput extends Component {
   }
 
   componentDidMount() {
-    const { value } = this.props
+    const { data } = this.props
+
+    if (!data.value) return
 
     this.setState({
-      showExtendedGenders: value !== 'male' && value !== 'female',
+      showExtendedGenders: data.value !== 'male' && data.value !== 'female',
     })
   }
 
