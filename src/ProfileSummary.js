@@ -55,7 +55,7 @@ ProfileSummary.propTypes = {
   /** Rules to be applied over the profile */
   rules: RuleShape.isRequired,
   /** Render prop that receives all display data */
-  children: PropTypes.func,
+  children: PropTypes.func.isRequired,
   /** React-intl injected utility */
   intl: intlShape.isRequired,
 }
