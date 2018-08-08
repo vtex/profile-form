@@ -29,11 +29,11 @@ class ProfileSummary extends Component {
       ...mappedData,
       gender: {
         ...mappedData.gender,
-        value: mappedData.gender.value
-          ? this.props.intl.formatMessage({
-              id: 'profile-form.gender.' + mappedData.gender.value,
-            })
-          : '',
+        value:
+          mappedData.gender.value &&
+          this.props.intl.formatMessage({
+            id: 'profile-form.gender.' + mappedData.gender.value,
+          }),
       },
     }
   }
