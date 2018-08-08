@@ -14,6 +14,7 @@ $ npm install @vtex/profile-form
 
 - [ProfileContainer](#profilecontainer)
 - [ProfileRules](#profilerules)
+- [ProfileSummary](#profilesummary)
 
 ### Helper Functions
 
@@ -128,6 +129,54 @@ Here, `ProfileContainer` will be injected with the fetched rules:
 >
   <ProfileContainer profile={profile} onSubmit={this.handleSubmit} />
 </ProfileRules>
+```
+
+### ProfileSummary
+
+This component takes in a profile object and a set of rules and prepares the data for displaying. Its main advantages are handling the translation of the labels and informing which fields should be hidden, but it also does some parsing logic such as translating gender and masking phone.
+
+`ProfileSummary` renders nothing by itself. The data is served as a render prop, and the host app must display it as desired. An object is passed with two properties: `personalData` and `businessData`, where each of these is an object with the keys being the field names (such as `firstName` or `homePhone` for `personalData`) and the value being an object containing useful information for displaying each field:
+
+- `label`: the field label, already translated.
+- `value`: the value obtained from the `profile` prop, masked if necessary
+- `hidden`: whether this field should be hidden or not
+
+#### Props
+
+- **`profile`**: The profile object whose data will be served
+- **`rules`**: The set of rules to apply over the profile. Works best if injected by a `ProfileRules` component
+- **`children`**: The render prop function, serving the data in the structure explained above
+- **`intl`**: `react-intl` internal utility
+
+```js
+ProfileSummary.propTypes = {
+  profile: ProfileShape.isRequired,
+  rules: RuleShape.isRequired,
+  children: PropTypes.func.isRequired,
+  intl: intlShape.isRequired,
+}
+```
+
+#### Example
+
+```js
+<ProfileSummary profile={profile}>
+  {({ personalData, businessData }) => (
+    <div>
+      <h3>Personal Data:</h3>
+      {Object.keys(personalData).map(fieldName =>
+        <div>
+          {!personalData[fieldName].hidden &&
+            <label>{personalData[fieldName].label}</label>}
+          {!personalData[fieldName].hidden &&
+            <span>{personalData[fieldName].value}</span>}
+        </div>
+      ))}
+      <h3>Business Data:</h3>
+      {/* [...] */}
+    </div>
+  )}
+</ProfileSummary>
 ```
 
 ## Helper Functions

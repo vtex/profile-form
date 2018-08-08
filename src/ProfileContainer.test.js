@@ -1,14 +1,9 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import {
-  shallowWithIntl,
-  mountWithIntl,
-  loadTranslation,
-} from 'enzyme-react-intl'
+import { shallowWithIntl, loadTranslation } from 'enzyme-react-intl'
 import ProfileContainer from './ProfileContainer'
+import ProfileField from './ProfileField'
 import mockRules from './__mocks__/rules'
 import mockProfile from './__mocks__/profile'
-import ProfileField from './ProfileField'
 
 loadTranslation('./src/locales/pt.json')
 
@@ -32,7 +27,7 @@ describe('ProfileContainer', () => {
     const result = wrapper.find(ProfileField)
 
     // Assert
-    expect(result).toHaveLength(2)
+    expect(result).toHaveLength(3)
   })
 
   it('should pass down profile data to fields', () => {
@@ -72,9 +67,9 @@ describe('ProfileContainer', () => {
       personalFields: [
         ...mockRules.personalFields,
         {
-          name: 'gender',
+          name: 'document',
           maxLength: 30,
-          label: 'gender',
+          label: 'document',
           required: true,
         },
       ],
@@ -94,7 +89,13 @@ describe('ProfileContainer', () => {
 
     // Assert
     expect(mockSubmit).toHaveBeenCalledWith({
-      profile: { firstName: 'John', gender: null, lastName: 'Appleseed' },
+      profile: {
+        firstName: 'John',
+        gender: null,
+        lastName: 'Appleseed',
+        tradeName: null,
+        document: null,
+      },
       valid: false,
     })
   })
