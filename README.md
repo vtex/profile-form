@@ -164,10 +164,12 @@ ProfileSummary.propTypes = {
   {({ personalData, businessData }) => (
     <div>
       <h3>Personal Data:</h3>
-      {Object.keys(personalData).map(fieldName => (
+      {Object.keys(personalData).map(fieldName =>
         <div>
-          {!slice.hidden && <label>{slice.label}</label>}
-          {!slice.hidden && <span>{slice.value}</span>}
+          {!personalData[fieldName].hidden &&
+            <label>{personalData[fieldName].label}</label>}
+          {!personalData[fieldName].hidden &&
+            <span>{personalData[fieldName].value}</span>}
         </div>
       ))}
       <h3>Business Data:</h3>
