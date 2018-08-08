@@ -12,7 +12,7 @@ const DisplaySlice = ({ slice }) => {
 
 DisplaySlice.propTypes = {
   /** Piece of display data to show */
-  slice: PropTypes.object,
+  slice: PropTypes.object.isRequired,
 }
 
 export default DisplaySlice
