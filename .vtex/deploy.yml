@@ -10,6 +10,6 @@ phases:
       - echo Building application...
       - npm run build
       - echo Build finished!
-      - echo Publishing to NPM...
-      - npm publish
-      - echo Publish finished!
+      # - echo Publishing to NPM...
+      # - npm publish
+      # - echo Publish finished!
