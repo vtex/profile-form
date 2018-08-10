@@ -54,10 +54,11 @@ describe('ProfileSummary', () => {
     ).dive()
 
     // Act
-    const result = hiddenWrapper.find('span').props().displayData
+    const result = hiddenWrapper.find('span').props().displayData.businessData
+      .tradeName
 
     // Assert
-    expect(result.businessData.tradeName.hidden).toBe(true)
+    expect(result.hidden).toBe(true)
   })
 
   it('should translate the gender before serving', () => {
@@ -70,9 +71,37 @@ describe('ProfileSummary', () => {
     ).dive()
 
     // Act
-    const result = panWrapper.find('span').props().displayData
+    const result = panWrapper.find('span').props().displayData.personalData
+      .gender
 
     // Assert
-    expect(result.personalData.gender.value).toBe('Pangênero')
+    expect(result.value).toBe('Pangênero')
+  })
+
+  it('should apply pre-display transformation to data if necessary', () => {
+    // Arrange
+    const preProfile = { ...mockProfile, tradeName: 'Apple Inc.' }
+    const preRules = {
+      ...mockRules,
+      businessFields: [
+        {
+          name: 'tradeName',
+          label: 'tradeName',
+          display: value => value.toUpperCase(),
+        },
+      ],
+    }
+    const preWrapper = shallowWithIntl(
+      <ProfileSummary profile={preProfile} rules={preRules}>
+        {displayData => <span displayData={displayData}>It works!</span>}
+      </ProfileSummary>,
+    ).dive()
+
+    // Act
+    const result = preWrapper.find('span').props().displayData.businessData
+      .tradeName
+
+    // Assert
+    expect(result.value).toBe('APPLE INC.')
   })
 })

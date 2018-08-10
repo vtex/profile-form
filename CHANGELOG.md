@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.0] - 2018-08-10
+
+### Added
+
+- Transform functions before display and submit
+
 ## [1.0.0] - 2018-08-08
 
 ### Added

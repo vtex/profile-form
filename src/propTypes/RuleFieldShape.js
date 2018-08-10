@@ -15,4 +15,8 @@ export default PropTypes.shape({
   mask: PropTypes.func,
   /** A function to evaluate if the value is valid */
   validate: PropTypes.func,
+  /** A function to transform received data before displaying */
+  display: PropTypes.func,
+  /** A function to transform input data before submitting */
+  submit: PropTypes.func,
 })

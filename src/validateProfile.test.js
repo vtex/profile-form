@@ -15,18 +15,81 @@ import mockRules from './__mocks__/rules'
 describe('validateProfile', () => {
   it('should add validation data to a clean profile', () => {
     // Act
-    const result = addValidation(cleanProfile)
+    const result = addValidation(cleanProfile, mockRules)
 
     // Assert
-    expect(result).toEqual(validatedProfile)
+    expect(result).toEqual({
+      firstName: { value: 'John' },
+      gender: { value: null },
+      lastName: { value: 'Appleseed' },
+      tradeName: { value: null },
+    })
+  })
+
+  it('should apply pre-display transformation to data if necessary', () => {
+    // Arrange
+    const displayRules = {
+      ...mockRules,
+      businessFields: [
+        {
+          name: 'tradeName',
+          display: value => value.toUpperCase(),
+        },
+      ],
+    }
+    const displayProfile = { ...cleanProfile, tradeName: 'Apple Inc.' }
+
+    // Act
+    const result = addValidation(displayProfile, displayRules)
+
+    // Assert
+    expect(result).toEqual({
+      firstName: { value: 'John' },
+      gender: { value: null },
+      lastName: { value: 'Appleseed' },
+      tradeName: { value: 'APPLE INC.' },
+    })
   })
 
   it('should remove validation data from a validated profile', () => {
     // Act
-    const result = removeValidation(validatedProfile)
+    const result = removeValidation(validatedProfile, mockRules)
 
     // Assert
-    expect(result).toEqual(cleanProfile)
+    expect(result).toEqual({
+      firstName: 'John',
+      gender: null,
+      lastName: 'Appleseed',
+      tradeName: null,
+    })
+  })
+
+  it('should apply pre-submit transformation to data if necessary', () => {
+    // Arrange
+    const submitRules = {
+      ...mockRules,
+      businessFields: [
+        {
+          name: 'tradeName',
+          submit: value => value.toUpperCase(),
+        },
+      ],
+    }
+    const submitProfile = {
+      ...validatedProfile,
+      tradeName: { value: 'Apple Inc.' },
+    }
+
+    // Act
+    const result = removeValidation(submitProfile, submitRules)
+
+    // Assert
+    expect(result).toEqual({
+      firstName: 'John',
+      gender: null,
+      lastName: 'Appleseed',
+      tradeName: 'APPLE INC.',
+    })
   })
 
   it('should apply a given mask to a value', () => {

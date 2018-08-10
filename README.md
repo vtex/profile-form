@@ -183,9 +183,12 @@ ProfileSummary.propTypes = {
 
 ### addValidation
 
+This function takes in a clean profile and a set of rules, and generates another profile object with validation metadata (following `ProfileWithValidationShape`). Besides just wrapping each property, it checks each rule for a `display` transform function, and applies it to the value before returning. This is specially useful when editing dates, as they usually come from the API as a `YYYY-MM-DD` string and you may want to change the format to something more localized before displaying it inside the text input.
+
 #### Params
 
 - **`profile`**: A profile in the shape of [`ProfileShape`](#profileshape)
+- **`rules`**: A set of rules in the shape of [`RuleShape`](#ruleshape)
 
 #### Returns
 
@@ -193,9 +196,12 @@ ProfileSummary.propTypes = {
 
 ### removeValidation
 
+This is the inverse to the `addValidation` function above. As such, besides stripping validation metadata it also checks the rules for `submit` transformations and applies it to the proper fields. Again, this is useful to transform dates from the user's localized format to the international format required by the API.
+
 #### Params
 
 - **`profile`**: A profile in the shape of [`ProfileWithValidationShape`](#profilewithvalidationshape)
+- **`rules`**: A set of rules in the shape of [`RuleShape`](#ruleshape)
 
 #### Returns
 
@@ -306,6 +312,10 @@ PropTypes.shape({
   mask: PropTypes.func,
   /** A function to evaluate if the value is valid */
   validate: PropTypes.func,
+  /** A function to transform received data before displaying */
+  display: PropTypes.func,
+  /** A function to transform input data before submitting */
+  submit: PropTypes.func,
 })
 ```
 

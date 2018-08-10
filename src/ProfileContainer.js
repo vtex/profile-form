@@ -25,8 +25,8 @@ class ProfileContainer extends Component {
   }
 
   componentDidMount() {
-    const { defaultProfile } = this.props
-    this.setState({ profile: addValidation(defaultProfile) })
+    const { defaultProfile, rules } = this.props
+    this.setState({ profile: addValidation(defaultProfile, rules) })
   }
 
   handleFieldUpdate = field => {
@@ -47,7 +47,7 @@ class ProfileContainer extends Component {
     if (onSubmit) {
       onSubmit({
         valid: isProfileValid(validatedProfile),
-        profile: removeValidation(validatedProfile),
+        profile: removeValidation(validatedProfile, rules),
       })
     }
   }
