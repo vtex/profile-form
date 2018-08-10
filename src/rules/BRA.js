@@ -3,6 +3,11 @@ import msk from 'msk'
 import Phone from '@vtex/phone'
 import brazil from '@vtex/phone/countries/BRA'
 
+const maskPhone = value =>
+  value.length === 14
+    ? msk.fit(value, '(99) 9999-9999')
+    : msk.fit(value, '(99) 99999-9999')
+
 export default {
   country: 'BRA',
   personalFields: [
@@ -58,16 +63,17 @@ export default {
       label: 'birthDate',
       mask: value => msk.fit(value, '99/99/9999'),
       validate: value => moment(value, 'DD/MM/YYYY', true).isValid(),
+      display: value => moment(value).format('DD/MM/YYYY'),
+      submit: value => moment(value, 'DD/MM/YYYY').format('YYYY-MM-DD'),
     },
     {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
-      mask: value =>
-        value.length === 14
-          ? msk.fit(value, '(99) 9999-9999')
-          : msk.fit(value, '(99) 99999-9999'),
+      mask: maskPhone,
       validate: value => Phone.validate(value, '55'),
+      display: maskPhone,
+      submit: value => value.replace(/[^\d]/g, ''),
     },
   ],
   businessFields: [
@@ -119,11 +125,10 @@ export default {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
-      mask: value =>
-        value.length === 14
-          ? msk.fit(value, '(99) 9999-9999')
-          : msk.fit(value, '(99) 99999-9999'),
+      mask: maskPhone,
       validate: value => Phone.validate(value, '55'),
+      display: maskPhone,
+      submit: value => value.replace(/[^\d]/g, ''),
     },
     {
       name: 'stateRegistration',
