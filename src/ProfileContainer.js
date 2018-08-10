@@ -77,8 +77,6 @@ class ProfileContainer extends Component {
 
     if (!profile) return null
 
-    console.log(profile)
-
     return (
       <div>
         <div className="vtex-profile-form__personal-fields">
