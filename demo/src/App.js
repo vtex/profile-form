@@ -79,7 +79,7 @@ class App extends Component {
                 </ProfileSummary>
               ) : (
                 <ProfileContainer
-                  profile={profile}
+                  defaultProfile={profile}
                   onSubmit={this.handleSubmit}
                   shouldShowExtendedGenders={true}
                 />
