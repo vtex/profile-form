@@ -1,12 +1,28 @@
-export function addValidation(profile) {
-  return Object.keys(profile)
-    .map(field => ({ [field]: { value: profile[field] } }))
+export function addValidation(profile, rules) {
+  const allRules = [...rules.personalFields, ...rules.businessFields]
+
+  return allRules
+    .map(field => ({
+      [field.name]: {
+        value:
+          field.display && profile[field.name]
+            ? field.display(profile[field.name])
+            : profile[field.name],
+      },
+    }))
     .reduce((acc, cur) => ({ ...acc, ...cur }), {})
 }
 
-export function removeValidation(profile) {
-  return Object.keys(profile)
-    .map(field => ({ [field]: profile[field].value }))
+export function removeValidation(profile, rules) {
+  const allRules = [...rules.personalFields, ...rules.businessFields]
+
+  return allRules
+    .map(field => ({
+      [field.name]:
+        field.submit && profile[field.name].value
+          ? field.submit(profile[field.name].value)
+          : profile[field.name].value,
+    }))
     .reduce((acc, cur) => ({ ...acc, ...cur }), {})
 }
 

@@ -16,7 +16,7 @@ class ProfileSummary extends Component {
             label: intl.formatMessage({
               id: 'profile-form.field.' + field.name,
             }),
-            value: field.mask && data ? field.mask(data) : data,
+            value: field.display && data ? field.display(data) : data,
             hidden: field.hidden,
           },
         }
