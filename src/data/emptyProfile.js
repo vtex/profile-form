@@ -4,6 +4,7 @@ export default {
   corporateDocument: null,
   corporateName: null,
   document: null,
+  email: null,
   firstName: null,
   gender: null,
   homePhone: null,
