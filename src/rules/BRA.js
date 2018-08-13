@@ -24,6 +24,12 @@ export default {
       required: true,
     },
     {
+      name: 'email',
+      maxLength: 100,
+      label: 'email',
+      hidden: true,
+    },
+    {
       name: 'document',
       maxLength: 50,
       label: 'cpf',

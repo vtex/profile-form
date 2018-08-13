@@ -7,6 +7,7 @@ import ProfileContainer from '../../src/ProfileContainer'
 import ProfileRules from '../../src/ProfileRules'
 import ProfileSummary from '../../src/ProfileSummary'
 import DisplaySlice from './DisplaySlice'
+import emptyProfile from '../../src/data/emptyProfile'
 import 'vtex-tachyons'
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
     addLocaleData(ptLocaleData)
 
     this.state = {
-      profile: null,
+      profile: emptyProfile,
       profileCountry: 'BRA',
       submitted: false,
     }

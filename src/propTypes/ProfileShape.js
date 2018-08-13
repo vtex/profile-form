@@ -11,6 +11,8 @@ export default PropTypes.shape({
   corporateName: PropTypes.string,
   /** User's personal document */
   document: PropTypes.string,
+  /** User's email */
+  email: PropTypes.string,
   /** User's personal name */
   firstName: PropTypes.string,
   /** User's gender */
