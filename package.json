@@ -9,6 +9,8 @@
   "scripts": {
     "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
     "build:link": "npm link && watch 'npm run build' src",
+    "build-io": "./scripts/build-io.sh",
+    "clean-io": "./scripts/clean-io.sh",
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
     "addLocales": "cp -R -f src/locales/ lib/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
@@ -34,12 +36,14 @@
       "/node_modules/",
       "<rootDir>/es/",
       "<rootDir>/lib/",
-      "<rootDir>/umd/"
+      "<rootDir>/umd/",
+      "<rootDir>/react/"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/es/",
       "<rootDir>/lib/",
-      "<rootDir>/umd/"
+      "<rootDir>/umd/",
+      "<rootDir>/react/"
     ],
     "transformIgnorePatterns": [
       "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",

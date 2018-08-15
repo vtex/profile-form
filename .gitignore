@@ -12,6 +12,7 @@
 /lib
 /umd
 /build
+/react
 
 # misc
 .DS_Store
