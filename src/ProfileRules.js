@@ -16,32 +16,35 @@ class ProfileRules extends Component {
   }
 
   updateRules() {
-    const { country, fetch } = this.props
+    const { shouldUseIOFetching, fetch, country } = this.props
 
-    return fetch(country)
-      .then(ruleData => {
-        const rules = ruleData.default || ruleData
+    const rulePromise = shouldUseIOFetching
+      ? import(`./rules/${country}`)
+      : fetch(country)
+    return this.fetchRules(rulePromise)
+  }
 
-        this.setState({ rules })
-        return rules
-      })
-      .catch(error => {
-        const errorType = this.parseError(error)
-        if (errorType) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.warn(
-              `Couldn't load rules for country ${errorType}, using default rules instead.`,
-            )
-          }
-          this.setState({
-            rules: defaultRules,
-          })
-          return defaultRules
-        }
+  async fetchRules(rulePromise) {
+    try {
+      const ruleData = await rulePromise
+      const rules = ruleData.default || ruleData
+      this.setState({ rules })
+      return rules
+    } catch (error) {
+      const errorType = this.parseError(error)
+      if (errorType) {
         if (process.env.NODE_ENV !== 'production') {
-          console.warn('An unknown error occurred.')
+          console.warn(
+            `Couldn't load rules for country ${errorType}, using default rules instead.`,
+          )
         }
-      })
+        this.setState({ rules: defaultRules })
+        return defaultRules
+      }
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('An unknown error occurred.')
+      }
+    }
   }
 
   parseError(e) {
@@ -64,8 +67,10 @@ ProfileRules.propTypes = {
   children: PropTypes.element.isRequired,
   /** The country whose rules will be fetched and applied */
   country: PropTypes.string.isRequired,
-  /** Functionality for importing the rule files */
-  fetch: PropTypes.func.isRequired,
+  /** Whether to use IO built-in file fetching */
+  shouldUseIOFetching: PropTypes.bool,
+  /** Functionality for importing the rule files outside of IO */
+  fetch: PropTypes.func,
 }
 
 export default ProfileRules
