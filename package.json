@@ -9,7 +9,6 @@
   "scripts": {
     "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
     "build:link": "npm link && watch 'npm run build' src",
-    "build-io": "./scripts/build-io.sh",
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
     "addLocales": "cp -R -f src/locales/ lib/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
