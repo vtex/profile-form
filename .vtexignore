@@ -8,7 +8,7 @@ entrypoints/
 src/
 scripts/
 
-react/__mocks__/
+__mocks__
 react/**/*.test.js
 react/setupTests.js
 
