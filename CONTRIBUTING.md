@@ -4,6 +4,8 @@
 
 ## Installation
 
+- A few symlinks are necessary before the app is ready for npm commands. These are accomplished by running `npm run symlinks`.
+
 - Running `npm install` in the components's root directory will install everything you need for development.
 
 ## Demo Development Server
@@ -25,19 +27,5 @@
 - `npm run clean` will delete built resources.
 
 ## Building for IO
-
-`vtex.io` requires a specific file structure in order to recognize the project as an app. Fortunately, this is achieved simply by creating two symlinks (not versioned) before you start developing:
-
-From `package.json` to the `src` folder:
-
-```sh
-$ ln -s package.json src/package.json
-```
-
-And from the `src` folder to a `react` folder:
-
-```sh
-$ ln -s src react
-```
 
 Running `releasy [major/minor/patch] --stable --npm` should bump version on both `package.json` and `manifest.json`, build/publish to NPM and also build/publish to IO.
