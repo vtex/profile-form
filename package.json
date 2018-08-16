@@ -13,10 +13,11 @@
     "addLocales": "cp -R -f src/locales/ lib/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "npm run symlinks && nwb serve-react-demo",
-    "symlinks": "ln -sf react/package.json package.json && ln -sf react src",
+    "symlinks": "rm -rf src && ln -sf react src && ln -sf ../package.json react/package.json",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
+    "vtex:link": "npm run symlinks && vtex link",
     "prepublishOnly": "npm run build"
   },
   "repository": "https://github.com/vtex/profile-form",
