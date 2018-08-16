@@ -4,11 +4,10 @@
 
 node_modules/
 demo/
-entrypoints/
 src/
-scripts/
+lib/
 
-__mocks__
+react/__mocks__/
 react/**/*.test.js
 react/setupTests.js
 
