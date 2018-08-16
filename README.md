@@ -11,7 +11,7 @@ $ npm install @vtex/profile-form
 ```
 
 ```js
-import { ProfileContainer } from '@vtex/profile-form'
+import ProfileContainer from '@vtex/profile-form/ProfileContainer'
 ```
 
 Through **vtex.io**:
