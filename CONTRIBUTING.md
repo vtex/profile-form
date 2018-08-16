@@ -26,6 +26,18 @@
 
 ## Building for IO
 
-The provided `npm run build-io` script builds the `react` folder required by IO. After building, you can run `vtex link` to see changes in your workspace in real time. Please note that changes to your working files will not be propagated until you build the IO folder again.
+`vtex.io` requires a specific file structure in order to recognize the project as an app. Fortunately, this is achieved simply by creating two symlinks (not versioned) before you start developing:
+
+From `package.json` to the `src` folder:
+
+```sh
+$ ln -s package.json src/package.json
+```
+
+And from the `src` folder to a `react` folder:
+
+```sh
+$ ln -s src react
+```
 
 Running `releasy [major/minor/patch] --stable --npm` should bump version on both `package.json` and `manifest.json`, build/publish to NPM and also build/publish to IO.

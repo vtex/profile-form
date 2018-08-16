@@ -15,6 +15,7 @@
 /react
 
 # misc
+/src/package.json
 .DS_Store
 .env.local
 .env.development.local

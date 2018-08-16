@@ -8,6 +8,10 @@ entrypoints/
 src/
 scripts/
 
+react/__mocks__/
+react/**/*.test.js
+react/setupTests.js
+
 .prettierrc
 .eslintrc
 .gitignore
