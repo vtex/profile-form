@@ -8,7 +8,7 @@
     "react": "2.x"
   },
   "scripts": {
-    "postreleasy": "vtex publish --verbose"
+    "postreleasy": "npm run build-io && vtex publish --verbose && npm run clean-io"
   },
   "mustUpdateAt": "2019-08-09",
   "categories": [],
