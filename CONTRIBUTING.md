@@ -23,3 +23,12 @@
 - `npm run build` will build the component for publishing to npm and also bundle the demo app.
 
 - `npm run clean` will delete built resources.
+
+## Building for IO
+
+Two scripts are provided:
+
+- `npm run build-io` builds the `react` folder required by IO. After building, you can run `vtex link` to see changes in your workspace in real time. Please note that changes to your working files will not be propagated until you build the IO folder again.
+- `npm run clean-io` removes the `react` folder.
+
+Running `releasy [major/minor/patch] --stable --npm` should bump version on both `package.json` and `manifest.json`, build/publish to NPM and also build/publish to IO.
