@@ -4,8 +4,22 @@
 
 ## Setup
 
+Through **NPM**:
+
 ```sh
 $ npm install @vtex/profile-form
+```
+
+```js
+import ProfileContainer from '@vtex/profile-form/ProfileContainer'
+```
+
+Through **vtex.io**:
+
+Add `vtex.profile-form: 1.x` to your `manifest.json` dependencies
+
+```js
+import { ProfileSummary } from 'vtex.profile-form'
 ```
 
 ## API
@@ -108,13 +122,15 @@ This component contains functionality for easily fetching the profile rules for 
 
 - **`children`**: The component which will be rendered inside this component and, therefore, receive the provided rules (you probably want this to be a `ProfileContainer` instance)
 - **`country`**: The string identifier for the country which rules are to be provided, must use `ISO Alpha3` standard (e.g. `BRA`, `USA`, etc.)
-- **`fetch`**: Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/profile-form/lib/rules/' + country)}` as its value
+- **`shouldUseIOFetching`**: Whether to use built-in dynamic file fetching for the rules. Should be used if the project is an IO app
+- **`fetch`**: Functionality for fetching the rule files. Outside of IO, it **must** receive the function `{country => import('@vtex/profile-form/lib/rules/' + country)}` as its value. In IO, this prop **must not** be set
 
 ```js
 ProfileRules.propTypes = {
   children: PropTypes.element.isRequired,
   locale: PropTypes.string.isRequired,
-  fetch: PropTypes.func.isRequired,
+  shouldUseIOFetching: PropTypes.bool,
+  fetch: PropTypes.func,
 }
 ```
 

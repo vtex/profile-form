@@ -1,21 +1,23 @@
 {
   "name": "@vtex/profile-form",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "React component for managing user profiles",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
+    "build": "npm run symlinks && nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
     "build:link": "npm link && watch 'npm run build' src",
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
     "addLocales": "cp -R -f src/locales/ lib/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
-    "start": "nwb serve-react-demo",
+    "start": "npm run symlinks && nwb serve-react-demo",
+    "symlinks": "rm -rf src && ln -sf react src && ln -sf ../package.json react/package.json",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
+    "vtex:link": "npm run symlinks && vtex link",
     "prepublishOnly": "npm run build"
   },
   "repository": "https://github.com/vtex/profile-form",
@@ -34,12 +36,14 @@
       "/node_modules/",
       "<rootDir>/es/",
       "<rootDir>/lib/",
-      "<rootDir>/umd/"
+      "<rootDir>/umd/",
+      "<rootDir>/src/"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/es/",
       "<rootDir>/lib/",
-      "<rootDir>/umd/"
+      "<rootDir>/umd/",
+      "<rootDir>/src/"
     ],
     "transformIgnorePatterns": [
       "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",

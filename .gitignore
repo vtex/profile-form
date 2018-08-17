@@ -12,8 +12,10 @@
 /lib
 /umd
 /build
+/src
 
 # misc
+/react/package.json
 .DS_Store
 .env.local
 .env.development.local
