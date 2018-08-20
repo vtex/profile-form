@@ -1,10 +1,10 @@
 import React from 'react'
 import { shallowWithIntl, loadTranslation } from 'enzyme-react-intl'
-import ProfileSummary from './ProfileSummary'
-import mockRules from './__mocks__/rules'
-import mockProfile from './__mocks__/profile'
+import ProfileSummary from '../ProfileSummary'
+import mockRules from '../__mocks__/rules'
+import mockProfile from '../__mocks__/profile'
 
-loadTranslation('./src/locales/pt.json')
+loadTranslation('../react/locales/pt.json')
 
 describe('ProfileSummary', () => {
   let wrapper

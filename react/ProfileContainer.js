@@ -2,16 +2,13 @@ import React, { Component } from 'react'
 import { intlShape, injectIntl } from 'react-intl'
 import PropTypes from 'prop-types'
 import Button from '@vtex/styleguide/lib/Button'
-import RuleShape from './propTypes/RuleShape'
-import ProfileShape from './propTypes/ProfileShape'
+import RuleShape from './RuleShape'
+import ProfileShape from './ProfileShape'
 import ProfileField from './ProfileField'
-import {
-  addValidation,
-  removeValidation,
-  applyFullValidation,
-  isProfileValid,
-} from './validateProfile'
-import emptyProfile from './data/emptyProfile'
+import { applyFullValidation, isProfileValid } from './modules/validateProfile'
+import addValidation from './addValidation'
+import removeValidation from './removeValidation'
+import emptyProfile from './modules/emptyProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
 
@@ -44,12 +41,10 @@ class ProfileContainer extends Component {
       profile: validatedProfile,
     })
 
-    if (onSubmit) {
-      onSubmit({
-        valid: isProfileValid(validatedProfile),
-        profile: removeValidation(validatedProfile, rules),
-      })
-    }
+    onSubmit({
+      valid: isProfileValid(validatedProfile),
+      profile: removeValidation(validatedProfile, rules),
+    })
   }
 
   toggleBusinessFields = () => {
@@ -65,6 +60,7 @@ class ProfileContainer extends Component {
       ToggleBusinessButton,
       SubmitButton,
       shouldShowExtendedGenders,
+      children,
       intl,
     } = this.props
     const { profile, showingBusinessFields } = this.state
@@ -91,6 +87,9 @@ class ProfileContainer extends Component {
             />
           ))}
         </div>
+        {children && (
+          <div className="vtex-profile-form__extended-fields">{children}</div>
+        )}
         <div className="mb7">
           {ToggleBusinessButton ? (
             React.cloneElement(ToggleBusinessButton, {
@@ -157,6 +156,8 @@ ProfileContainer.propTypes = {
   SubmitButton: PropTypes.element,
   /** Whether to display extended genders or just M/F */
   shouldShowExtendedGenders: PropTypes.bool,
+  /** Other components to be displayed before the business toggle button */
+  children: PropTypes.node,
   /** React-intl utility */
   intl: intlShape.isRequired,
 }

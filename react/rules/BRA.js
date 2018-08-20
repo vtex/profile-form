@@ -59,6 +59,15 @@ export default {
       },
     },
     {
+      name: 'homePhone',
+      maxLength: 30,
+      label: 'homePhone',
+      mask: maskPhone,
+      validate: value => Phone.validate(value, '55'),
+      display: maskPhone,
+      submit: value => value.replace(/[^\d]/g, ''),
+    },
+    {
       name: 'gender',
       maxLength: 30,
       label: 'gender',
@@ -71,15 +80,6 @@ export default {
       validate: value => moment(value, 'DD/MM/YYYY', true).isValid(),
       display: value => moment(value).format('DD/MM/YYYY'),
       submit: value => moment(value, 'DD/MM/YYYY').format('YYYY-MM-DD'),
-    },
-    {
-      name: 'homePhone',
-      maxLength: 30,
-      label: 'homePhone',
-      mask: maskPhone,
-      validate: value => Phone.validate(value, '55'),
-      display: maskPhone,
-      submit: value => value.replace(/[^\d]/g, ''),
     },
   ],
   businessFields: [

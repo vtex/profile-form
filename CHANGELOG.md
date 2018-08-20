@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0] - 2018-08-20
+
+### Added
+
+- Display custom components inside `ProfileContainer`
+
+### Changed
+
+- [**BREAKING**] Much of the app's folder structure
+
 ## [1.1.2] - 2018-08-17
 
 ### Added

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { applyMask, applyValidation } from './validateProfile'
-import RuleFieldShape from './propTypes/RuleFieldShape'
-import ProfileFieldShape from './propTypes/ProfileFieldShape'
+import { applyMask, applyValidation } from './modules/validateProfile'
+import RuleFieldShape from './RuleFieldShape'
+import ProfileFieldShape from './ProfileFieldShape'
 
 class ProfileField extends Component {
   componentDidUpdate() {

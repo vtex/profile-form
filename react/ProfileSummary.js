@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
-import ProfileShape from './propTypes/ProfileShape'
-import RuleShape from './propTypes/RuleShape'
+import ProfileShape from './ProfileShape'
+import RuleShape from './RuleShape'
 
 class ProfileSummary extends Component {
   mapFields(fields) {

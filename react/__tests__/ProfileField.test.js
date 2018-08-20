@@ -1,9 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ProfileField from './ProfileField'
-import mockField from './__mocks__/ruleField'
-import mockData from './__mocks__/profileField'
-import StyleguideInput from './inputs/StyleguideInput'
+import ProfileField from '../ProfileField'
+import mockField from '../__mocks__/ruleField'
+import mockData from '../__mocks__/profileField'
+import StyleguideInput from '../inputs/StyleguideInput'
 
 describe('ProfileField', () => {
   let wrapper

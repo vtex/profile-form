@@ -1,8 +1,8 @@
 import React from 'react'
-import ProfileRules from './ProfileRules'
+import ProfileRules from '../ProfileRules'
 import { shallow } from 'enzyme'
-import brRules from './rules/BRA'
-import defaultRules from './rules/default'
+import brRules from '../rules/BRA'
+import defaultRules from '../rules/default'
 
 describe('ProfileRules', () => {
   it('should load the defined rules', async () => {
@@ -10,7 +10,7 @@ describe('ProfileRules', () => {
     const instance = shallow(
       <ProfileRules
         country={'BRA'}
-        fetch={country => import('./rules/' + country)}
+        fetch={country => import('../rules/' + country)}
       >
         <h1>It works!</h1>
       </ProfileRules>,
@@ -28,7 +28,7 @@ describe('ProfileRules', () => {
     const wrapper = shallow(
       <ProfileRules
         country={'BRA'}
-        fetch={country => import('./rules/' + country)}
+        fetch={country => import('../rules/' + country)}
       >
         <h1>It works!</h1>
       </ProfileRules>,
@@ -48,7 +48,7 @@ describe('ProfileRules', () => {
     const wrapper = shallow(
       <ProfileRules
         country={'BRA'}
-        fetch={country => import('./rules/' + country)}
+        fetch={country => import('../rules/' + country)}
       >
         <h1>It works!</h1>
       </ProfileRules>,
@@ -69,7 +69,7 @@ describe('ProfileRules', () => {
     const instance = shallow(
       <ProfileRules
         country={'XXX'}
-        fetch={country => import('./rules/' + country)}
+        fetch={country => import('../rules/' + country)}
       >
         <h1>It works!</h1>
       </ProfileRules>,

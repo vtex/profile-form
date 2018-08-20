@@ -1,6 +1,6 @@
 {
   "name": "@vtex/profile-form",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "React component for managing user profiles",
   "main": "lib/index.js",
   "files": [
@@ -30,14 +30,15 @@
     "profile"
   ],
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/react/__tests__/setupTests.js",
     "testURL": "http://localhost",
     "testPathIgnorePatterns": [
       "/node_modules/",
       "<rootDir>/es/",
       "<rootDir>/lib/",
       "<rootDir>/umd/",
-      "<rootDir>/src/"
+      "<rootDir>/src/",
+      "setupTests"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/es/",
