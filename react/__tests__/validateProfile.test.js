@@ -3,7 +3,7 @@ import {
   applyValidation,
   addFocusToFirstInvalidInput,
   isProfileValid,
-} from '../validateProfile'
+} from '../modules/validateProfile'
 import addValidation from '../addValidation'
 import removeValidation from '../removeValidation'
 import cleanProfile from '../__mocks__/profile'

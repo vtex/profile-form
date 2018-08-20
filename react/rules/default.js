@@ -1,8 +1,3 @@
-import moment from 'moment'
-import msk from 'msk'
-import Phone from '@vtex/phone'
-import brazil from '@vtex/phone/countries/BRA'
-
 export default {
   country: 'BRA',
   personalFields: [

@@ -5,7 +5,7 @@ import Dropdown from '@vtex/styleguide/lib/Dropdown'
 import AutocompleteInput from './AutocompleteInput'
 import RuleFieldShape from '../../RuleFieldShape'
 import ProfileFieldShape from '../../ProfileFieldShape'
-import genders from '../../data/genders'
+import genders from '../../modules/genders'
 
 class GenderInput extends Component {
   constructor(props) {

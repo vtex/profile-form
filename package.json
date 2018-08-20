@@ -37,7 +37,8 @@
       "<rootDir>/es/",
       "<rootDir>/lib/",
       "<rootDir>/umd/",
-      "<rootDir>/src/"
+      "<rootDir>/src/",
+      "setupTests"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/es/",

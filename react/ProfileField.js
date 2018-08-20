@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { applyMask, applyValidation } from './validateProfile'
+import { applyMask, applyValidation } from './modules/validateProfile'
 import RuleFieldShape from './RuleFieldShape'
 import ProfileFieldShape from './ProfileFieldShape'
 
