@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import Dropdown from '@vtex/styleguide/lib/Dropdown'
 import AutocompleteInput from './AutocompleteInput'
-import RuleFieldShape from '../../propTypes/RuleFieldShape'
-import ProfileFieldShape from '../../propTypes/ProfileFieldShape'
+import RuleFieldShape from '../../RuleFieldShape'
+import ProfileFieldShape from '../../ProfileFieldShape'
 import genders from '../../data/genders'
 
 class GenderInput extends Component {

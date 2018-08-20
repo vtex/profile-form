@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import Input from '@vtex/styleguide/lib/Input'
-import RuleFieldShape from '../../propTypes/RuleFieldShape'
-import ProfileFieldShape from '../../propTypes/ProfileFieldShape'
+import RuleFieldShape from '../../RuleFieldShape'
+import ProfileFieldShape from '../../ProfileFieldShape'
 import GenderInput from './GenderInput'
 
 const StyleguideInput = props => {
