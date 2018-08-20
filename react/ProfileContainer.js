@@ -44,12 +44,10 @@ class ProfileContainer extends Component {
       profile: validatedProfile,
     })
 
-    if (onSubmit) {
-      onSubmit({
-        valid: isProfileValid(validatedProfile),
-        profile: removeValidation(validatedProfile, rules),
-      })
-    }
+    onSubmit({
+      valid: isProfileValid(validatedProfile),
+      profile: removeValidation(validatedProfile, rules),
+    })
   }
 
   toggleBusinessFields = () => {
@@ -65,6 +63,7 @@ class ProfileContainer extends Component {
       ToggleBusinessButton,
       SubmitButton,
       shouldShowExtendedGenders,
+      children,
       intl,
     } = this.props
     const { profile, showingBusinessFields } = this.state
@@ -121,6 +120,7 @@ class ProfileContainer extends Component {
             ))}
           </div>
         )}
+        {children}
         {SubmitButton ? (
           React.cloneElement(SubmitButton, {
             onClick: this.handleSubmit,
@@ -157,6 +157,8 @@ ProfileContainer.propTypes = {
   SubmitButton: PropTypes.element,
   /** Whether to display extended genders or just M/F */
   shouldShowExtendedGenders: PropTypes.bool,
+  /** Other components to be displayed before the submit button */
+  children: PropTypes.any,
   /** React-intl utility */
   intl: intlShape.isRequired,
 }
