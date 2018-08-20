@@ -5,12 +5,9 @@ import Button from '@vtex/styleguide/lib/Button'
 import RuleShape from './propTypes/RuleShape'
 import ProfileShape from './propTypes/ProfileShape'
 import ProfileField from './ProfileField'
-import {
-  addValidation,
-  removeValidation,
-  applyFullValidation,
-  isProfileValid,
-} from './validateProfile'
+import { applyFullValidation, isProfileValid } from './validateProfile'
+import addValidation from './addValidation'
+import removeValidation from './removeValidation'
 import emptyProfile from './data/emptyProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
