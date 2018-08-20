@@ -59,7 +59,7 @@ This is the main component of `profile-form`. It will render inputs based on the
 
 `ProfileContainer` keeps the current profile being managed in its internal state; the `profile` prop is only accessed at mount time. If you need to update the prop at some other time, use the special `key` prop to force the recreation of the whole container with the new profile. It also provides an optional `onSubmit()` function to call a function in the host component when the user submits the form.
 
-Inputs and buttons inside `ProfileContainer` can be customized to fit the style of different host applications. You can also pass in children components and they will be displayed right before the submit button, but they won't receive validation, submission or state management - you must do that yourself.
+Inputs and buttons inside `ProfileContainer` can be customized to fit the style of different host applications. You can also pass in children components and they will be displayed right before the business toggle button, but they won't receive validation, submission or state management - you must do that yourself.
 
 #### Props
 
@@ -70,7 +70,7 @@ Inputs and buttons inside `ProfileContainer` can be customized to fit the style 
 - **ToggleBusinessButton**: Component to be used as a button for toggling business fields
 - **SubmitButton**: Component to be used as a submit button
 - **shouldShowExtendedGenders**: (default: `false`) Whether the gender input should display a wide list of genders or just male/female
-- **children**: Custom components to be added right before the submit button
+- **children**: Custom components to be added right before the business toggle button
 - **intl**: `react-intl` automatically injected util
 
 ```js
