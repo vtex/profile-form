@@ -82,7 +82,7 @@ ProfileContainer.propTypes = {
   ToggleBusinessButton: PropTypes.element,
   SubmitButton: PropTypes.element,
   shouldShowExtendedGenders: PropTypes.bool,
-  children: PropTypes.any,
+  children: PropTypes.node,
   intl: intlShape.isRequired,
 }
 ```

@@ -87,7 +87,9 @@ class ProfileContainer extends Component {
             />
           ))}
         </div>
-        <div className="vtex-profile-form__extended-fields">{children}</div>
+        {children && (
+          <div className="vtex-profile-form__extended-fields">{children}</div>
+        )}
         <div className="mb7">
           {ToggleBusinessButton ? (
             React.cloneElement(ToggleBusinessButton, {
@@ -155,7 +157,7 @@ ProfileContainer.propTypes = {
   /** Whether to display extended genders or just M/F */
   shouldShowExtendedGenders: PropTypes.bool,
   /** Other components to be displayed before the business toggle button */
-  children: PropTypes.any,
+  children: PropTypes.node,
   /** React-intl utility */
   intl: intlShape.isRequired,
 }
