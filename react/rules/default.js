@@ -31,6 +31,11 @@ export default {
       required: true,
     },
     {
+      name: 'homePhone',
+      maxLength: 30,
+      label: 'homePhone',
+    },
+    {
       name: 'gender',
       maxLength: 30,
       label: 'gender',
@@ -39,11 +44,6 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-    },
-    {
-      name: 'homePhone',
-      maxLength: 30,
-      label: 'homePhone',
     },
   ],
   businessFields: [
