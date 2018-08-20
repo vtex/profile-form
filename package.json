@@ -30,7 +30,7 @@
     "profile"
   ],
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/react/__tests__/setupTests.js",
     "testURL": "http://localhost",
     "testPathIgnorePatterns": [
       "/node_modules/",

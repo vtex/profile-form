@@ -1,16 +1,15 @@
 import {
-  addValidation,
-  removeValidation,
   applyMask,
   applyValidation,
-  findFirstInvalidInput,
   addFocusToFirstInvalidInput,
   isProfileValid,
-} from './validateProfile'
-import cleanProfile from './__mocks__/profile'
-import validatedProfile from './__mocks__/validatedProfile'
-import invalidProfile from './__mocks__/invalidProfile'
-import mockRules from './__mocks__/rules'
+} from '../validateProfile'
+import addValidation from '../addValidation'
+import removeValidation from '../removeValidation'
+import cleanProfile from '../__mocks__/profile'
+import validatedProfile from '../__mocks__/validatedProfile'
+import invalidProfile from '../__mocks__/invalidProfile'
+import mockRules from '../__mocks__/rules'
 
 describe('validateProfile', () => {
   it('should add validation data to a clean profile', () => {

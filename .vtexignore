@@ -8,8 +8,7 @@ src/
 lib/
 
 react/__mocks__/
-react/**/*.test.js
-react/setupTests.js
+react/__tests__/
 
 .prettierrc
 .eslintrc

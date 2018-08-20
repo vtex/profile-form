@@ -1,12 +1,10 @@
 import React from 'react'
-import { shallow, render } from 'enzyme'
 import { shallowWithIntl, loadTranslation } from 'enzyme-react-intl'
-import StyleguideInput from './index'
-import mockField from '../../__mocks__/ruleField'
-import mockData from '../../__mocks__/profileField'
-import Input from '@vtex/styleguide/lib/Input'
+import StyleguideInput from '../inputs/StyleguideInput'
+import mockField from '../__mocks__/ruleField'
+import mockData from '../__mocks__/profileField'
 
-loadTranslation('./src/locales/pt.json')
+loadTranslation('../react/locales/pt.json')
 
 describe('StyleguideInput', () => {
   let wrapper
