@@ -16,10 +16,17 @@ import ProfileContainer from '@vtex/profile-form/ProfileContainer'
 
 Through **vtex.io**:
 
-Add `vtex.profile-form: 1.x` to your `manifest.json` dependencies
+Add `vtex.profile-form` to your `manifest.json` dependencies
 
 ```js
 import { ProfileSummary } from 'vtex.profile-form'
+```
+
+Helper functions are properties of the `modules` import
+
+```js
+import { modules } from 'vtex.profile-form'
+const { addValidation } = modules
 ```
 
 ## API
