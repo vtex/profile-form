@@ -4,8 +4,8 @@ import {
   addFocusToFirstInvalidInput,
   isProfileValid,
 } from '../modules/validateProfile'
-import addValidation from '../addValidation'
-import removeValidation from '../removeValidation'
+import addValidation from '../modules/addValidation'
+import removeValidation from '../modules/removeValidation'
 import cleanProfile from '../__mocks__/profile'
 import validatedProfile from '../__mocks__/validatedProfile'
 import invalidProfile from '../__mocks__/invalidProfile'
