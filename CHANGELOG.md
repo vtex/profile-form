@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Translations for `es`, `fr` and `ro`
+
 ## [2.0.1] - 2018-08-21
 
 ### Fixed
