@@ -1,7 +1,7 @@
 {
   "profile-form.optional": "Opcional",
-  "profile-form.show-business": "Mostrar campos corporativos",
-  "profile-form.hide-business": "Ocultar campos corporativos",
+  "profile-form.include-business": "Incluir campos corporativos",
+  "profile-form.exclude-business": "No incluir campos corporativos",
   "profile-form.save-changes": "Guardar cambios",
 
   "profile-form.field.firstName": "Nombre",

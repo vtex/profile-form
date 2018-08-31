@@ -3,6 +3,7 @@ import {
   applyValidation,
   addFocusToFirstInvalidInput,
   isProfileValid,
+  applyFullValidation,
 } from '../modules/validateProfile'
 import addValidation from '../modules/addValidation'
 import removeValidation from '../modules/removeValidation'
@@ -151,5 +152,53 @@ describe('validateProfile', () => {
 
     // Assert
     expect(focusedProfile.gender.focus).toBe(true)
+  })
+
+  it('should not validate business fields if the profile is not corporate', () => {
+    // Arrange
+    const corpRules = {
+      personalFields: [...mockRules.personalFields],
+      businessFields: [
+        ...mockRules.businessFields,
+        {
+          name: 'stateRegistration',
+          required: true,
+        },
+      ],
+    }
+
+    // Act
+    const checkedProfile = applyFullValidation(
+      corpRules,
+      validatedProfile,
+      false,
+    )
+
+    // Assert
+    expect(checkedProfile.stateRegistration.error).not.toBeTruthy()
+  })
+
+  it('should validate business fields if the profile is corporate', () => {
+    // Arrange
+    const corpRules = {
+      personalFields: [...mockRules.personalFields],
+      businessFields: [
+        ...mockRules.businessFields,
+        {
+          name: 'stateRegistration',
+          required: true,
+        },
+      ],
+    }
+
+    // Act
+    const checkedProfile = applyFullValidation(
+      corpRules,
+      validatedProfile,
+      true,
+    )
+
+    // Assert
+    expect(checkedProfile.stateRegistration.error).toBeTruthy()
   })
 })

@@ -1,7 +1,7 @@
 {
   "profile-form.optional": "Facultativ",
-  "profile-form.show-business": "Afișați datele companiei",
-  "profile-form.hide-business": "Ascunde datele companiei",
+  "profile-form.include-business": "Includeți datele companiei",
+  "profile-form.exclude-business": "Nu includeți datele companiei",
   "profile-form.save-changes": "Salvează modificările",
 
   "profile-form.field.firstName": "Prenume",

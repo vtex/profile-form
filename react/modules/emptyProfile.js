@@ -11,4 +11,5 @@ export default {
   lastName: null,
   stateRegistration: null,
   tradeName: null,
+  isCorporate: false,
 }

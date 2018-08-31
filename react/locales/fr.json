@@ -1,7 +1,7 @@
 {
   "profile-form.optional": "Optionnel",
-  "profile-form.show-business": "Afficher les champs commerciaux",
-  "profile-form.hide-business": "Masquer les champs commerciaux",
+  "profile-form.include-business": "Inclure les champs commerciaux",
+  "profile-form.exclude-business": "Ne pas inclure les champs commerciaux",
   "profile-form.save-changes": "Sauvegarder les modifications",
 
   "profile-form.field.firstName": "Prénom",

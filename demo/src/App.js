@@ -59,7 +59,7 @@ class App extends Component {
             >
               {submitted ? (
                 <ProfileSummary profile={profile}>
-                  {({ personalData, businessData }) => (
+                  {({ personalData, businessData, isCorporate }) => (
                     <div>
                       <h3 className="heavy-rebel-pink">Personal Data:</h3>
                       {Object.keys(personalData).map(fieldName => (
@@ -75,6 +75,12 @@ class App extends Component {
                           slice={businessData[fieldName]}
                         />
                       ))}
+                      <h3 className="heavy-rebel-pink">
+                        Is corporate?
+                        <span className="near-black ml3">
+                          {isCorporate ? 'yes' : 'no'}
+                        </span>
+                      </h3>
                     </div>
                   )}
                 </ProfileSummary>
