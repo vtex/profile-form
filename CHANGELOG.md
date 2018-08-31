@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `isCorporate` attribute to profile object
+
+### Fixed
+
+- Business fields validation now depend on `isCorporate` flag
+
 ## [2.0.2] - 2018-08-29
 
 ### Added
