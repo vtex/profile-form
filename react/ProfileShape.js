@@ -25,4 +25,6 @@ export default PropTypes.shape({
   stateRegistration: PropTypes.string,
   /** User's corporate trade name */
   tradeName: PropTypes.string,
+  /** Whether the user is a corporation or not */
+  isCorporate: PropTypes.bool,
 })
