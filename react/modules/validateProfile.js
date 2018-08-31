@@ -9,15 +9,17 @@ export function applyValidation(field, value) {
   return field.validate && !field.validate(value) ? 'INVALID_FIELD' : null
 }
 
-export function applyFullValidation(rules, profile) {
+export function applyFullValidation(rules, profile, isCorporate) {
   const validatedProfile = Object.keys(profile)
-    .map(fieldName => {
+    .map(field => {
       const rule =
-        rules.personalFields.find(rule => rule.name === fieldName) ||
-        rules.businessFields.find(rule => rule.name === fieldName)
+        rules.personalFields.find(rule => rule.name === field) ||
+        rules.businessFields.find(rule => rule.name === field && isCorporate)
       if (rule) {
-        const error = applyValidation(rule, profile[fieldName].value)
-        return { [fieldName]: { ...profile[fieldName], error } }
+        const error = applyValidation(rule, profile[field].value)
+        return { [field]: { ...profile[field], error } }
+      } else {
+        return { [field]: { value: null } }
       }
     })
     .reduce((acc, cur) => ({ ...acc, ...cur }), {})
