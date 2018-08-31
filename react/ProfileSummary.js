@@ -40,12 +40,13 @@ class ProfileSummary extends Component {
 
   render() {
     const { rules, children } = this.props
+    const { isCorporate } = this.props.profile
     const personalData = this.translateGender(
       this.mapFields(rules.personalFields),
     )
     const businessData = this.mapFields(rules.businessFields)
 
-    return <div>{children({ personalData, businessData })}</div>
+    return <div>{children({ personalData, businessData, isCorporate })}</div>
   }
 }
 
