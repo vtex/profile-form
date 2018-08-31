@@ -95,7 +95,33 @@ describe('ProfileContainer', () => {
         lastName: 'Appleseed',
         tradeName: null,
         document: null,
+        isCorporate: false,
       },
+      valid: false,
+    })
+  })
+
+  it('should include isCorporate in profile object when submitting', () => {
+    // Arrange
+    const corpProfile = {
+      isCorporate: true,
+    }
+    const instance = shallowWithIntl(
+      <ProfileContainer
+        rules={mockRules}
+        defaultProfile={corpProfile}
+        onSubmit={mockSubmit}
+      />,
+    )
+      .dive()
+      .instance()
+
+    // Act
+    instance.handleSubmit()
+
+    // Assert
+    expect(mockSubmit).toHaveBeenCalledWith({
+      profile: { isCorporate: true },
       valid: false,
     })
   })

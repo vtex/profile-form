@@ -17,13 +17,16 @@ class ProfileContainer extends Component {
     super(props)
     this.state = {
       profile: null,
-      showingBusinessFields: false,
+      isCorporate: false,
     }
   }
 
   componentDidMount() {
     const { defaultProfile, rules } = this.props
-    this.setState({ profile: addValidation(defaultProfile, rules) })
+    this.setState({
+      profile: addValidation(defaultProfile, rules),
+      isCorporate: defaultProfile.isCorporate,
+    })
   }
 
   handleFieldUpdate = field => {
@@ -34,22 +37,22 @@ class ProfileContainer extends Component {
 
   handleSubmit = () => {
     const { rules, onSubmit } = this.props
-    const { profile } = this.state
+    const { profile, isCorporate } = this.state
 
-    const validatedProfile = applyFullValidation(rules, profile)
+    const validatedProfile = applyFullValidation(rules, profile, isCorporate)
     this.setState({
       profile: validatedProfile,
     })
 
     onSubmit({
       valid: isProfileValid(validatedProfile),
-      profile: removeValidation(validatedProfile, rules),
+      profile: { ...removeValidation(validatedProfile, rules), isCorporate },
     })
   }
 
   toggleBusinessFields = () => {
     this.setState(prevState => ({
-      showingBusinessFields: !prevState.showingBusinessFields,
+      isCorporate: !prevState.isCorporate,
     }))
   }
 
@@ -63,11 +66,11 @@ class ProfileContainer extends Component {
       children,
       intl,
     } = this.props
-    const { profile, showingBusinessFields } = this.state
+    const { profile, isCorporate } = this.state
 
-    const businessButtonMessage = showingBusinessFields
-      ? 'profile-form.hide-business'
-      : 'profile-form.show-business'
+    const businessButtonMessage = isCorporate
+      ? 'profile-form.exclude-business'
+      : 'profile-form.include-business'
 
     const options = { gender: { shouldShowExtendedGenders } }
 
@@ -107,7 +110,7 @@ class ProfileContainer extends Component {
             </Button>
           )}
         </div>
-        {showingBusinessFields && (
+        {isCorporate && (
           <div className="vtex-profile-form__business-fields">
             {rules.businessFields.map(field => (
               <ProfileField
