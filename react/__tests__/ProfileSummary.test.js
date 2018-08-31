@@ -104,4 +104,20 @@ describe('ProfileSummary', () => {
     // Assert
     expect(result.value).toBe('APPLE INC.')
   })
+
+  it('should pass down the isCorporate profile attribute', () => {
+    // Arrange
+    const corpProfile = { ...mockProfile, isCorporate: true }
+    const preWrapper = shallowWithIntl(
+      <ProfileSummary profile={corpProfile} rules={mockRules}>
+        {displayData => <span displayData={displayData}>It works!</span>}
+      </ProfileSummary>,
+    ).dive()
+
+    // Act
+    const result = preWrapper.find('span').props().displayData.isCorporate
+
+    // Assert
+    expect(result).toBe(true)
+  })
 })

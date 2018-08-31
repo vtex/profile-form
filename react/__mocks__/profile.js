@@ -10,4 +10,5 @@ export default {
   lastName: 'Appleseed',
   stateRegistration: null,
   tradeName: null,
+  isCorporate: false,
 }
