@@ -22,7 +22,7 @@
   },
   "repository": "https://github.com/vtex/profile-form",
   "author": "Gustavo Silva (@akafts)",
-  "license": "AGPL 3.0",
+  "license": "AGPL-3.0-only",
   "homepage": "https://github.com/vtex/profile-form",
   "keywords": [
     "react-component",
