@@ -19,7 +19,7 @@ class ProfileRules extends Component {
     const { shouldUseIOFetching, fetch, country } = this.props
 
     const rulePromise = shouldUseIOFetching
-      ? import(`./rules/${country}`)
+      ? import(`@vtex/profile-form/lib/rules/${country}`)
       : fetch(country)
     return this.fetchRules(rulePromise)
   }
@@ -49,7 +49,7 @@ class ProfileRules extends Component {
 
   parseError(e) {
     const regex = new RegExp(
-      /Cannot find module '\.\.\/(rules\/)?([A-z-]{1,7})'/,
+      /Cannot find module '\.\/([A-z-]{1,7})'\./,
     )
     const result = regex.exec(e.message)
     if (!result) return false
