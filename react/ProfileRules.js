@@ -19,7 +19,7 @@ class ProfileRules extends Component {
     const { shouldUseIOFetching, fetch, country } = this.props
 
     const rulePromise = shouldUseIOFetching
-      ? import(`@vtex/profile-form/lib/rules/${country}`)
+      ? import(`./rules/${country}`)
       : fetch(country)
     return this.fetchRules(rulePromise)
   }
