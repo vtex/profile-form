@@ -49,11 +49,13 @@ class ProfileRules extends Component {
 
   parseError(e) {
     const regex = new RegExp(
-      /Cannot find module '\.\/([A-z-]{1,7})'\./,
+      process.env.NODE_ENV === 'test'
+        ? /Cannot find module '\.\.\/(rules\/)?([A-z-]{1,7})'/
+        : /Cannot find module '\.\/([A-z-]{1,7})'/
     )
     const result = regex.exec(e.message)
     if (!result) return false
-    return result[2]
+    return result[1]
   }
 
   render() {
