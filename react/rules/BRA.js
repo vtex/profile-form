@@ -65,7 +65,6 @@ export default {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
-      mask: maskPhone,
       ...getPhoneFields(phoneCountryCode),
     },
     {

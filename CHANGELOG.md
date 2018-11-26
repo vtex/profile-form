@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Remove `stateRegistration` from default rule
 
+### Fixed
+- Fix phone input to always submit phone in international format
+
 ## [2.0.4] - 2018-11-21
 
 ### Fixed

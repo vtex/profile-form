@@ -6,15 +6,29 @@ export function validatePhone(countryCode) {
 
 export function formatPhone(countryCode) {
   return (value) => {
-    const phone = Phone.getPhoneInternational(value, countryCode)
+    const phone = value.indexOf('+') === 0
+      ? Phone.getPhoneInternational(value, countryCode)
+      : Phone.getPhoneNational(value, countryCode)
+
     if (!phone) return value
 
     return Phone.format(phone, Phone.NATIONAL)
   }
 }
 
-export function cleanPhone(value) {
-  return value.replace(/[^\d]/g, '')
+export function cleanPhone(countryCode) {
+  return (value) => {
+    const numbers = value.replace(/[^\d]/g, '')
+
+    try {
+      const phone = Phone.getPhoneNational(numbers, countryCode)
+      if (!phone) return value
+
+      return Phone.format(phone, Phone.INTERNATIONAL)
+    } catch (err) {
+      return numbers
+    }
+  }
 }
 
 export function getPhoneFields(phoneCountryCode) {
@@ -22,6 +36,6 @@ export function getPhoneFields(phoneCountryCode) {
     mask: formatPhone(phoneCountryCode),
     validate: validatePhone(phoneCountryCode),
     display: formatPhone(phoneCountryCode),
-    submit: cleanPhone,
+    submit: cleanPhone(phoneCountryCode),
   }
 }
