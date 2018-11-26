@@ -1,5 +1,11 @@
+import venezuela from '@vtex/phone/countries/VEN'
+import { getPhoneFields } from '../modules/phone'
+import regexValidation from '../modules/regexValidation'
+
+const phoneCountryCode = '58'
+
 export default {
-  country: 'UNI',
+  country: 'VEN',
   personalFields: [
     {
       name: 'firstName',
@@ -22,13 +28,15 @@ export default {
     {
       name: 'document',
       maxLength: 50,
-      label: 'document',
+      label: 'VEN_cedula',
       required: true,
+      validate: regexValidation(/^[VvJjEe]-?\d{6,8}$/),
     },
     {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -55,12 +63,14 @@ export default {
     {
       name: 'corporateDocument',
       maxLength: 30,
-      label: 'corporateDocument',
+      label: 'VEN_rif',
+      validate: regexValidation(/^[VvJjEe]-?\d{6,8}-?\d$/),
     },
     {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
+      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }

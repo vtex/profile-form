@@ -1,5 +1,11 @@
+import guatemala from '@vtex/phone/countries/GTM'
+import { getPhoneFields } from '../modules/phone'
+import regexValidation from '../modules/regexValidation'
+
+const phoneCountryCode = '502'
+
 export default {
-  country: 'UNI',
+  country: 'GTM',
   personalFields: [
     {
       name: 'firstName',
@@ -22,13 +28,15 @@ export default {
     {
       name: 'document',
       maxLength: 50,
-      label: 'document',
+      label: 'GTM_dpi',
       required: true,
+      validate: regexValidation(/^[\d]{8}(?:\-|)[\d]{1}(?:\-|)[\d]{2}(?:\-|)[\d]{2}$/),
     },
     {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -55,12 +63,14 @@ export default {
     {
       name: 'corporateDocument',
       maxLength: 30,
-      label: 'corporateDocument',
+      label: 'GTM_nit',
+      validate: regexValidation(/^[\d]{7}(?:\-|)[\dkK]{1}$/),
     },
     {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
+      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }

@@ -1,5 +1,7 @@
+import regexValidation from '../modules/regexValidation'
+
 export default {
-  country: 'UNI',
+  country: 'PRT',
   personalFields: [
     {
       name: 'firstName',
@@ -22,8 +24,8 @@ export default {
     {
       name: 'document',
       maxLength: 50,
-      label: 'document',
-      required: true,
+      label: 'PRT_nif',
+      validate: regexValidation(/^\d+$/)
     },
     {
       name: 'homePhone',
@@ -55,7 +57,7 @@ export default {
     {
       name: 'corporateDocument',
       maxLength: 30,
-      label: 'corporateDocument',
+      label: 'PRT_nipc',
     },
     {
       name: 'businessPhone',

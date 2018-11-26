@@ -1,5 +1,5 @@
 export default {
-  country: 'UNI',
+  country: 'ROU',
   personalFields: [
     {
       name: 'firstName',
@@ -18,12 +18,6 @@ export default {
       maxLength: 100,
       label: 'email',
       hidden: true,
-    },
-    {
-      name: 'document',
-      maxLength: 50,
-      label: 'document',
-      required: true,
     },
     {
       name: 'homePhone',

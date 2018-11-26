@@ -1,5 +1,11 @@
+import peru from '@vtex/phone/countries/PER'
+import { getPhoneFields } from '../modules/phone'
+import regexValidation from '../modules/regexValidation'
+
+const phoneCountryCode = '51'
+
 export default {
-  country: 'UNI',
+  country: 'PER',
   personalFields: [
     {
       name: 'firstName',
@@ -22,13 +28,15 @@ export default {
     {
       name: 'document',
       maxLength: 50,
-      label: 'document',
+      label: 'PER_document',
       required: true,
+      validate: regexValidation(/^[a-zA-Z0-9]{8,12}$/)
     },
     {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -48,19 +56,16 @@ export default {
       label: 'corporateName',
     },
     {
-      name: 'tradeName',
-      maxLength: 100,
-      label: 'tradeName',
-    },
-    {
       name: 'corporateDocument',
       maxLength: 30,
-      label: 'corporateDocument',
+      label: 'PER_ruc',
+      validate: regexValidation(/^[0-9]{11}$|^[0-9]{8}$/),
     },
     {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
+      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }
