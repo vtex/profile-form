@@ -24,6 +24,11 @@ node_modules
 .vscode
 .idea
 
+# package-lock
+package-lock.json
+react/package-lock.json
+react/yarn.lock
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
