@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Add ARG, CAN, CHL, COL, CRI, ECU, ESP, FRA, GBR, GTM, KOR, MEX, PAN, PER, PRT, PRY, ROU, URY, USA and VEN country rules
+
+### Changed
+- Remove `stateRegistration` from default rule
+
 ## [2.0.4] - 2018-11-21
 
 ### Fixed
