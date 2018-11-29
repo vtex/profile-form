@@ -1,5 +1,11 @@
+import paraguay from '@vtex/phone/countries/PRY'
+import { getPhoneFields } from '../modules/phone'
+import regexValidation from '../modules/regexValidation'
+
+const phoneCountryCode = '595'
+
 export default {
-  country: 'UNI',
+  country: 'PRY',
   personalFields: [
     {
       name: 'firstName',
@@ -22,13 +28,15 @@ export default {
     {
       name: 'document',
       maxLength: 50,
-      label: 'document',
+      label: 'PRY_cedula',
       required: true,
+      validate: regexValidation(/^(\w{4,8}(?:\-|)\w{1})$/)
     },
     {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -55,12 +63,20 @@ export default {
     {
       name: 'corporateDocument',
       maxLength: 30,
-      label: 'corporateDocument',
+      label: 'PRY_ruc',
+      validate: regexValidation(/^(\w{4,8}(?:\-|)\w{1})$/),
+    },
+    {
+      name: 'stateRegistration',
+      maxLength: 50,
+      label: 'stateRegistration',
+      required: true,
     },
     {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
+      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }

@@ -1,5 +1,10 @@
+import usa from '@vtex/phone/countries/USA'
+import { getPhoneFields } from '../modules/phone'
+
+const phoneCountryCode = '1'
+
 export default {
-  country: 'UNI',
+  country: 'USA',
   personalFields: [
     {
       name: 'firstName',
@@ -20,15 +25,10 @@ export default {
       hidden: true,
     },
     {
-      name: 'document',
-      maxLength: 50,
-      label: 'document',
-      required: true,
-    },
-    {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -53,14 +53,10 @@ export default {
       label: 'tradeName',
     },
     {
-      name: 'corporateDocument',
-      maxLength: 30,
-      label: 'corporateDocument',
-    },
-    {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
+      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }

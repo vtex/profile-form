@@ -2,11 +2,14 @@ import moment from 'moment'
 import msk from 'msk'
 import Phone from '@vtex/phone'
 import brazil from '@vtex/phone/countries/BRA'
+import { getPhoneFields } from '../modules/phone'
 
 const maskPhone = value =>
   value.length === 14
     ? msk.fit(value, '(99) 9999-9999')
     : msk.fit(value, '(99) 99999-9999')
+
+const phoneCountryCode = '55'
 
 export default {
   country: 'BRA',
@@ -32,7 +35,7 @@ export default {
     {
       name: 'document',
       maxLength: 50,
-      label: 'cpf',
+      label: 'BRA_cpf',
       mask: value => msk.fit(value, '999.999.999-99'),
       validate: value => {
         const cleanValue = value.replace(/[^\d]/g, '')
@@ -62,10 +65,7 @@ export default {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
-      mask: maskPhone,
-      validate: value => Phone.validate(value, '55'),
-      display: maskPhone,
-      submit: value => value.replace(/[^\d]/g, ''),
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -91,7 +91,7 @@ export default {
     {
       name: 'corporateDocument',
       maxLength: 30,
-      label: 'cnpj',
+      label: 'BRA_cnpj',
       mask: value => msk.fit(value, '99.999.999/9999-99'),
       validate: value => {
         const cleanValue = value.replace(/[^\d]/g, '')

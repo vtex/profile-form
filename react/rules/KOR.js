@@ -1,5 +1,11 @@
+import korea from '@vtex/phone/countries/KOR'
+import { getPhoneFields } from '../modules/phone'
+import regexValidation from '../modules/regexValidation'
+
+const phoneCountryCode = '82'
+
 export default {
-  country: 'UNI',
+  country: 'KOR',
   personalFields: [
     {
       name: 'firstName',
@@ -29,6 +35,7 @@ export default {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -61,6 +68,7 @@ export default {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
+      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }

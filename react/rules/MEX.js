@@ -1,5 +1,11 @@
+import colombia from '@vtex/phone/countries/COL'
+import { getPhoneFields } from '../modules/phone'
+import regexValidation from '../modules/regexValidation'
+
+const phoneCountryCode = '52'
+
 export default {
-  country: 'UNI',
+  country: 'MEX',
   personalFields: [
     {
       name: 'firstName',
@@ -20,15 +26,10 @@ export default {
       hidden: true,
     },
     {
-      name: 'document',
-      maxLength: 50,
-      label: 'document',
-      required: true,
-    },
-    {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -48,19 +49,23 @@ export default {
       label: 'corporateName',
     },
     {
-      name: 'tradeName',
-      maxLength: 100,
-      label: 'tradeName',
+      name: 'document',
+      maxLength: 50,
+      label: 'MEX_rfc',
+      required: true,
+      validate: regexValidation(/^[a-zA-Z]{4}[0-9]{6}(?:[a-zA-Z0-9]{3}|)$/)
     },
     {
       name: 'corporateDocument',
       maxLength: 30,
-      label: 'corporateDocument',
+      label: 'MEX_rfc_corporate',
+      validate: regexValidation(/^[a-zA-Z]{3}[0-9]{6}[a-zA-Z0-9]{3}$/),
     },
     {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
+      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }

@@ -1,7 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
 
 # testing
 /coverage
@@ -23,6 +23,11 @@
 .env.production.local
 .vscode
 .idea
+
+# package-lock
+package-lock.json
+react/package-lock.json
+react/yarn.lock
 
 npm-debug.log*
 yarn-debug.log*
