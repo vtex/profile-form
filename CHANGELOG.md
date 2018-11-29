@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.1.0] - 2018-11-29
+
 ### Added
 - Add ARG, CAN, CHL, COL, CRI, ECU, ESP, FRA, GBR, GTM, KOR, MEX, PAN, PER, PRT, PRY, ROU, URY, USA and VEN country rules
 
