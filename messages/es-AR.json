@@ -3,7 +3,6 @@
   "profile-form.include-business": "Incluir campos corporativos",
   "profile-form.exclude-business": "No incluir campos corporativos",
   "profile-form.save-changes": "Guardar cambios",
-
   "profile-form.field.firstName": "Nombre",
   "profile-form.field.lastName": "Apellido",
   "profile-form.field.email": "E-mail",
@@ -17,7 +16,6 @@
   "profile-form.field.corporateName": "Nombre corporativo",
   "profile-form.field.stateRegistration": "Registro estatal",
   "profile-form.field.tradeName": "Nombre comercial",
-
   "profile-form.field.ARG_cuit": "CUIT",
   "profile-form.field.ARG_dni": "DNI",
   "profile-form.field.BRA_cnpj": "CNPJ",
@@ -47,10 +45,8 @@
   "profile-form.field.USA_ssn": "SSN",
   "profile-form.field.VEN_cedula": "Cédula de Identidad",
   "profile-form.field.VEN_rif": "RIF",
-
   "profile-form.error.EMPTY_FIELD": "Este campo es obligatorio.",
   "profile-form.error.INVALID_FIELD": "Valor no válido.",
-
   "profile-form.gender.custom": "Personalizado",
   "profile-form.gender.male": "Masculino",
   "profile-form.gender.female": "Femenino",

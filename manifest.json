@@ -1,11 +1,12 @@
 {
   "vendor": "vtex",
   "name": "profile-form",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "title": "VTEX Profile-form",
   "description": "React component for managing user profiles",
   "builders": {
-    "react": "2.x"
+    "react": "2.x",
+    "messages": "0.x"
   },
   "scripts": {
     "prereleasy": "npm run symlinks",
@@ -15,6 +16,5 @@
   "categories": [],
   "registries": [
     "smartcheckout"
-  ],
-  "settingsSchema": {}
+  ]
 }
