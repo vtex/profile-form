@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Catalan translation
 
+### Changed
+- Messages filenames from locales to languages (`pt-BR` to `pt`), that makes it match more cases.
+
 ## [2.2.0] - 2018-12-28
 ### Changed
 - Add Messages Builder. 
