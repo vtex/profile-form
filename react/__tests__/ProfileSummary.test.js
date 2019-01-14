@@ -4,7 +4,7 @@ import ProfileSummary from '../ProfileSummary'
 import mockRules from '../__mocks__/rules'
 import mockProfile from '../__mocks__/profile'
 
-loadTranslation('../messages/pt-BR.json')
+loadTranslation('../messages/pt.json')
 
 describe('ProfileSummary', () => {
   let wrapper
