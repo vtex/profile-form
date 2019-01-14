@@ -4,7 +4,7 @@ import StyleguideInput from '../inputs/StyleguideInput'
 import mockField from '../__mocks__/ruleField'
 import mockData from '../__mocks__/profileField'
 
-loadTranslation('../messages/pt-BR.json')
+loadTranslation('../messages/pt.json')
 
 describe('StyleguideInput', () => {
   let wrapper

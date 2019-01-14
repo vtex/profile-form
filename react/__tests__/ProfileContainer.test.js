@@ -5,7 +5,7 @@ import ProfileField from '../ProfileField'
 import mockRules from '../__mocks__/rules'
 import mockProfile from '../__mocks__/profile'
 
-loadTranslation('../messages/pt-BR.json')
+loadTranslation('../messages/pt.json')
 
 describe('ProfileContainer', () => {
   let wrapper
