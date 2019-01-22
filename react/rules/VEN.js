@@ -1,4 +1,5 @@
-import venezuela from '@vtex/phone/countries/VEN'
+import venezuela from '@vtex/phone/countries/VEN' // Used for initialization purposes, do not remove it!
+
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 
@@ -47,6 +48,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
+      type: 'date'
     },
   ],
   businessFields: [

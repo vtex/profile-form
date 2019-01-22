@@ -1,4 +1,5 @@
-import uruguay from '@vtex/phone/countries/URY'
+import uruguay from '@vtex/phone/countries/URY' // Used for initialization purposes, do not remove it!
+
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 
@@ -68,6 +69,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
+      type: 'date'
     },
   ],
   businessFields: [

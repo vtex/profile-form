@@ -1,6 +1,6 @@
-import gbr from '@vtex/phone/countries/GBR'
+import gbr from '@vtex/phone/countries/GBR' // Used for initialization purposes, do not remove it!
+
 import { getPhoneFields } from '../modules/phone'
-import regexValidation from '../modules/regexValidation'
 
 const phoneCountryCode = '44'
 
@@ -40,6 +40,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
+      type: 'date'
     },
   ],
   businessFields: [
