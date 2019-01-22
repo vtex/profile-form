@@ -1,6 +1,6 @@
-import korea from '@vtex/phone/countries/KOR'
+import korea from '@vtex/phone/countries/KOR' // Used for initialization purposes, do not remove it!
+
 import { getPhoneFields } from '../modules/phone'
-import regexValidation from '../modules/regexValidation'
 
 const phoneCountryCode = '82'
 
@@ -46,6 +46,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
+      type: 'date'
     },
   ],
   businessFields: [

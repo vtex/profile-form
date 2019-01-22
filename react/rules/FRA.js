@@ -1,4 +1,5 @@
-import colombia from '@vtex/phone/countries/COL'
+import colombia from '@vtex/phone/countries/COL' // Used for initialization purposes, do not remove it!
+
 import { getPhoneFields } from '../modules/phone'
 
 const phoneCountryCode = '33'
@@ -39,6 +40,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
+      type: 'date'
     },
   ],
   businessFields: [
