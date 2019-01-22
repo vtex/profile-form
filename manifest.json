@@ -6,7 +6,7 @@
   "description": "React component for managing user profiles",
   "builders": {
     "react": "2.x",
-    "messages": "0.x"
+    "messages": "1.x"
   },
   "scripts": {
     "prereleasy": "npm run symlinks",
