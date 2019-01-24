@@ -91,12 +91,14 @@ ProfileRules.propTypes = {
 
 export default injectIntl(ProfileRules)
 
-function prepareDateRules(rules, intl) {
+export function filterDateType(fields) {
+  return fields.filter((rule) => rule.type === 'date')
+}
 
-  const filterDateType = (rule) => rule.type === 'date'
+export function prepareDateRules(rules, intl) {
 
-  setDateRuleValidations(rules.personalFields.filter(filterDateType), intl)
-  setDateRuleValidations(rules.businessFields.filter(filterDateType), intl)
+  setDateRuleValidations(filterDateType(rules.personalFields), intl)
+  setDateRuleValidations(filterDateType(rules.businessFields), intl)
 }
 
 function setDateRuleValidations(rules, intl) {
