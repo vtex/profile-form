@@ -72,6 +72,6 @@ describe('ProfileRules aux functions', () => {
 
     prepareDateRules(rules, intl)
 
-    expect(birthDate.submit('25/11/2018')).toBe('2018-11-25T02:00:00Z')
+    expect(birthDate.submit('25/11/2018')).toMatch(new RegExp('2018-11-25T([0-9])([0-9]):00:00Z'))
   })
 })
