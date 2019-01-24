@@ -1,4 +1,5 @@
-import paraguay from '@vtex/phone/countries/PRY'
+import paraguay from '@vtex/phone/countries/PRY' // Used for initialization purposes, do not remove it!
+
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 
@@ -47,6 +48,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
+      type: 'date'
     },
   ],
   businessFields: [

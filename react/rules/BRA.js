@@ -1,7 +1,7 @@
-import moment from 'moment'
 import msk from 'msk'
 import Phone from '@vtex/phone'
-import brazil from '@vtex/phone/countries/BRA'
+import brazil from '@vtex/phone/countries/BRA' // Used for initialization purposes, do not remove it!
+
 import { getPhoneFields } from '../modules/phone'
 
 const maskPhone = value =>
@@ -76,10 +76,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      mask: value => msk.fit(value, '99/99/9999'),
-      validate: value => moment(value, 'DD/MM/YYYY', true).isValid(),
-      display: value => moment(value).format('DD/MM/YYYY'),
-      submit: value => moment(value, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+      type: 'date'
     },
   ],
   businessFields: [

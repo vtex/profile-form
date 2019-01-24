@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.4.1] - 2019-01-24
+### Changed
+- Insert default functions to rules of type `date`.
+
 ## [2.4.0] - 2019-01-22
+### Changed
+- Bumps messages builder major
 
 ## [2.3.0] - 2019-01-14
 
