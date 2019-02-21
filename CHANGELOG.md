@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Get updates from version `v2.4.1`.
+
 ## [2.4.4] - 2019-02-14
 
 ## [2.4.3] - 2019-02-14
@@ -20,6 +23,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.4.0] - 2019-01-22
 ### Changed
 - Bumps messages builder major
+
+## [3.0.0] - 2019-01-18
+### Changed
+- Update React builder to 3.x.
 
 ## [2.3.0] - 2019-01-14
 
