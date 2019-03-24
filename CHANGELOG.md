@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- birthDate format
+
 ## [2.4.4] - 2019-02-14
 
 ## [2.4.3] - 2019-02-14

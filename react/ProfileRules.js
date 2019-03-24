@@ -96,7 +96,6 @@ export function filterDateType(fields) {
 }
 
 export function prepareDateRules(rules, intl) {
-
   setDateRuleValidations(filterDateType(rules.personalFields), intl)
   setDateRuleValidations(filterDateType(rules.businessFields), intl)
 }
@@ -105,7 +104,7 @@ function setDateRuleValidations(rules, intl) {
   rules && rules.map(rule => {
     rule.mask =  value => msk.fit(value, '99/99/9999')
     rule.validate = value => moment(value,'L',intl.locale.toLowerCase()).isValid()
-    rule.display = value => moment(value,[moment.ISO_8601, 'L'], intl.locale.toLowerCase()).utc().format('L')
+    rule.display = value => moment(value,'MM/DD/YYYY', intl.locale.toLowerCase()).utc().format('L')
     rule.submit = value => moment(value,'L',intl.locale.toLowerCase()).utc().format()
   })
 }
