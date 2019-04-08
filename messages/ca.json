@@ -1,6 +1,6 @@
 {
   "profile-form.optional": "Opcional",
-  "profile-form.include-business": "Sumar dades d'empresa",
+  "profile-form.include-business": "Afegir dades d'empresa",
   "profile-form.exclude-business": "No incloeu dades de l'empresa",
   "profile-form.save-changes": "Guardar canvis",
   "profile-form.field.firstName": "Nom",
