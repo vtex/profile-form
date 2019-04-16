@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Document obligation on Spain.
+
 ## [2.5.0] - 2019-04-16
 
 ### Added
 
-- Italian translation
+- Italian translation.
 
 ## [2.4.4] - 2019-02-14
 

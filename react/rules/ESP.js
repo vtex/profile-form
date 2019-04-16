@@ -30,7 +30,7 @@ export default {
       name: 'document',
       maxLength: 50,
       label: 'ESP_dni',
-      required: true,
+      required: false,
       validate: regexValidation(/^(?:\d{8}|[A-z]\d{7})-?[A-z]{1}$/),
     },
     {
@@ -48,7 +48,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [
