@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Italian translation
+
 ## [2.4.4] - 2019-02-14
 
 ## [2.4.3] - 2019-02-14
@@ -14,39 +18,51 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.4.2] - 2019-02-01
 
 ## [2.4.1] - 2019-01-24
+
 ### Changed
+
 - Insert default functions to rules of type `date`.
 
 ## [2.4.0] - 2019-01-22
+
 ### Changed
+
 - Bumps messages builder major
 
 ## [2.3.0] - 2019-01-14
 
 ### Added
+
 - Catalan translation
 
 ### Changed
+
 - Messages filenames from locales to languages (`pt-BR` to `pt`), that makes it match more cases.
 
 ## [2.2.0] - 2018-12-28
+
 ### Changed
-- Add Messages Builder. 
+
+- Add Messages Builder.
 
 ## [2.1.0] - 2018-11-29
 
 ### Added
+
 - Add ARG, CAN, CHL, COL, CRI, ECU, ESP, FRA, GBR, GTM, KOR, MEX, PAN, PER, PRT, PRY, ROU, URY, USA and VEN country rules
 
 ### Changed
+
 - Remove `stateRegistration` from default rule
 
 ### Fixed
+
 - Fix phone input to always submit phone in international format
 
 ## [2.0.4] - 2018-11-21
 
 ### Fixed
+
 - Fix rule dynamic loading
 
 ## [2.0.3] - 2018-08-31
