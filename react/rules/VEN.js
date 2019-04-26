@@ -1,9 +1,10 @@
-import venezuela from '@vtex/phone/countries/VEN' // Used for initialization purposes, do not remove it!
+import venezuela from '@vtex/phone/countries/VEN'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '58'
+const phoneCountryCode = initialize(venezuela)
 
 export default {
   country: 'VEN',
@@ -48,7 +49,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

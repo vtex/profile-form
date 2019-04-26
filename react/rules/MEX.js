@@ -1,9 +1,10 @@
-import colombia from '@vtex/phone/countries/COL' // Used for initialization purposes, do not remove it!
+import mexico from '@vtex/phone/countries/MEX'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '52'
+const phoneCountryCode = initialize(mexico)
 
 export default {
   country: 'MEX',
@@ -41,7 +42,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [
@@ -55,7 +56,7 @@ export default {
       maxLength: 50,
       label: 'MEX_rfc',
       required: true,
-      validate: regexValidation(/^[a-zA-Z]{4}[0-9]{6}(?:[a-zA-Z0-9]{3}|)$/)
+      validate: regexValidation(/^[a-zA-Z]{4}[0-9]{6}(?:[a-zA-Z0-9]{3}|)$/),
     },
     {
       name: 'corporateDocument',

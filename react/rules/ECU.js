@@ -1,59 +1,73 @@
-import ecuador from '@vtex/phone/countries/ECU' // Used for initialization purposes, do not remove it!
+import ecuador from '@vtex/phone/countries/ECU'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '593'
+const phoneCountryCode = initialize(ecuador)
 
 function validateCedulaECU(value) {
-  var c, calculatedVerifyDigit, documentWithOnlyNumbers, evenDigitsSum, i, intArray, j, len, nextDozen, oddDigitMultiplied, oddDigitsSum, provinceCode, sum, temp;
+  var c,
+    calculatedVerifyDigit,
+    documentWithOnlyNumbers,
+    evenDigitsSum,
+    i,
+    intArray,
+    j,
+    len,
+    nextDozen,
+    oddDigitMultiplied,
+    oddDigitsSum,
+    provinceCode,
+    sum,
+    temp
   // o número é formado por 10 dígitos, podendo ter um '-' entre o nono e o décimo
   if (RegExp(/^[0-9]{9}-[0-9]{1}$|^[0-9]{10}$/).test(value)) {
     // remove traços contidos no documento
-    documentWithOnlyNumbers = value.replace("-", "");
+    documentWithOnlyNumbers = value.replace('-', '')
     // converte o array de caracteres em um array de inteiros
-    intArray = [];
+    intArray = []
     for (j = 0, len = documentWithOnlyNumbers.length; j < len; j++) {
-      c = documentWithOnlyNumbers[j];
-      intArray.push(parseInt(c));
+      c = documentWithOnlyNumbers[j]
+      intArray.push(parseInt(c))
     }
     // os dois primeiros dígitos correspondem à província e devem ser um número de 01 a 24
-    provinceCode = intArray[0] * 10 + intArray[1];
+    provinceCode = intArray[0] * 10 + intArray[1]
     if (provinceCode < 1 || provinceCode > 24) {
-      return false;
+      return false
     }
-    evenDigitsSum = 0;
-    oddDigitsSum = 0;
+    evenDigitsSum = 0
+    oddDigitsSum = 0
     // percorre o array de dígitos desconsiderando o dígito verificador
-    i = 0;
+    i = 0
     while (i < intArray.length - 1) {
       // soma-se todos os dígitos de posição par do array
       // verifica se a posição atual é par (+1 é devido ao fato do array começar na posição zero)
       if ((i + 1) % 2 === 0) {
-        evenDigitsSum += intArray[i];
+        evenDigitsSum += intArray[i]
       } else {
         // os dígitos da posição ímpar devem ser multiplicador por 2. Se o resultado da multiplicação der um número maior que 9, subtrair 9 a esse número.
         // Ao final, somar o resultado de todas essas contas
-        oddDigitMultiplied = intArray[i] * 2;
+        oddDigitMultiplied = intArray[i] * 2
         if (oddDigitMultiplied > 9) {
-          oddDigitMultiplied -= 9;
+          oddDigitMultiplied -= 9
         }
-        oddDigitsSum += oddDigitMultiplied;
+        oddDigitsSum += oddDigitMultiplied
       }
-      i++;
+      i++
     }
     // o dígito verificador é calculado pela subtração da próxima dezena da soma dos cálculos acima pelo resultado da soma
 
     // cálcula a soma dos resultados acima
-    sum = oddDigitsSum + evenDigitsSum;
+    sum = oddDigitsSum + evenDigitsSum
     // calcula a próxima dezena
-    temp = sum / 10.0;
-    temp = Math.ceil(temp);
-    nextDozen = temp * 10;
+    temp = sum / 10.0
+    temp = Math.ceil(temp)
+    nextDozen = temp * 10
     // calcula o dígito verificador
-    calculatedVerifyDigit = nextDozen - sum;
+    calculatedVerifyDigit = nextDozen - sum
     // verifica se o calculado é igual ao passado
-    return calculatedVerifyDigit === intArray[intArray.length - 1];
+    return calculatedVerifyDigit === intArray[intArray.length - 1]
   }
 
   return false
@@ -102,7 +116,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

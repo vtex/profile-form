@@ -1,9 +1,10 @@
-import costarica from '@vtex/phone/countries/CRI' // Used for initialization purposes, do not remove it!
+import costarica from '@vtex/phone/countries/CRI'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '506'
+const phoneCountryCode = initialize(costarica)
 
 export default {
   country: 'CRI',
@@ -31,7 +32,7 @@ export default {
       maxLength: 50,
       label: 'CRI_cedula',
       hidden: true,
-      validate: regexValidation(/^\d{10}$/)
+      validate: regexValidation(/^\d{10}$/),
     },
     {
       name: 'homePhone',
@@ -48,7 +49,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

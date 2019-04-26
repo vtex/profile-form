@@ -1,15 +1,15 @@
 import msk from 'msk'
-import Phone from '@vtex/phone'
-import brazil from '@vtex/phone/countries/BRA' // Used for initialization purposes, do not remove it!
+import brazil from '@vtex/phone/countries/BRA'
 
 import { getPhoneFields } from '../modules/phone'
+import initialize from './initializeCountryPhone'
+
+const phoneCountryCode = initialize(brazil)
 
 const maskPhone = value =>
   value.length === 14
     ? msk.fit(value, '(99) 9999-9999')
     : msk.fit(value, '(99) 99999-9999')
-
-const phoneCountryCode = '55'
 
 export default {
   country: 'BRA',
@@ -76,7 +76,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

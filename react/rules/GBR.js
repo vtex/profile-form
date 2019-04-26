@@ -1,8 +1,9 @@
 import gbr from '@vtex/phone/countries/GBR' // Used for initialization purposes, do not remove it!
 
 import { getPhoneFields } from '../modules/phone'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '44'
+const phoneCountryCode = initialize(gbr)
 
 export default {
   country: 'GBR',
@@ -40,7 +41,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

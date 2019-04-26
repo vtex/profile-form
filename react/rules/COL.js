@@ -1,9 +1,10 @@
-import colombia from '@vtex/phone/countries/COL' // Used for initialization purposes, do not remove it!
+import colombia from '@vtex/phone/countries/COL'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '57'
+const phoneCountryCode = initialize(colombia)
 
 export default {
   country: 'COL',
@@ -31,7 +32,7 @@ export default {
       maxLength: 50,
       label: 'COL_cedula',
       required: true,
-      validate: regexValidation(/^[\d]{5,8}$/)
+      validate: regexValidation(/^[\d]{5,8}$/),
     },
     {
       name: 'homePhone',
@@ -48,7 +49,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

@@ -2,28 +2,29 @@ import uruguay from '@vtex/phone/countries/URY' // Used for initialization purpo
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '598'
+const phoneCountryCode = initialize(uruguay)
 
 function validateCedulaURY(value) {
-  var baseArray, c, i, intArray, j, k, len, len1, verifiyDigit;
-  value = value.replace(/\-|\./g, "");
-  intArray = [];
+  var baseArray, c, i, intArray, j, k, len, len1, verifiyDigit
+  value = value.replace(/\-|\./g, '')
+  intArray = []
   for (j = 0, len = value.length; j < len; j++) {
-    c = value[j];
-    intArray.push(parseInt(c));
+    c = value[j]
+    intArray.push(parseInt(c))
   }
   //array base para validação no Uruguai
-  baseArray = [8, 1, 2, 3, 4, 7, 6];
-  verifiyDigit = 0;
-//executa o cálculo para criação do dígito verificador
+  baseArray = [8, 1, 2, 3, 4, 7, 6]
+  verifiyDigit = 0
+  //executa o cálculo para criação do dígito verificador
   for (i = k = 0, len1 = baseArray.length; k < len1; i = ++k) {
-    value = baseArray[i];
-    verifiyDigit += baseArray[i] * intArray[i];
+    value = baseArray[i]
+    verifiyDigit += baseArray[i] * intArray[i]
   }
-  verifiyDigit %= 10;
+  verifiyDigit %= 10
   //valida o dígito verificador
-  return verifiyDigit === intArray[intArray.length - 1];
+  return verifiyDigit === intArray[intArray.length - 1]
 }
 
 export default {
@@ -69,7 +70,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

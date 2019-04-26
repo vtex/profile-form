@@ -1,9 +1,10 @@
-import panama from '@vtex/phone/countries/PAN' // Used for initialization purposes, do not remove it!
+import panama from '@vtex/phone/countries/PAN'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '507'
+const phoneCountryCode = initialize(panama)
 
 export default {
   country: 'PAN',
@@ -31,7 +32,7 @@ export default {
       maxLength: 50,
       label: 'PAN_cip',
       required: true,
-      validate: regexValidation(/^[a-zA-Z0-9]{5,30}$/)
+      validate: regexValidation(/^[a-zA-Z0-9]{5,30}$/),
     },
     {
       name: 'homePhone',
@@ -48,7 +49,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

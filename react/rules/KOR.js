@@ -1,8 +1,9 @@
-import korea from '@vtex/phone/countries/KOR' // Used for initialization purposes, do not remove it!
+import korea from '@vtex/phone/countries/KOR'
 
 import { getPhoneFields } from '../modules/phone'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '82'
+const phoneCountryCode = initialize(korea)
 
 export default {
   country: 'KOR',
@@ -46,7 +47,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

@@ -1,9 +1,9 @@
-import guatemala from '@vtex/phone/countries/GTM' // Used for initialization purposes, do not remove it!
+import guatemala from '@vtex/phone/countries/GTM'
 
 import { getPhoneFields } from '../modules/phone'
-import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '502'
+const phoneCountryCode = initialize(guatemala)
 
 export default {
   country: 'GTM',
@@ -31,7 +31,9 @@ export default {
       maxLength: 50,
       label: 'GTM_dpi',
       required: true,
-      validate: regexValidation(/^[\d]{8}(?:\-|)[\d]{1}(?:\-|)[\d]{2}(?:\-|)[\d]{2}$/),
+      validate: regexValidation(
+        /^[\d]{8}(?:\-|)[\d]{1}(?:\-|)[\d]{2}(?:\-|)[\d]{2}$/,
+      ),
     },
     {
       name: 'homePhone',
@@ -48,7 +50,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [
