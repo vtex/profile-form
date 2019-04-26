@@ -1,12 +1,13 @@
-import chile from '@vtex/phone/countries/CHL' // Used for initialization purposes, do not remove it!
+import chile from '@vtex/phone/countries/CHL'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '56'
+const phoneCountryCode = initialize(chile)
 
 function validateRUT(rut) {
-  var caracteres, dig, dv, i, j, k, resto, serie, sumatoria;
+  var caracteres, dig, dv, i, j, k, resto, serie, sumatoria
   // Codigo inspirado de http://metaltux.cl/2014/06/12/script-de-validacion-de-rut-chileno-en-javascript/
   if (/^\d{1,2}\.?\d{3}\.?\d{3}\-?[\dkK]$/.test(rut)) {
     rut = rut.replace(/[.-]/g, '')
@@ -43,7 +44,16 @@ function validateRUT(rut) {
       dv = 0
     }
 
-    if (dv.toString().trim().toUpperCase() === dig.toString().trim().toUpperCase()) {
+    if (
+      dv
+        .toString()
+        .trim()
+        .toUpperCase() ===
+      dig
+        .toString()
+        .trim()
+        .toUpperCase()
+    ) {
       return true
     }
 
@@ -96,7 +106,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

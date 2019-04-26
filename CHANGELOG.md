@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `@vtex/phone` initialization.
+
 ## [2.5.1] - 2019-04-16
 
 ### Changed

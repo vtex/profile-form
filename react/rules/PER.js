@@ -1,9 +1,10 @@
-import peru from '@vtex/phone/countries/PER' // Used for initialization purposes, do not remove it!
+import peru from '@vtex/phone/countries/PER'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '51'
+const phoneCountryCode = initialize(peru)
 
 export default {
   country: 'PER',
@@ -31,7 +32,7 @@ export default {
       maxLength: 50,
       label: 'PER_document',
       required: true,
-      validate: regexValidation(/^[a-zA-Z0-9]{8,12}$/)
+      validate: regexValidation(/^[a-zA-Z0-9]{8,12}$/),
     },
     {
       name: 'homePhone',
@@ -48,7 +49,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

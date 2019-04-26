@@ -1,9 +1,10 @@
-import paraguay from '@vtex/phone/countries/PRY' // Used for initialization purposes, do not remove it!
+import paraguay from '@vtex/phone/countries/PRY'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '595'
+const phoneCountryCode = initialize(paraguay)
 
 export default {
   country: 'PRY',
@@ -31,7 +32,7 @@ export default {
       maxLength: 50,
       label: 'PRY_cedula',
       required: true,
-      validate: regexValidation(/^(\w{4,8}(?:\-|)\w{1})$/)
+      validate: regexValidation(/^(\w{4,8}(?:\-|)\w{1})$/),
     },
     {
       name: 'homePhone',
@@ -48,7 +49,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

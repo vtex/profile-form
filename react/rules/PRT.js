@@ -25,7 +25,7 @@ export default {
       name: 'document',
       maxLength: 50,
       label: 'PRT_nif',
-      validate: regexValidation(/^\d+$/)
+      validate: regexValidation(/^\d+$/),
     },
     {
       name: 'homePhone',
@@ -41,7 +41,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
     },
   ],
   businessFields: [

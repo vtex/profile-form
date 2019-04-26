@@ -1,9 +1,10 @@
-import spain from '@vtex/phone/countries/ESP' // Used for initialization purposes, do not remove it!
+import spain from '@vtex/phone/countries/ESP'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
+import initialize from './initializeCountryPhone'
 
-const phoneCountryCode = '34'
+const phoneCountryCode = initialize(spain)
 
 export default {
   country: 'ESP',
