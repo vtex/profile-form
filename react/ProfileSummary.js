@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import ProfileShape from './ProfileShape'
 import RuleShape from './RuleShape'
+import styles from './styles.css'
 
 class ProfileSummary extends Component {
   mapFields(fields) {
@@ -49,11 +50,7 @@ class ProfileSummary extends Component {
     )
     const businessData = this.mapFields(rules.businessFields)
 
-    return (
-      <div className="vtex-profile-form__profile-summary">
-        {children({ personalData, businessData, isCorporate })}
-      </div>
-    )
+    return <div className={styles.profileSummary}>{children({ personalData, businessData, isCorporate })}</div>
   }
 }
 
