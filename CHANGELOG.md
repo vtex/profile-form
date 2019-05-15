@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v2.6.6`.
+
 ## [2.6.6] - 2019-07-03
 
 ### Fixed
 
 - Validate fields against emojis. 😱
+
+## [3.2.6] - 2019-06-27
+
+### Changed
+
+- Get changes made at version `v2.6.5`.
 
 ## [2.6.5] - 2019-06-27
 
@@ -19,11 +29,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Wrong 'female' translation in catalan.
 
+## [3.2.5] - 2019-06-13
+
+### Changed
+
+- Get changes made at version `v2.6.4`.
+
 ## [2.6.4] - 2019-06-13
 
 ### Fixed
 
 - _Profile Container_ fixed submit on enter.
+  <<<<<<< HEAD
+  =======
+
+## [3.2.4] - 2019-06-10
+
+### Changed
+
+- Get changes made at version `v2.6.3`.
+  > > > > > > > Bump react version. Add tokens to elements of all components
 
 ## [2.6.3] - 2019-06-10
 
@@ -31,17 +56,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `COL` document regex validation.
 
+## [3.2.3] - 2019-05-24
+
+### Changed
+
+- Get changes made at version `v2.6.2`.
+
 ## [2.6.2] - 2019-05-24
 
 ### Fixed
 
 - Birth Date failing to be empty.
 
+## [3.2.2] - 2019-05-23
+
+### Fixed
+
+- `react` version to `v3.x`.
+
+## [3.2.1] - 2019-05-23
+
+### Changed
+
+- Get changes made at version `v2.6.1`.
+
 ## [2.6.1] - 2019-05-23
 
 ### Added
 
 - `disabled` prop into input rules.
+
+## [3.2.0] - 2019-05-23
+
+### Added
+
+- CSS handles.
+
+## [3.1.1] - 2019-05-20
+
+### Changed
+
+- Get changes made at version `v2.6.0`.
 
 ## [2.6.0] - 2019-05-22
 
@@ -54,6 +109,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Birth date decrementing one day after a profile save for certain timezones.
+
+## [3.0.4] - 2019-04-26
+
+### Changed
+
+- Get changes made at version `v2.5.2`.
 
 ## [2.5.2] - 2019-04-26
 
