@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `birthDate` validation function for all countries to not accept future dates.
 
+### Changed
+
+- Get changes made at version `v2.6.9`.
+
 ## [2.6.9] - 2019-09-04
 
 ### Fixed
