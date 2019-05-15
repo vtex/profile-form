@@ -11,6 +11,7 @@ import removeValidation from './modules/removeValidation'
 import emptyProfile from './modules/emptyProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
+import styles from './styles.css'
 
 class ProfileContainer extends Component {
   constructor(props) {
@@ -77,8 +78,8 @@ class ProfileContainer extends Component {
     if (!profile) return null
 
     return (
-      <div className="vtex-profile-form__profile-container__wrapper">
-        <div className="vtex-profile-form__personal-fields">
+      <div className={styles.profileContainer}>
+        <div className={styles.personalFields}>
           {rules.personalFields.map(field => (
             <ProfileField
               key={field.name}
@@ -91,9 +92,9 @@ class ProfileContainer extends Component {
           ))}
         </div>
         {children && (
-          <div className="vtex-profile-form__extended-fields">{children}</div>
+          <div className={styles.extendedFields}>{children}</div>
         )}
-        <div className="vtex-profile-form__toggle-business-btn__wrapper mb7">
+        <div className={`${styles.toggleBusinessButtonWrapper} mb7`}>
           {ToggleBusinessButton ? (
             React.cloneElement(ToggleBusinessButton, {
               onClick: this.toggleBusinessFields,
@@ -111,7 +112,7 @@ class ProfileContainer extends Component {
           )}
         </div>
         {isCorporate && (
-          <div className="vtex-profile-form__business-fields">
+          <div className={styles.businessFields}>
             {rules.businessFields.map(field => (
               <ProfileField
                 key={field.name}
