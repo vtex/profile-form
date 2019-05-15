@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
--  Css tokens to all elements of all components.
+- CSS handles to elements.
 
 ## [3.0.4] - 2019-04-26
 
