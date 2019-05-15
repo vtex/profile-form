@@ -14,7 +14,7 @@ class ProfileSummary extends Component {
         return {
           [field.name]: {
             label: intl.formatMessage({
-              id: 'profile-form.field.' + field.label,
+              id: `profile-form.field.${field.label}`,
             }),
             value: field.display && data ? field.display(data) : data,
             hidden: field.hidden,
@@ -32,7 +32,7 @@ class ProfileSummary extends Component {
         value:
           mappedData.gender.value &&
           this.props.intl.formatMessage({
-            id: 'profile-form.gender.' + mappedData.gender.value,
+            id: `profile-form.gender.${mappedData.gender.value}`,
           }),
       },
     }
@@ -46,7 +46,7 @@ class ProfileSummary extends Component {
     )
     const businessData = this.mapFields(rules.businessFields)
 
-    return <div>{children({ personalData, businessData, isCorporate })}</div>
+    return <div className="vtex-profile-form__profile-summary">{children({ personalData, businessData, isCorporate })}</div>
   }
 }
 
