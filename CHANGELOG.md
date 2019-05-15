@@ -19,11 +19,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - *Profile Container* fixed submit on enter.
 
+### Changed
+
+- Get changes made at version `v2.6.3`.
+
 ## [2.6.3] - 2019-06-10
 
 ### Fixed
 
 - `COL` document regex validation.
+
+## [3.2.3] - 2019-05-24
+
+### Changed
+
+- Get changes made at version `v2.6.2`.
 
 ## [2.6.2] - 2019-05-24
 
@@ -31,11 +41,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Birth Date failing to be empty.
 
+## [3.2.2] - 2019-05-23
+
+### Fixed
+
+- `react` version to `v3.x`.
+
+## [3.2.1] - 2019-05-23
+
+### Changed
+
+- Get changes made at version `v2.6.1`.
+
 ## [2.6.1] - 2019-05-23
 
 ### Added
 
 - `disabled` prop into input rules.
+
+## [3.2.0] - 2019-05-23
+
+### Added
+
+- CSS handles.
+
+## [3.1.1] - 2019-05-20
+
+### Changed
+
+- Get changes made at version `v2.6.0`.
 
 ## [2.6.0] - 2019-05-22
 
@@ -48,6 +82,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Birth date decrementing one day after a profile save for certain timezones.
+
+## [3.0.4] - 2019-04-26
+
+### Changed
+
+- Get changes made at version `v2.5.2`.
 
 ## [2.5.2] - 2019-04-26
 
