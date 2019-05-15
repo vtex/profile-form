@@ -6,6 +6,7 @@ import AutocompleteInput from './AutocompleteInput'
 import RuleFieldShape from '../../RuleFieldShape'
 import ProfileFieldShape from '../../ProfileFieldShape'
 import genders from '../../modules/genders'
+import styles from '../../styles.css'
 
 class GenderInput extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class GenderInput extends Component {
 
     return (
       <div
-        className={`vtex-profile-form__field-wrapper vtex-profile-form__gender ${field.hidden ? 'dn' : ''} pb7`}
+        className={`${styles.styleguideInput} ${styles.genderInput} ${field.hidden ? 'dn' : ''} pb7`}
       >
         <Dropdown
           name="gender"
@@ -92,7 +93,7 @@ class GenderInput extends Component {
           disabled={field.disabled}
         />
         {showExtendedGenders && (
-          <div className="vtex-profile-form__custom-gender bg-light-silver pa5 mt4 br2">
+          <div className={`${styles.customGender} bg-light-silver pa5 mt4 br2`}>
             <AutocompleteInput
               name="custom-gender"
               label={intl.formatMessage({
