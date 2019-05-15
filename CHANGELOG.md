@@ -25,6 +25,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Birth date decrementing one day after a profile save for certain timezones.
 
+## [3.1.0] - 2019-05-15
+
+### Added
+
+- Css tokens to all elements of all components.
+- CSS handles to elements.
+
+## [3.0.4] - 2019-04-26
+
+### Changed
+
+- Get changes made at version `v2.5.2`.
+
 ## [2.5.2] - 2019-04-26
 
 ### Fixed

@@ -62,7 +62,7 @@ class GenderInput extends Component {
     const baseGenders = ['male', 'female', 'custom']
       .map(gender => ({
         value: gender,
-        label: intl.formatMessage({ id: 'profile-form.gender.' + gender }),
+        label: intl.formatMessage({ id: `profile-form.gender.${gender}` }),
       }))
       .slice(0, shouldShowExtendedGenders ? 3 : 2)
 
