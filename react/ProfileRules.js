@@ -35,7 +35,7 @@ class ProfileRules extends Component {
       prepareDateRules(rules, intl)
 
       this.setState({ rules })
-
+      
       return rules
     } catch (error) {
       const errorType = this.parseError(error)
@@ -45,7 +45,7 @@ class ProfileRules extends Component {
             `Couldn't load rules for country ${errorType}, using default rules instead.`,
           )
         }
-
+        
         prepareDateRules(defaultRules, intl)
 
         this.setState({ rules: defaultRules })
@@ -96,17 +96,16 @@ export function filterDateType(fields) {
 }
 
 export function prepareDateRules(rules, intl) {
+
   setDateRuleValidations(filterDateType(rules.personalFields), intl)
   setDateRuleValidations(filterDateType(rules.businessFields), intl)
 }
 
 function setDateRuleValidations(rules, intl) {
-  if(rules) {
-    rules.forEach(rule => {
-      rule.mask = value => msk.fit(value, '99/99/9999')
-      rule.validate = value => moment.utc(value,'L',intl.locale.toLowerCase()).isValid()
-      rule.display = value => moment.utc(value,[moment.ISO_8601, 'L'], intl.locale.toLowerCase()).format('L')
-      rule.submit = value => moment.utc(value,'L',intl.locale.toLowerCase()).format()
-    })
-  }
+  rules && rules.map(rule => {
+    rule.mask =  value => msk.fit(value, '99/99/9999')
+    rule.validate = value => moment(value,'L',intl.locale.toLowerCase()).isValid()
+    rule.display = value => moment(value,[moment.ISO_8601, 'L'], intl.locale.toLowerCase()).utc().format('L')
+    rule.submit = value => moment(value,'L',intl.locale.toLowerCase()).utc().format()
+  })
 }
