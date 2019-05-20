@@ -18,7 +18,8 @@
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
     "vtex:link": "npm run symlinks && vtex link",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint:messages": "intl-equalizer"
   },
   "repository": "https://github.com/vtex/profile-form",
   "author": "Gustavo Silva (@akafts)",
@@ -29,6 +30,14 @@
     "vtex",
     "profile"
   ],
+  "intl-equalizer": {
+    "localeDirectory": "messages/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint:messages && yarn test"
+    }
+  },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/react/__tests__/setupTests.js",
     "testURL": "http://localhost",
@@ -70,12 +79,14 @@
     "react-intl": "^2.4.0"
   },
   "devDependencies": {
+    "@vtex/intl-equalizer": "^2.3.0",
     "babel-jest": "^23.6.0",
     "babel-plugin-add-react-displayname": "0.0.5",
     "babel-preset-react-app": "^3.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-react-intl": "^2.0.0",
+    "husky": "^2.3.0",
     "jest": "^22.4.4",
     "jest-enzyme": "^6.0.2",
     "nwb": "^0.21.5",
