@@ -7,10 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fixed
-
-- Birth date decrementing one day after a profile save for certain timezones.
-
 ## [2.5.2] - 2019-04-26
 
 ### Fixed
