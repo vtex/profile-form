@@ -7,7 +7,7 @@ import ProfileFieldShape from '../../ProfileFieldShape'
 import GenderInput from './GenderInput'
 
 const StyleguideInput = props => {
-  const { field, data, options, inputRef, onChange, onBlur, intl } = props
+  const { field, data, options, inputRef, onChange, onBlur, intl, disabled } = props
 
   if (field.name === 'gender') {
     return (
@@ -45,6 +45,7 @@ const StyleguideInput = props => {
         onBlur={onBlur}
         ref={inputRef}
         maxLength={field.maxLength}
+        disabled={disabled}
       />
     </div>
   )
@@ -65,6 +66,8 @@ StyleguideInput.propTypes = {
   onBlur: PropTypes.func.isRequired,
   /** React-intl utility */
   intl: intlShape.isRequired,
+  /** If the input should be disabled or not */
+  disabled: PropTypes.bool,
 }
 
 export default injectIntl(StyleguideInput)

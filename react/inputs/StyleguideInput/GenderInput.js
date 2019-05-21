@@ -55,6 +55,7 @@ class GenderInput extends Component {
       inputRef,
       onBlur,
       intl,
+      disabled,
       shouldShowExtendedGenders,
     } = this.props
     const { showExtendedGenders } = this.state
@@ -89,6 +90,7 @@ class GenderInput extends Component {
           onChange={this.handleChange}
           onBlur={onBlur}
           options={baseGenders}
+          disabled={disabled}
         />
         {showExtendedGenders && (
           <div className="vtex-profile-form__custom-gender bg-light-silver pa5 mt4 br2">

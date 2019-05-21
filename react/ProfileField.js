@@ -35,7 +35,7 @@ class ProfileField extends Component {
   }
 
   render() {
-    const { field, data, options, Input, disabled} = this.props
+    const { field, data, options, Input, disabled } = this.props
     return (
       <Input
         field={field}
