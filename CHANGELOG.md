@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Prop `disabled` to the input components.
+
 ## [3.1.1] - 2019-05-20
 
 ### Changed
