@@ -1,11 +1,11 @@
 {
   "vendor": "vtex",
   "name": "profile-form",
-  "version": "2.5.3",
+  "version": "3.0.4",
   "title": "VTEX Profile-form",
   "description": "React component for managing user profiles",
   "builders": {
-    "react": "2.x",
+    "react": "3.x",
     "messages": "1.x"
   },
   "scripts": {

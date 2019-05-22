@@ -7,11 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v2.6.0`.
+
+## [2.6.0] - 2019-05-22
+
+### Added
+
+- CSS handles to elements
+
 ## [2.5.3] - 2019-05-20
 
 ### Fixed
 
 - Birth date decrementing one day after a profile save for certain timezones.
+
+## [3.0.4] - 2019-04-26
+
+### Changed
+
+- Get changes made at version `v2.5.2`.
 
 ## [2.5.2] - 2019-04-26
 
@@ -19,11 +35,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `@vtex/phone` initialization.
 
+## [3.0.3] - 2019-04-16
+
+### Changed
+
+- Get changes made at version `v2.5.1`.
+
 ## [2.5.1] - 2019-04-16
 
 ### Changed
 
 - Document obligation on Spain.
+
+## [3.0.2] - 2019-04-16
+
+### Changed
+
+- Get updates from version `v2.5.0`.
 
 ## [2.5.0] - 2019-04-16
 
@@ -31,11 +59,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Italian translation.
 
-## [2.4.4] - 2019-02-14
+## [3.0.1] - 2019-02-21
 
-## [2.4.3] - 2019-02-14
+### Changed
 
-## [2.4.2] - 2019-02-01
+- Get updates from version `v2.4.1`.
 
 ## [2.4.1] - 2019-01-24
 
@@ -48,6 +76,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Bumps messages builder major
+
+## [3.0.0] - 2019-01-18
+
+### Changed
+
+- Update React builder to 3.x.
 
 ## [2.3.0] - 2019-01-14
 

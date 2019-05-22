@@ -12,7 +12,9 @@ class AutocompleteMenu extends Component {
     return (
       <div
         {...getMenuProps({
-          className: `br2 br--bottom bb br bl b--gray bw1 outline-0 overflow-y-scroll ${listHeight} absolute w-100 z-1 bg-white`,
+          className: `br2 br--bottom bb br bl b--gray bw1 outline-0 overflow-y-scroll ${
+            listHeight
+          } absolute w-100 z-1 bg-white vtex-profile-form__autocomplete-menu`,
         })}
       >
         {items.map((item, index) => (
@@ -21,7 +23,7 @@ class AutocompleteMenu extends Component {
               key: item.value,
               index,
               item,
-              className: `f6 ph5 pv5 dark-gray ${
+              className: `vtex-profile-form__autocomplete-menu__content f6 ph5 pv5 dark-gray ${
                 highlightedIndex === index ? 'bg-light-silver' : 'bg-white'
               }`,
             })}
