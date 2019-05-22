@@ -46,7 +46,7 @@ class ProfileSummary extends Component {
     )
     const businessData = this.mapFields(rules.businessFields)
 
-    return <div>{children({ personalData, businessData, isCorporate })}</div>
+    return <div className="vtex-profile-form__profile-summary">{children({ personalData, businessData, isCorporate })}</div>
   }
 }
 

@@ -73,7 +73,7 @@ class GenderInput extends Component {
 
     return (
       <div
-        className={`vtex-profile-form__gender ${field.hidden ? 'dn' : ''} pb7`}
+        className={`vtex-profile-form__field-wrapper vtex-profile-form__gender ${field.hidden ? 'dn' : ''} pb7`}
       >
         <Dropdown
           name="gender"

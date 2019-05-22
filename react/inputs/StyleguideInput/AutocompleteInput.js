@@ -29,36 +29,36 @@ class AutocompleteInput extends Component {
           inputValue,
           highlightedIndex,
         }) => (
-          <div className="relative">
-            <Input
-              {...getInputProps({
-                name,
-                label,
-                placeholder,
-                ref: forwardedRef,
-                suffixIcon: (
-                  <button
-                    {...getToggleButtonProps({
-                      className: 'blue b--none bg-transparent pointer',
-                    })}
-                  >
-                    <CaretDown color="currentColor" size={10} />
-                  </button>
-                ),
-              })}
-            />
-            {isOpen && (
-              <AutocompleteMenu
-                items={matchSorter(items, inputValue, {
-                  keys: ['label'],
+            <div className="vtex-profile-form__autocomplete-input-wrapper relative">
+              <Input
+                {...getInputProps({
+                  name,
+                  label,
+                  placeholder,
+                  ref: forwardedRef,
+                  suffixIcon: (
+                    <button
+                      {...getToggleButtonProps({
+                        className: 'blue b--none bg-transparent pointer',
+                      })}
+                    >
+                      <CaretDown color="currentColor" size={10} />
+                    </button>
+                  ),
                 })}
-                getMenuProps={getMenuProps}
-                getItemProps={getItemProps}
-                highlightedIndex={highlightedIndex}
               />
-            )}
-          </div>
-        )}
+              {isOpen && (
+                <AutocompleteMenu
+                  items={matchSorter(items, inputValue, {
+                    keys: ['label'],
+                  })}
+                  getMenuProps={getMenuProps}
+                  getItemProps={getItemProps}
+                  highlightedIndex={highlightedIndex}
+                />
+              )}
+            </div>
+          )}
       </Downshift>
     )
   }

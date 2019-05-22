@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.0] - 2019-05-22
+
+### Added
+
+- CSS handles to elements
+
 ## [2.5.3] - 2019-05-20
 
 ### Fixed
