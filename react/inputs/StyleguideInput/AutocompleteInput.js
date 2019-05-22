@@ -29,7 +29,7 @@ class AutocompleteInput extends Component {
           inputValue,
           highlightedIndex,
         }) => (
-          <div className="relative">
+          <div className="vtex-profile-form__autocomplete-input-wrapper relative">
             <Input
               {...getInputProps({
                 name,

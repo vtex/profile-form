@@ -77,7 +77,7 @@ class ProfileContainer extends Component {
     if (!profile) return null
 
     return (
-      <div>
+      <div className="vtex-profile-form__profile-container__wrapper">
         <div className="vtex-profile-form__personal-fields">
           {rules.personalFields.map(field => (
             <ProfileField
@@ -93,7 +93,7 @@ class ProfileContainer extends Component {
         {children && (
           <div className="vtex-profile-form__extended-fields">{children}</div>
         )}
-        <div className="mb7">
+        <div className="vtex-profile-form__toggle-business-btn__wrapper mb7">
           {ToggleBusinessButton ? (
             React.cloneElement(ToggleBusinessButton, {
               onClick: this.toggleBusinessFields,
