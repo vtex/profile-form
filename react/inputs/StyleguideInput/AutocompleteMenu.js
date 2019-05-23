@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import styles from '../../styles.css'
 
 class AutocompleteMenu extends Component {
   render() {
@@ -12,7 +13,9 @@ class AutocompleteMenu extends Component {
     return (
       <div
         {...getMenuProps({
-          className: `br2 br--bottom bb br bl b--gray bw1 outline-0 overflow-y-scroll ${listHeight} absolute w-100 z-1 bg-white`,
+          className: `${styles.autocompleteMenu} br2 br--bottom bb br bl b--gray bw1 ${
+            listHeight
+          } absolute w-100 z-1 bg-white outline-0 overflow-y-scroll`,
         })}
       >
         {items.map((item, index) => (
@@ -21,7 +24,7 @@ class AutocompleteMenu extends Component {
               key: item.value,
               index,
               item,
-              className: `f6 ph5 pv5 dark-gray ${
+              className: `${styles.autocompleteMenuItem} f6 ph5 pv5 dark-gray ${
                 highlightedIndex === index ? 'bg-light-silver' : 'bg-white'
               }`,
             })}
