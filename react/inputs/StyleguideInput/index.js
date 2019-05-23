@@ -7,7 +7,15 @@ import ProfileFieldShape from '../../ProfileFieldShape'
 import GenderInput from './GenderInput'
 
 const StyleguideInput = props => {
-  const { field, data, options, inputRef, onChange, onBlur, intl } = props
+  const {
+    field,
+    data,
+    options,
+    inputRef,
+    onChange,
+    onBlur,
+    intl,
+  } = props
 
   if (field.name === 'gender') {
     return (
@@ -45,6 +53,7 @@ const StyleguideInput = props => {
         onBlur={onBlur}
         ref={inputRef}
         maxLength={field.maxLength}
+        disabled={field.disabled}
       />
     </div>
   )
