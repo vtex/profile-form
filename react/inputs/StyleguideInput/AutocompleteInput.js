@@ -30,7 +30,7 @@ class AutocompleteInput extends Component {
           inputValue,
           highlightedIndex,
         }) => (
-            <div className={`${styles.autocompleteInput} relative`}>
+            <div className={`${styles.styleguideInput} ${styles.autocompleteInput} relative`}>
               <Input
                 {...getInputProps({
                   name,

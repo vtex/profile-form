@@ -74,7 +74,7 @@ class GenderInput extends Component {
 
     return (
       <div
-        className={`${styles.genderInput} vtex-profile-form__gender ${field.hidden ? 'dn' : ''} pb7`}
+        className={`${styles.styleguideInput} ${styles.genderInput} ${field.hidden ? 'dn' : ''} pb7`}
       >
         <Dropdown
           name="gender"
@@ -93,7 +93,7 @@ class GenderInput extends Component {
           disabled={field.disabled}
         />
         {showExtendedGenders && (
-          <div className={`${styles.customGender} vtex-profile-form__custom-gender bg-light-silver pa5 mt4 br2`}>
+          <div className={`${styles.customGender} bg-light-silver pa5 mt4 br2`}>
             <AutocompleteInput
               name="custom-gender"
               label={intl.formatMessage({
