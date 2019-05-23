@@ -15,7 +15,6 @@ const StyleguideInput = props => {
     onChange,
     onBlur,
     intl,
-    disabled
   } = props
 
   if (field.name === 'gender') {
@@ -54,7 +53,7 @@ const StyleguideInput = props => {
         onBlur={onBlur}
         ref={inputRef}
         maxLength={field.maxLength}
-        disabled={disabled}
+        disabled={field.disabled}
       />
     </div>
   )
@@ -75,8 +74,6 @@ StyleguideInput.propTypes = {
   onBlur: PropTypes.func.isRequired,
   /** React-intl utility */
   intl: intlShape.isRequired,
-  /** If the input should be disabled or not */
-  disabled: PropTypes.bool,
 }
 
 export default injectIntl(StyleguideInput)

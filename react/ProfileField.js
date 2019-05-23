@@ -35,13 +35,12 @@ class ProfileField extends Component {
   }
 
   render() {
-    const { field, data, options, Input, disabled } = this.props
+    const { field, data, options, Input } = this.props
     return (
       <Input
         field={field}
         data={data}
         options={options}
-        disabled={disabled}
         inputRef={this.inputRef}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
@@ -61,8 +60,6 @@ ProfileField.propTypes = {
   onFieldUpdate: PropTypes.func.isRequired,
   /** Component to be used as input for the field */
   Input: PropTypes.func.isRequired,
-  /** If the component should be disabled or not */
-  disabled: PropTypes.bool,
 }
 
 export default ProfileField

@@ -85,7 +85,6 @@ class ProfileContainer extends Component {
               field={field}
               data={profile[field.name]}
               options={options[field.name]}
-              disabled={Boolean(field.disabled)}
               onFieldUpdate={this.handleFieldUpdate}
               Input={Input}
             />
@@ -118,7 +117,6 @@ class ProfileContainer extends Component {
                 key={field.name}
                 field={field}
                 data={profile[field.name]}
-                disabled={Boolean(field.disabled)}
                 onFieldUpdate={this.handleFieldUpdate}
                 Input={Input}
               />
