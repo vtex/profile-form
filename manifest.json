@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "profile-form",
-  "version": "3.1.1",
+  "version": "3.2.1",
   "title": "VTEX Profile-form",
   "description": "React component for managing user profiles",
   "builders": {
@@ -14,5 +14,7 @@
   },
   "mustUpdateAt": "2019-08-09",
   "categories": [],
-  "registries": ["smartcheckout"]
+  "registries": [
+    "smartcheckout"
+  ]
 }
