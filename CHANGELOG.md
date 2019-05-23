@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `react` version to `v3.x`.
+
 ## [3.2.1] - 2019-05-23
 
 ### Changed
