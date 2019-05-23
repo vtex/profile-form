@@ -79,7 +79,7 @@ class ProfileContainer extends Component {
 
     return (
       <div className={styles.profileContainer}>
-        <div className={`vtex-profile-form__personal-fields ${styles.personalFields}`}>
+        <div className={styles.personalFields}>
           {rules.personalFields.map(field => (
             <ProfileField
               key={field.name}
@@ -92,7 +92,7 @@ class ProfileContainer extends Component {
           ))}
         </div>
         {children && (
-          <div className={`vtex-profile-form__extended-fields ${styles.extendedFields}`}>{children}</div>
+          <div className={styles.extendedFields}>{children}</div>
         )}
         <div className={`${styles.toggleBusinessButtonWrapper} mb7`}>
           {ToggleBusinessButton ? (
@@ -112,7 +112,7 @@ class ProfileContainer extends Component {
           )}
         </div>
         {isCorporate && (
-          <div className={`vtex-profile-form__business-fields ${styles.businessFields}`}>
+          <div className={styles.businessFields}>
             {rules.businessFields.map(field => (
               <ProfileField
                 key={field.name}

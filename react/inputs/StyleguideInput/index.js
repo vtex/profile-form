@@ -21,7 +21,7 @@ const StyleguideInput = props => {
 
   return (
     <div
-      className={`${styles.styleguideInput} vtex-profile-form__${field.name} ${
+      className={`${styles.styleguideInput} ${
         field.hidden ? 'dn' : ''
       } pb7`}
     >
