@@ -19,4 +19,6 @@ export default PropTypes.shape({
   display: PropTypes.func,
   /** A function to transform input data before submitting */
   submit: PropTypes.func,
+  /** If the input should be disabled or not */
+  disabled: PropTypes.bool,
 })
