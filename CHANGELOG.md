@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v2.6.2`.
+
 ## [2.6.2] - 2019-05-24
 
 ### Fixed
 
 - Birth Date failing to be empty.
+
+## [3.2.2] - 2019-05-23
+
+### Fixed
+
+- `react` version to `v3.x`.
 
 ## [3.2.1] - 2019-05-23
 
