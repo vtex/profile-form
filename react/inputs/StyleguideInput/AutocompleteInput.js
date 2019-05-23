@@ -5,6 +5,7 @@ import matchSorter from 'match-sorter'
 import Input from '@vtex/styleguide/lib/Input'
 import CaretDown from '@vtex/styleguide/lib/icon/CaretDown'
 import AutocompleteMenu from './AutocompleteMenu'
+import styles from '../../styles.css'
 
 class AutocompleteInput extends Component {
   handleChange = ({ value }) => {
@@ -29,7 +30,7 @@ class AutocompleteInput extends Component {
           inputValue,
           highlightedIndex,
         }) => (
-            <div className="vtex-profile-form__autocomplete-input-wrapper relative">
+            <div className={`${styles.autocompleteInput} relative`}>
               <Input
                 {...getInputProps({
                   name,
@@ -39,7 +40,7 @@ class AutocompleteInput extends Component {
                   suffixIcon: (
                     <button
                       {...getToggleButtonProps({
-                        className: 'blue b--none bg-transparent pointer',
+                        className: `${styles.autocompleteToggleButton} blue b--none bg-transparent pointer`,
                       })}
                     >
                       <CaretDown color="currentColor" size={10} />
