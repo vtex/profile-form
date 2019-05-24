@@ -206,17 +206,4 @@ describe('validateProfile', () => {
     expect(checkedProfile.stateRegistration.error).toBeTruthy()
   })
 
-  it('should validate empty birth date as null', () => {
-    // Arrange
-    const profileWithNoDate = {
-      ...validatedProfile,
-      birthDate: { value: '' },
-    }
-
-    // Act
-    const validResult = removeValidation(profileWithNoDate, mockRules)
-
-    // Assert
-    expect(validResult).toMatchObject({ birthDate: null })
-  })
 })
