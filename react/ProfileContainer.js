@@ -90,6 +90,19 @@ class ProfileContainer extends Component {
             />
           ))}
         </div>
+        {isCorporate && (
+          <div className="vtex-profile-form__business-fields">
+            {rules.businessFields.map(field => (
+              <ProfileField
+                key={field.name}
+                field={field}
+                data={profile[field.name]}
+                onFieldUpdate={this.handleFieldUpdate}
+                Input={Input}
+              />
+            ))}
+          </div>
+        )}
         {children && (
           <div className="vtex-profile-form__extended-fields">{children}</div>
         )}
@@ -110,19 +123,6 @@ class ProfileContainer extends Component {
             </Button>
           )}
         </div>
-        {isCorporate && (
-          <div className="vtex-profile-form__business-fields">
-            {rules.businessFields.map(field => (
-              <ProfileField
-                key={field.name}
-                field={field}
-                data={profile[field.name]}
-                onFieldUpdate={this.handleFieldUpdate}
-                Input={Input}
-              />
-            ))}
-          </div>
-        )}
         {SubmitButton ? (
           React.cloneElement(SubmitButton, {
             onClick: this.handleSubmit,
