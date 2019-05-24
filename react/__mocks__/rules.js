@@ -13,6 +13,12 @@ export default {
       maxLength: 30,
     },
     {
+      name: 'birthDate',
+      maxLength: 30,
+      label: 'birthDate',
+      type: 'date',
+    },
+    {
       name: 'lastName',
       maxLength: 100,
       label: 'lastName',

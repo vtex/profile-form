@@ -1,6 +1,6 @@
 import { IntlProvider } from 'react-intl'
 
-import { prepareDateRules, filterDateType} from '../ProfileRules'
+import { prepareDateRules, filterDateType } from '../ProfileRules'
 import defaultRules from '../rules/default'
 
 const intlProvider = new IntlProvider({ locale: 'pt-br' }, {})
@@ -72,6 +72,29 @@ describe('ProfileRules aux functions', () => {
 
     prepareDateRules(rules, intl)
 
-    expect(birthDate.submit('25/11/2018')).toMatch(new RegExp('2018-11-25T([0-9])([0-9]):00:00Z'))
+    expect(birthDate.submit('25/11/2018')).toMatch(
+      new RegExp('2018-11-25T([0-9])([0-9]):00:00Z'),
+    )
+  })
+
+  describe('date', () => {
+    it('empty date should be submitted as null', () => {
+      const rules = defaultRules
+      const birthDate = filterDateType(rules.personalFields)[0]
+
+      prepareDateRules(rules, intl)
+
+      expect(birthDate.submit()).toBe(null)
+    })
+
+    it('invalid date should be submitted as null', () => {
+      const rules = defaultRules
+      const birthDate = filterDateType(rules.personalFields)[0]
+
+      prepareDateRules(rules, intl)
+
+      expect(birthDate.submit('30/28/19501')).toBe(null)
+      expect(birthDate.submit('not-a-date')).toBe(null)
+    })
   })
 })

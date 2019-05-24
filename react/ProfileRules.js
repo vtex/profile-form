@@ -61,7 +61,7 @@ class ProfileRules extends Component {
     const regex = new RegExp(
       process.env.NODE_ENV === 'test'
         ? /Cannot find module '\.\.\/(rules\/)?([A-z-]{1,7})'/
-        : /Cannot find module '\.\/([A-z-]{1,7})'/
+        : /Cannot find module '\.\/([A-z-]{1,7})'/,
     )
     const result = regex.exec(e.message)
     if (!result) return false
@@ -92,7 +92,7 @@ ProfileRules.propTypes = {
 export default injectIntl(ProfileRules)
 
 export function filterDateType(fields) {
-  return fields.filter((rule) => rule.type === 'date')
+  return fields.filter(rule => rule.type === 'date')
 }
 
 export function prepareDateRules(rules, intl) {
@@ -101,12 +101,23 @@ export function prepareDateRules(rules, intl) {
 }
 
 function setDateRuleValidations(rules, intl) {
-  if(rules) {
+  if (rules) {
     rules.forEach(rule => {
       rule.mask = value => msk.fit(value, '99/99/9999')
-      rule.validate = value => moment.utc(value,'L',intl.locale.toLowerCase()).isValid()
-      rule.display = value => moment.utc(value,[moment.ISO_8601, 'L'], intl.locale.toLowerCase()).format('L')
-      rule.submit = value => moment.utc(value,'L',intl.locale.toLowerCase()).format()
+      rule.validate = value =>
+        moment.utc(value, 'L', intl.locale.toLowerCase()).isValid()
+      rule.display = value =>
+        moment
+          .utc(value, [moment.ISO_8601, 'L'], intl.locale.toLowerCase())
+          .format('L')
+      rule.submit = value => {
+        if (!value) return null
+
+        const date = moment.utc(value, 'L', intl.locale.toLowerCase(), true)
+        if (!date.isValid()) return null
+
+        return date.format()
+      }
     })
   }
 }

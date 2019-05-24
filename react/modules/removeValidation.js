@@ -2,11 +2,14 @@ export default function removeValidation(profile, rules) {
   const allRules = [...rules.personalFields, ...rules.businessFields]
 
   return allRules.reduce((acc, field) => {
-    if (field.submit && profile[field.name].value) {
-      acc[field.name] = field.submit(profile[field.name].value)
+    const fieldValue = profile[field.name].value
+
+    if (field.submit && fieldValue != null) {
+      acc[field.name] = field.submit(fieldValue)
     } else {
-      acc[field.name] = profile[field.name].value
+      acc[field.name] = fieldValue
     }
+
     return acc
   }, {})
 }

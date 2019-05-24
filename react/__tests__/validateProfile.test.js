@@ -19,6 +19,7 @@ describe('validateProfile', () => {
 
     // Assert
     expect(result).toEqual({
+      birthDate: { value: '23/05/92' },
       firstName: { value: 'John' },
       gender: { value: null },
       lastName: { value: 'Appleseed' },
@@ -44,6 +45,7 @@ describe('validateProfile', () => {
 
     // Assert
     expect(result).toEqual({
+      birthDate: { value: '23/05/92' },
       firstName: { value: 'John' },
       gender: { value: null },
       lastName: { value: 'Appleseed' },
@@ -57,6 +59,7 @@ describe('validateProfile', () => {
 
     // Assert
     expect(result).toEqual({
+      birthDate: '23/05/92',
       firstName: 'John',
       gender: null,
       lastName: 'Appleseed',
@@ -85,6 +88,7 @@ describe('validateProfile', () => {
 
     // Assert
     expect(result).toEqual({
+      birthDate: '23/05/92',
       firstName: 'John',
       gender: null,
       lastName: 'Appleseed',
@@ -201,4 +205,5 @@ describe('validateProfile', () => {
     // Assert
     expect(checkedProfile.stateRegistration.error).toBeTruthy()
   })
+
 })

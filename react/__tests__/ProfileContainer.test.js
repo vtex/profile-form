@@ -27,7 +27,7 @@ describe('ProfileContainer', () => {
     const result = wrapper.find(ProfileField)
 
     // Assert
-    expect(result).toHaveLength(3)
+    expect(result).toHaveLength(4)
   })
 
   it('should pass down profile data to fields', () => {
@@ -90,6 +90,7 @@ describe('ProfileContainer', () => {
     // Assert
     expect(mockSubmit).toHaveBeenCalledWith({
       profile: {
+        birthDate: '23/05/92',
         firstName: 'John',
         gender: null,
         lastName: 'Appleseed',
