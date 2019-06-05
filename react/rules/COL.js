@@ -32,7 +32,7 @@ export default {
       maxLength: 50,
       label: 'COL_cedula',
       required: true,
-      validate: regexValidation(/^[\d]{5,8}$/),
+      validate: regexValidation(/^[\d]{6,12}$/),
     },
     {
       name: 'homePhone',
