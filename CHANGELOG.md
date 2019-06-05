@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- COL document regex validation
+- `COL` document regex validation.
 
 ## [2.6.2] - 2019-05-24
 
