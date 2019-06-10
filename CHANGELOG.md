@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v2.6.4`.
+
 ## [2.6.4] - 2019-06-13
 
 ### Fixed
 
 - *Profile Container* fixed submit on enter.
+
+## [3.2.4] - 2019-06-10
 
 ### Changed
 
