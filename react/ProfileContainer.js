@@ -132,7 +132,7 @@ class ProfileContainer extends Component {
             onClick: this.handleSubmit,
           })
         ) : (
-          <Button block size="small" type="submit" value="Submit">
+          <Button block size="small" type="submit">
             {intl.formatMessage({ id: 'profile-form.save-changes' })}
           </Button>
         )}

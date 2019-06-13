@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- *Profile Container* fixed submit on enter 
+- *Profile Container* fixed submit on enter.
 
 ## [2.6.3] - 2019-06-10
 
