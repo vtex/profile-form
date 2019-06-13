@@ -35,7 +35,8 @@ class ProfileContainer extends Component {
     }))
   }
 
-  handleSubmit = () => {
+  handleSubmit = event => {
+    event.preventDefault()
     const { rules, onSubmit } = this.props
     const { profile, isCorporate } = this.state
 
@@ -77,7 +78,10 @@ class ProfileContainer extends Component {
     if (!profile) return null
 
     return (
-      <div className="vtex-profile-form__profile-container__wrapper">
+      <form
+        className="vtex-profile-form__profile-container__wrapper"
+        onSubmit={this.handleSubmit}
+      >
         <div className="vtex-profile-form__personal-fields">
           {rules.personalFields.map(field => (
             <ProfileField
@@ -128,11 +132,11 @@ class ProfileContainer extends Component {
             onClick: this.handleSubmit,
           })
         ) : (
-          <Button block size="small" onClick={this.handleSubmit}>
+          <Button block size="small" type="submit" value="Submit">
             {intl.formatMessage({ id: 'profile-form.save-changes' })}
           </Button>
         )}
-      </div>
+      </form>
     )
   }
 }
