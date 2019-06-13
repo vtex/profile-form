@@ -85,7 +85,9 @@ describe('ProfileContainer', () => {
       .instance()
 
     // Act
-    instance.handleSubmit()
+    instance.handleSubmit({
+      preventDefault() {},
+    })
 
     // Assert
     expect(mockSubmit).toHaveBeenCalledWith({
@@ -118,7 +120,9 @@ describe('ProfileContainer', () => {
       .instance()
 
     // Act
-    instance.handleSubmit()
+    instance.handleSubmit({
+      preventDefault() {},
+    })
 
     // Assert
     expect(mockSubmit).toHaveBeenCalledWith({
