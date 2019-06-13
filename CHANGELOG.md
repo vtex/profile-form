@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v2.6.5`.
+
 ## [2.6.5] - 2019-06-27
 
 ### Fixed
 
 - Wrong 'female' translation in catalan.
+
+## [3.2.5] - 2019-06-13
 
 ### Changed
 
