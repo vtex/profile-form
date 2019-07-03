@@ -1,6 +1,6 @@
 {
   "name": "@vtex/profile-form",
-  "version": "3.2.6",
+  "version": "3.2.7",
   "description": "React component for managing user profiles",
   "main": "lib/index.js",
   "files": [
