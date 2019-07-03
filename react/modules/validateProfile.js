@@ -6,7 +6,10 @@ export function applyValidation(field, value) {
   if (!value || !value.trim()) {
     return field.required ? 'EMPTY_FIELD' : null
   }
-  return field.validate && !field.validate(value) ? 'INVALID_FIELD' : null
+
+  return (field.validate && !field.validate(value)) || containsEmoji(value)
+    ? 'INVALID_FIELD'
+    : null
 }
 
 export function applyFullValidation(rules, profile, isCorporate) {
@@ -40,4 +43,11 @@ export function addFocusToFirstInvalidInput(rules, profile) {
 
   const focusedInput = { ...profile[firstInvalidInput.name], focus: true }
   return { ...profile, [firstInvalidInput.name]: focusedInput }
+}
+
+function containsEmoji(input) {
+  // Emojis until version 11.0
+  const EMOJIS_REGEX = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/
+
+  return EMOJIS_REGEX.test(input)
 }

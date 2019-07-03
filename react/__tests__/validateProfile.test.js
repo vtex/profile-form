@@ -205,5 +205,22 @@ describe('validateProfile', () => {
     // Assert
     expect(checkedProfile.stateRegistration.error).toBeTruthy()
   })
+  it('should check for emojis', () => {
+    const rules = {
+      personalFields: [...mockRules.personalFields],
+      businessFields: [],
+    }
 
+    const profile = { ...validatedProfile }
+
+    const validProfile = applyFullValidation(rules, profile, false)
+
+    expect(validProfile.firstName.error).toBeFalsy()
+
+    profile.firstName.value = '🥰'
+
+    const inValidProfile = applyFullValidation(rules, profile, false)
+
+    expect(inValidProfile.firstName.error).toBeTruthy()
+  })
 })
