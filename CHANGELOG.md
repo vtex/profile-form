@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.7] - 2019-07-04
+
 ### Fixed
 
 - Fallback gender translation to the value returned from the `store-graphql`.
