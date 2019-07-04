@@ -25,14 +25,17 @@ class ProfileSummary extends Component {
   }
 
   translateGender(mappedData) {
+    const gender = mappedData.gender.value
     return {
       ...mappedData,
       gender: {
         ...mappedData.gender,
         value:
-          mappedData.gender.value &&
+          gender &&
           this.props.intl.formatMessage({
-            id: 'profile-form.gender.' + mappedData.gender.value,
+            id: `profile-form.gender.${gender}`,
+            // fallback to whatever came from the master data
+            defaultMessage: gender,
           }),
       },
     }
@@ -46,7 +49,11 @@ class ProfileSummary extends Component {
     )
     const businessData = this.mapFields(rules.businessFields)
 
-    return <div className="vtex-profile-form__profile-summary">{children({ personalData, businessData, isCorporate })}</div>
+    return (
+      <div className="vtex-profile-form__profile-summary">
+        {children({ personalData, businessData, isCorporate })}
+      </div>
+    )
   }
 }
 
