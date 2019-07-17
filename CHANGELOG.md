@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `businessPhone` to use **getPhoneFields** function, not the Phone lib that was not imported.
+
 ## [2.6.7] - 2019-07-04
 
 ### Fixed
