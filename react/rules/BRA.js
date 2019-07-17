@@ -128,10 +128,7 @@ export default {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
-      mask: maskPhone,
-      validate: value => Phone.validate(value, '55'),
-      display: maskPhone,
-      submit: value => value.replace(/[^\d]/g, ''),
+      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'stateRegistration',
