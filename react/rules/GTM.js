@@ -1,6 +1,7 @@
 import guatemala from '@vtex/phone/countries/GTM'
 
 import { getPhoneFields } from '../modules/phone'
+import regexValidation from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
 
 const phoneCountryCode = initialize(guatemala)
