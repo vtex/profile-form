@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.9] - 2019-09-04
+
+### Fixed
+
+- GTM rules not importing `regexValidation` function.
+
+### Added
+
+- Error message for unknown error when importing rule.
+
 ## [2.6.8] - 2019-07-19
 
 ### Fixed

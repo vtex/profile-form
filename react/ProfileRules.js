@@ -52,7 +52,7 @@ class ProfileRules extends Component {
         return defaultRules
       }
       if (process.env.NODE_ENV !== 'production') {
-        console.warn('An unknown error occurred.')
+        console.error('An unknown error occurred.', error)
       }
     }
   }
