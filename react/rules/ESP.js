@@ -3,6 +3,7 @@ import spain from '@vtex/phone/countries/ESP'
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
+import { isFutureDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(spain)
 

@@ -2,6 +2,7 @@ import usa from '@vtex/phone/countries/USA' // Used for initialization purposes,
 
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
+import { isFutureDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(usa)
 

@@ -3,6 +3,7 @@ import ecuador from '@vtex/phone/countries/ECU'
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
+import { isFutureDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(ecuador)
 
