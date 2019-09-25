@@ -1,9 +1,9 @@
 import msk from 'msk'
 import brazil from '@vtex/phone/countries/BRA'
-import { isFutureDate } from '../utils/dateRules'
 
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
+import { isFutureDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(brazil)
 

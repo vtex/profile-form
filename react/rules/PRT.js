@@ -1,4 +1,5 @@
 import regexValidation from '../modules/regexValidation'
+import { isFutureDate } from '../utils/dateRules'
 
 export default {
   country: 'PRT',

@@ -2,6 +2,7 @@ import gbr from '@vtex/phone/countries/GBR' // Used for initialization purposes,
 
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
+import { isFutureDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(gbr)
 
