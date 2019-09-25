@@ -1,5 +1,6 @@
 import msk from 'msk'
 import brazil from '@vtex/phone/countries/BRA'
+import { isFutureDate } from '../utils/dateRules'
 
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
@@ -77,6 +78,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
+      validate: isFutureDate,
     },
   ],
   businessFields: [

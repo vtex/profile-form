@@ -107,6 +107,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
+      validate: isFutureDate,
     },
   ],
   businessFields: [

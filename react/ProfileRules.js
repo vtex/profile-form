@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
-import moment from 'moment'
-import msk from 'msk'
+import { prepareDateRules } from './utils/dateRules'
 
 import defaultRules from './rules/default'
 
@@ -32,9 +31,9 @@ class ProfileRules extends Component {
       const ruleData = await rulePromise
       const rules = ruleData.default || ruleData
 
-      prepareDateRules(rules, intl)
+      const enhancedDateRules = prepareDateRules(rules, intl)
 
-      this.setState({ rules })
+      this.setState({ rules: enhancedDateRules })
 
       return rules
     } catch (error) {
@@ -46,9 +45,9 @@ class ProfileRules extends Component {
           )
         }
 
-        prepareDateRules(defaultRules, intl)
+        const enhancedDateRules = prepareDateRules(defaultRules, intl)
 
-        this.setState({ rules: defaultRules })
+        this.setState({ rules: enhancedDateRules })
         return defaultRules
       }
       if (process.env.NODE_ENV !== 'production') {
@@ -90,34 +89,3 @@ ProfileRules.propTypes = {
 }
 
 export default injectIntl(ProfileRules)
-
-export function filterDateType(fields) {
-  return fields.filter(rule => rule.type === 'date')
-}
-
-export function prepareDateRules(rules, intl) {
-  setDateRuleValidations(filterDateType(rules.personalFields), intl)
-  setDateRuleValidations(filterDateType(rules.businessFields), intl)
-}
-
-function setDateRuleValidations(rules, intl) {
-  if (rules) {
-    rules.forEach(rule => {
-      rule.mask = value => msk.fit(value, '99/99/9999')
-      rule.validate = value =>
-        moment.utc(value, 'L', intl.locale.toLowerCase()).isValid()
-      rule.display = value =>
-        moment
-          .utc(value, [moment.ISO_8601, 'L'], intl.locale.toLowerCase())
-          .format('L')
-      rule.submit = value => {
-        if (!value) return null
-
-        const date = moment.utc(value, 'L', intl.locale.toLowerCase(), true)
-        if (!date.isValid()) return null
-
-        return date.format()
-      }
-    })
-  }
-}
