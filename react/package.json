@@ -31,7 +31,7 @@
     "profile"
   ],
   "intl-equalizer": {
-    "localeDirectory": "messages/"
+    "localeDirectory": "../messages/"
   },
   "husky": {
     "hooks": {
