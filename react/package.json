@@ -14,7 +14,7 @@
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "npm run symlinks && nwb serve-react-demo",
     "symlinks": "rm -rf src && ln -sf react src && ln -sf ../package.json react/package.json",
-    "test": "jest --env=jsdom",
+    "test": "cd .. && jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
     "vtex:link": "npm run symlinks && vtex link",
@@ -39,7 +39,7 @@
     }
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/react/__tests__/setupTests.js",
+    "setupTestFrameworkScriptFile": "./__tests__/setupTests.js",
     "testURL": "http://localhost",
     "testPathIgnorePatterns": [
       "/node_modules/",
@@ -65,7 +65,7 @@
       "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
     },
     "transform": {
-      "^.+\\.js$": "<rootDir>/jest.transform.js"
+      "^.+\\.js$": "../jest.transform.js"
     }
   },
   "dependencies": {
