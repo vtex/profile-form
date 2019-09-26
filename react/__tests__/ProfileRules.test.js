@@ -1,6 +1,7 @@
 import { IntlProvider } from 'react-intl'
 
-import { prepareDateRules, filterDateType } from '../ProfileRules'
+import { prepareDateRules } from '../ProfileRules'
+import { filterDateType } from '../utils/dateRules'
 import defaultRules from '../rules/default'
 
 const intlProvider = new IntlProvider({ locale: 'pt-br' }, {})
@@ -22,7 +23,7 @@ describe('ProfileRules aux functions', () => {
     const birthDate = filterDateType(rules.personalFields)[0]
 
     expect(birthDate.mask).toBeUndefined()
-    expect(birthDate.validate).toBeUndefined()
+    expect(birthDate.validate).toBeDefined()
     expect(birthDate.display).toBeUndefined()
     expect(birthDate.submit).toBeUndefined()
 

@@ -1,7 +1,7 @@
 import moment from 'moment'
 import msk from 'msk'
 
-function filterDateType(fields) {
+export function filterDateType(fields) {
   return fields.filter(rule => rule.type === 'date')
 }
 
