@@ -54,7 +54,7 @@ function setDateRuleValidations(rules, intl) {
   return rules
 }
 
-export function isFutureDate(unixTimestamp) {
+export function isPastDate(unixTimestamp) {
   const nowMS = Date.now() / 1000
 
   return unixTimestamp - nowMS < 0

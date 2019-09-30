@@ -3,7 +3,7 @@ import brazil from '@vtex/phone/countries/BRA'
 
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
-import { isFutureDate } from '../utils/dateRules'
+import { isPastDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(brazil)
 
@@ -78,7 +78,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
-      validate: isFutureDate,
+      validate: isPastDate,
     },
   ],
   businessFields: [

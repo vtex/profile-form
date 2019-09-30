@@ -3,7 +3,7 @@ import guatemala from '@vtex/phone/countries/GTM'
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
-import { isFutureDate } from '../utils/dateRules'
+import { isPastDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(guatemala)
 
@@ -53,7 +53,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
-      validate: isFutureDate,
+      validate: isPastDate,
     },
   ],
   businessFields: [
