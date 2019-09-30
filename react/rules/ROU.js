@@ -1,4 +1,4 @@
-import { isFutureDate } from '../utils/dateRules'
+import { isPastDate } from '../utils/dateRules'
 
 export default {
   country: 'ROU',
@@ -36,7 +36,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
-      validate: isFutureDate,
+      validate: isPastDate,
     },
   ],
   businessFields: [

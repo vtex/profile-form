@@ -2,7 +2,7 @@ import gbr from '@vtex/phone/countries/GBR' // Used for initialization purposes,
 
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
-import { isFutureDate } from '../utils/dateRules'
+import { isPastDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(gbr)
 
@@ -43,7 +43,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
-      validate: isFutureDate,
+      validate: isPastDate,
     },
   ],
   businessFields: [
