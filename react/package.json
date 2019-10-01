@@ -13,7 +13,7 @@
     "addLocales": "cp -R -f messages/ lib/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "npm run symlinks && nwb serve-react-demo",
-    "symlinks": "rm -rf src && ln -sf react src && ln -sf ../package.json react/package.json",
+    "symlinks": "rm -rf src && ln -sf react src",
     "test": "cd .. && jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
