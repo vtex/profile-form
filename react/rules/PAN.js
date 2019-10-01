@@ -3,6 +3,7 @@ import panama from '@vtex/phone/countries/PAN'
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
+import { isPastDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(panama)
 
@@ -50,6 +51,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
+      validate: isPastDate,
     },
   ],
   businessFields: [

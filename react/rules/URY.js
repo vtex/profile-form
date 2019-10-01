@@ -3,6 +3,7 @@ import uruguay from '@vtex/phone/countries/URY' // Used for initialization purpo
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
+import { isPastDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(uruguay)
 
@@ -71,6 +72,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
+      validate: isPastDate,
     },
   ],
   businessFields: [
