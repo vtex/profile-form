@@ -2,6 +2,7 @@ import usa from '@vtex/phone/countries/USA' // Used for initialization purposes,
 
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
+import { isPastDate } from '../utils/dateRules'
 
 const phoneCountryCode = initialize(usa)
 
@@ -42,6 +43,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
+      validate: isPastDate,
     },
   ],
   businessFields: [

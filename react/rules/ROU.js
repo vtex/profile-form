@@ -1,3 +1,5 @@
+import { isPastDate } from '../utils/dateRules'
+
 export default {
   country: 'ROU',
   personalFields: [
@@ -33,7 +35,8 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date'
+      type: 'date',
+      validate: isPastDate,
     },
   ],
   businessFields: [

@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.2.10] - 2019-10-14
+
+### Changed
+
+- Get changes made at version `v2.6.10`.
+
+## [2.6.10] - 2019-10-01
+
+### Changed
+
+- `birthDate` validation function for all countries to not accept future dates.
+
 ## [3.2.9] - 2019-09-04
 
 ### Changed

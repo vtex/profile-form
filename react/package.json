@@ -1,1 +1,100 @@
-../package.json
+{
+  "name": "@vtex/profile-form",
+  "version": "2.6.9",
+  "description": "React component for managing user profiles",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run symlinks && nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
+    "build:link": "npm link && watch 'npm run build' src",
+    "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
+    "addLocales": "cp -R -f messages/ lib/locales/",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "npm run symlinks && nwb serve-react-demo",
+    "symlinks": "rm -rf src && ln -sf react src",
+    "test": "cd .. && jest --env=jsdom",
+    "test:coverage": "jest --env=jsdom --coverage",
+    "test:watch": "jest --env=jsdom --watch",
+    "vtex:link": "npm run symlinks && vtex link",
+    "prepublishOnly": "npm run build",
+    "lint:messages": "intl-equalizer"
+  },
+  "repository": "https://github.com/vtex/profile-form",
+  "author": "Gustavo Silva (@akafts)",
+  "license": "AGPL-3.0-only",
+  "homepage": "https://github.com/vtex/profile-form",
+  "keywords": [
+    "react-component",
+    "vtex",
+    "profile"
+  ],
+  "intl-equalizer": {
+    "localeDirectory": "../messages/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint:messages && yarn test"
+    }
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./__tests__/setupTests.js",
+    "testURL": "http://localhost",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/",
+      "<rootDir>/src/",
+      "setupTests"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/",
+      "<rootDir>/src/"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]umd[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]es[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.js$": "../jest.transform.js"
+    }
+  },
+  "dependencies": {
+    "@vtex/phone": "^4.8.0",
+    "@vtex/styleguide": "^5.4.4",
+    "downshift": "^2.0.20",
+    "match-sorter": "^2.2.3",
+    "moment": "^2.22.2",
+    "msk": "^1.0.3",
+    "react": "^16.4.1",
+    "react-intl": "^2.4.0"
+  },
+  "devDependencies": {
+    "@vtex/intl-equalizer": "^2.3.0",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-add-react-displayname": "0.0.5",
+    "babel-preset-react-app": "^3.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-react-intl": "^2.0.0",
+    "husky": "^2.3.0",
+    "jest": "^22.4.4",
+    "jest-enzyme": "^6.0.2",
+    "nwb": "^0.21.5",
+    "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.4",
+    "react-test-renderer": "^16.4.1"
+  },
+  "peerDependencies": {
+    "vtex-tachyons": "^2.5.0"
+  }
+}

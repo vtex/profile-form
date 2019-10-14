@@ -1,4 +1,5 @@
 import regexValidation from '../modules/regexValidation'
+import { isPastDate } from '../utils/dateRules'
 
 export default {
   country: 'PRT',
@@ -42,6 +43,7 @@ export default {
       maxLength: 30,
       label: 'birthDate',
       type: 'date',
+      validate: isPastDate,
     },
   ],
   businessFields: [
