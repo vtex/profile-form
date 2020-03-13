@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- CHL's `document` field to optional.
+- ESP's `homePhone` field to optional.
+
 ## [3.3.0] - 2019-11-21
 
 ### Added
