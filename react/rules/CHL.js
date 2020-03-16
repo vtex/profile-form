@@ -89,7 +89,7 @@ export default {
       name: 'document',
       maxLength: 50,
       label: 'CHL_rut',
-      required: true,
+      required: false,
       validate: validateRUT,
     },
     {
