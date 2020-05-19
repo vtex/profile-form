@@ -30,6 +30,8 @@
   "profile-form.field.ESP_dni": "profile-form.field.ESP_dni",
   "profile-form.field.GTM_dpi": "profile-form.field.GTM_dpi",
   "profile-form.field.GTM_nit": "profile-form.field.GTM_nit",
+  "profile-form.field.ITA_codfis": "profile-form.field.ITA_codfis",
+  "profile-form.field.ITA_partiva": "profile-form.field.ITA_partiva",
   "profile-form.field.MEX_rfc_corporate": "profile-form.field.MEX_rfc_corporate",
   "profile-form.field.MEX_rfc": "profile-form.field.MEX_rfc",
   "profile-form.field.PAN_cip": "profile-form.field.PAN_cip",
