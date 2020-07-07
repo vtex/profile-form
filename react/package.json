@@ -92,7 +92,8 @@
     "nwb": "^0.21.5",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4",
-    "react-test-renderer": "^16.4.1"
+    "react-test-renderer": "^16.4.1",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.42.0/public/@types/vtex.render-runtime"
   },
   "peerDependencies": {
     "vtex-tachyons": "^2.5.0"

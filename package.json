@@ -1,12 +1,10 @@
 {
   "name": "@vtex/profile-form",
-  "version": "2.7.1",
-  "description": "React component for managing user profiles",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "private": true,
+  "license": "AGPL-3.0-only",
   "scripts": {
+    "lint": "eslint --ext js,jsx,ts,tsx .",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
     "build": "npm run symlinks && nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
     "build:link": "npm link && watch 'npm run build' src",
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
@@ -22,20 +20,58 @@
     "locales:lint": "intl-equalizer",
     "locales:fix": "intl-equalizer --fix"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn locales:lint && yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,graphql,gql}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@vtex/intl-equalizer": "^2.4.2",
+    "@vtex/prettier-config": "^0.1.3",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-add-react-displayname": "0.0.5",
+    "babel-preset-react-app": "^3.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-react-intl": "^2.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-vtex": "^12.2.1",
+    "eslint-config-vtex-react": "^6.2.1",
+    "husky": "^4.2.0",
+    "jest": "^22.4.4",
+    "jest-enzyme": "^6.0.2",
+    "lint-staged": "^10.0.2",
+    "nwb": "^0.21.5",
+    "prettier": "^1.19.1",
+    "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.4",
+    "react-test-renderer": "^16.4.1",
+    "typescript": "^3.7.5"
+  },
+  "version": "2.7.1",
+  "description": "React component for managing user profiles",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "repository": "https://github.com/vtex/profile-form",
   "author": "Gustavo Silva (@akafts)",
-  "license": "AGPL-3.0-only",
   "homepage": "https://github.com/vtex/profile-form",
   "keywords": [
     "react-component",
     "vtex",
     "profile"
   ],
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn locales:lint && yarn test"
-    }
-  },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/react/__tests__/setupTests.js",
     "testURL": "http://localhost",
@@ -75,22 +111,6 @@
     "msk": "^1.0.3",
     "react": "^16.4.1",
     "react-intl": "^2.4.0"
-  },
-  "devDependencies": {
-    "@vtex/intl-equalizer": "^2.4.2",
-    "babel-jest": "^23.6.0",
-    "babel-plugin-add-react-displayname": "0.0.5",
-    "babel-preset-react-app": "^3.1.2",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-react-intl": "^2.0.0",
-    "husky": "^2.3.0",
-    "jest": "^22.4.4",
-    "jest-enzyme": "^6.0.2",
-    "nwb": "^0.21.5",
-    "react-dom": "^16.4.1",
-    "react-hot-loader": "^4.3.4",
-    "react-test-renderer": "^16.4.1"
   },
   "peerDependencies": {
     "vtex-tachyons": "^2.5.0"
