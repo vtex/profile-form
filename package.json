@@ -64,13 +64,14 @@
   "files": [
     "lib"
   ],
-  "repository": "https://github.com/vtex/profile-form",
+  "repository": "https://github.com/vtex/instore-profile",
   "author": "Gustavo Silva (@akafts)",
-  "homepage": "https://github.com/vtex/profile-form",
+  "homepage": "https://github.com/vtex/instore-profile",
   "keywords": [
     "react-component",
     "vtex",
-    "profile"
+    "profile",
+    "instore"
   ],
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/react/__tests__/setupTests.js",
