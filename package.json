@@ -1,6 +1,5 @@
 {
   "name": "@vtexlab/instore-profile",
-  "private": true,
   "license": "AGPL-3.0-only",
   "scripts": {
     "lint": "eslint --ext js,jsx,ts,tsx .",
