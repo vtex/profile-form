@@ -1,6 +1,5 @@
 {
-  "name": "@vtex/profile-form",
-  "private": true,
+  "name": "@vtexlab/instore-profile",
   "license": "AGPL-3.0-only",
   "scripts": {
     "lint": "eslint --ext js,jsx,ts,tsx .",
@@ -64,13 +63,14 @@
   "files": [
     "lib"
   ],
-  "repository": "https://github.com/vtex/profile-form",
+  "repository": "https://github.com/vtex/instore-profile",
   "author": "Gustavo Silva (@akafts)",
-  "homepage": "https://github.com/vtex/profile-form",
+  "homepage": "https://github.com/vtex/instore-profile",
   "keywords": [
     "react-component",
     "vtex",
-    "profile"
+    "profile",
+    "instore"
   ],
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/react/__tests__/setupTests.js",

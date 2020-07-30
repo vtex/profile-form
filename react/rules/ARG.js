@@ -39,6 +39,7 @@ export default {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      required: true,
       ...getPhoneFields(phoneCountryCode),
     },
     {
@@ -69,7 +70,7 @@ export default {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'ARG_cuit',
-      validate: regexValidation(/^([\d]{2})\-?([\d]{8})\-?([\d]{1})$/),
+      validate: regexValidation(/^([\d]{2})?([\d]{8})?([\d]{1})$/),
     },
     {
       name: 'businessPhone',
