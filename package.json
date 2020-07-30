@@ -57,7 +57,7 @@
     "react-test-renderer": "^16.4.1",
     "typescript": "^3.7.5"
   },
-  "version": "2.7.1",
+  "version": "2.7.3",
   "description": "React component for managing user profiles",
   "main": "lib/index.js",
   "files": [
