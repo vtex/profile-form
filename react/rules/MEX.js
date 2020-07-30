@@ -32,7 +32,15 @@ export default {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      required: true,
       ...getPhoneFields(phoneCountryCode),
+    },
+    {
+      name: 'document',
+      maxLength: 50,
+      label: 'MEX_rfc',
+      required: true,
+      validate: regexValidation(/^[a-zA-Z]{4}[0-9]{6}(?:[a-zA-Z0-9]{3}|)$/),
     },
     {
       name: 'gender',
