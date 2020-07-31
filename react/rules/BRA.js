@@ -84,7 +84,7 @@ export default {
           index,
           cpfDigitsArray
         ) {
-          if (index < 12) {
+          if (index < 11) {
             return acc + value * (12 - index)
           }
           return acc
