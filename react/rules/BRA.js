@@ -39,7 +39,6 @@ export default {
           return false
         }
 
-        let sum = 0
         let remainder
 
         cpf = !cpf || typeof cpf !== 'string' ? '' : cpf.replace(/[^\d]+/g, '')
@@ -59,21 +58,39 @@ export default {
           return false
         }
 
-        for (let i = 1; i <= 9; i++) {
-          sum += parseInt(cpf.substring(i - 1, i), 10) * (11 - i)
-        }
+        const cpfDigits = cpf.split('').map(Number)
+        const firstElement = 0
+        const cpfDigitsArray = [firstElement].concat(cpfDigits)
 
-        remainder = (sum * 10) % 11
+        const sum1 = cpfDigitsArray.reduce(function(
+          acc,
+          value,
+          index,
+          cpfDigitsArray
+        ) {
+          if (index < 10) {
+            return acc + value * (11 - index)
+          }
+          return acc
+        })
+        remainder = (sum1 * 10) % 11
 
         if (remainder === 10 || remainder === 11) remainder = 0
         if (remainder !== parseInt(cpf.substring(9, 10), 10)) return false
 
-        sum = 0
-        for (let i = 1; i <= 10; i++) {
-          sum += parseInt(cpf.substring(i - 1, i), 10) * (12 - i)
-        }
+        const sum2 = cpfDigitsArray.reduce(function(
+          acc,
+          value,
+          index,
+          cpfDigitsArray
+        ) {
+          if (index < 12) {
+            return acc + value * (12 - index)
+          }
+          return acc
+        })
 
-        remainder = (sum * 10) % 11
+        remainder = (sum2 * 10) % 11
 
         if (remainder === 10 || remainder === 11) remainder = 0
         if (remainder !== parseInt(cpf.substring(10, 11), 10)) return false
