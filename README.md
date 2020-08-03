@@ -8,26 +8,11 @@
 Through **NPM**:
 
 ```sh
-$ npm install @vtex/profile-form
+$ npm install @vtexlab/instore-profile
 ```
 
 ```js
-import ProfileContainer from '@vtex/profile-form/ProfileContainer'
-```
-
-Through **vtex.io**:
-
-Add `vtex.profile-form` to your `manifest.json` dependencies
-
-```js
-import { ProfileSummary } from 'vtex.profile-form'
-```
-
-Helper functions are properties of the `modules` import
-
-```js
-import { modules } from 'vtex.profile-form'
-const { addValidation } = modules
+import ProfileContainer from '@vtexlab/instore-profile/ProfileContainer'
 ```
 
 ## API
@@ -63,7 +48,7 @@ const { addValidation } = modules
 
 ### ProfileContainer
 
-This is the main component of `profile-form`. It will render inputs based on the rules provided, and fill them with data from the profile object passed to it. It also spawns internal child components that perform validation on such inputs, also based on the rules.
+This is the main component of `instore-profile`. It will render inputs based on the rules provided, and fill them with data from the profile object passed to it. It also spawns internal child components that perform validation on such inputs, also based on the rules.
 
 `ProfileContainer` keeps the current profile being managed in its internal state; the `defaultProfile` prop is only accessed at mount time. If you need to update the prop at some other time, use the special `key` prop to force the recreation of the whole container with the new profile. It provides an `onSubmit()` function to call a function in the host component when the user submits the form.
 
@@ -133,7 +118,7 @@ This component contains functionality for easily fetching the profile rules for 
 - **`children`**: The component which will be rendered inside this component and, therefore, receive the provided rules (you probably want this to be a `ProfileContainer` instance)
 - **`country`**: The string identifier for the country which rules are to be provided, must use `ISO Alpha3` standard (e.g. `BRA`, `USA`, etc.)
 - **`shouldUseIOFetching`**: Whether to use built-in dynamic file fetching for the rules. Should be used if the project is an IO app
-- **`fetch`**: Functionality for fetching the rule files. Outside of IO, it **must** receive the function `{country => import('@vtex/profile-form/lib/rules/' + country)}` as its value. In IO, this prop **must not** be set
+- **`fetch`**: Functionality for fetching the rule files. Outside of IO, it **must** receive the function `{country => import('@vtex/instore-profile/lib/rules/' + country)}` as its value. In IO, this prop **must not** be set
 
 ```js
 ProfileRules.propTypes = {
@@ -239,13 +224,13 @@ This is the inverse to the `addValidation` function above. As such, besides stri
 
 ### locales/
 
-This folder contains JSON localized files providing translations for every text used inside the `profile-form`. The correct files must be imported and provided by the host app at their own charge.
+This folder contains JSON localized files providing translations for every text used inside the `instore-profile`. The correct files must be imported and provided by the host app at their own charge.
 
 ### rules/
 
 This folder provides files for each supported country, containing the rules used to manage the form. There are also default rules, which are used when an unsupported country is provided to the `ProfileRules` component.
 
-Such rules provide information on how each field of the form should be rendered. Functionality for masking and validating inputs is also provided inside the rules and isolated by field - there are no built-in validators in `profile-form` (except for checking mandatory fields).
+Such rules provide information on how each field of the form should be rendered. Functionality for masking and validating inputs is also provided inside the rules and isolated by field - there are no built-in validators in `instore-profile` (except for checking mandatory fields).
 
 ### inputs/
 
@@ -326,7 +311,7 @@ PropTypes.shape({
 
 ### RuleShape
 
-Inside each `fields` array of a rules object, every object represents one field of `profile-form`. These objects take on the shape below. Inside these rule-shaped objects, validation and masking functionality is provided.
+Inside each `fields` array of a rules object, every object represents one field of `instore-profile`. These objects take on the shape below. Inside these rule-shaped objects, validation and masking functionality is provided.
 
 ```js
 PropTypes.shape({
