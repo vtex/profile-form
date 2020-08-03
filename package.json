@@ -1,6 +1,12 @@
 {
   "name": "@vtexlab/instore-profile",
   "license": "AGPL-3.0-only",
+  "version": "2.8.1",
+  "description": "React component for managing user profiles",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "lint": "eslint --ext js,jsx,ts,tsx .",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
@@ -57,12 +63,6 @@
     "react-test-renderer": "^16.4.1",
     "typescript": "^3.7.5"
   },
-  "version": "2.7.1",
-  "description": "React component for managing user profiles",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
   "repository": "https://github.com/vtex/instore-profile",
   "author": "Gustavo Silva (@akafts)",
   "homepage": "https://github.com/vtex/instore-profile",

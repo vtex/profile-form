@@ -34,40 +34,68 @@ export default {
       label: 'BRA_cpf',
       required: true,
       mask: value => msk.fit(value, '999.999.999-99'),
-      validate: value => {
-        const cleanValue = value.replace(/[^\d]/g, '')
+      validate: cpf => {
+        if (!cpf) {
+          return false
+        }
 
-        if (cleanValue.length !== 11) return false
+        let remainder
 
-        const isRepeatedNum = '0123456789'
-          .split('')
-          .some(digit => digit.repeat(11) === cleanValue)
+        cpf = !cpf || typeof cpf !== 'string' ? '' : cpf.replace(/[^\d]+/g, '')
 
-        if (isRepeatedNum) return false
+        if (
+          cpf === '00000000000' ||
+          cpf === '11111111111' ||
+          cpf === '22222222222' ||
+          cpf === '33333333333' ||
+          cpf === '44444444444' ||
+          cpf === '55555555555' ||
+          cpf === '66666666666' ||
+          cpf === '77777777777' ||
+          cpf === '88888888888' ||
+          cpf === '99999999999'
+        ) {
+          return false
+        }
 
-        const firstReduce = cleanValue
-          .split('')
-          .slice(0, 9)
-          .reduce(
-            (acc, cur, index) => acc + parseInt(cur, 10) * (10 - index),
-            0
-          )
+        const cpfDigits = cpf.split('').map(Number)
+        const firstElement = 0
+        const cpfDigitsArray = [firstElement].concat(cpfDigits)
 
-        const firstDigit = ((firstReduce * 10) % 11) % 10
+        const sum1 = cpfDigitsArray.reduce(function(
+          acc,
+          value,
+          index,
+          cpfDigitsArray
+        ) {
+          if (index < 10) {
+            return acc + value * (11 - index)
+          }
+          return acc
+        })
+        remainder = (sum1 * 10) % 11
 
-        if (firstDigit !== cleanValue.charAt(9)) return false
+        if (remainder === 10 || remainder === 11) remainder = 0
+        if (remainder !== parseInt(cpf.substring(9, 10), 10)) return false
 
-        const secondReduce = cleanValue
-          .split('')
-          .slice(0, 10)
-          .reduce(
-            (acc, cur, index) => acc + parseInt(cur, 10) * (11 - index),
-            0
-          )
+        const sum2 = cpfDigitsArray.reduce(function(
+          acc,
+          value,
+          index,
+          cpfDigitsArray
+        ) {
+          if (index < 11) {
+            return acc + value * (12 - index)
+          }
+          return acc
+        })
 
-        const secondDigit = ((secondReduce * 10) % 11) % 10
+        remainder = (sum2 * 10) % 11
 
-        return secondDigit === cleanValue.charAt(10)
+        if (remainder === 10 || remainder === 11) remainder = 0
+        if (remainder !== parseInt(cpf.substring(10, 11), 10)) return false
+
+        return true
       },
     },
     {
