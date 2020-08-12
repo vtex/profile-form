@@ -26,7 +26,10 @@ export default {
       name: 'email',
       maxLength: 100,
       label: 'email',
-      hidden: true,
+      required: true,
+      validate: regexValidation(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      ),
     },
     {
       name: 'document',
@@ -60,11 +63,13 @@ export default {
       name: 'corporateName',
       maxLength: 100,
       label: 'corporateName',
+      required: true,
     },
     {
       name: 'tradeName',
       maxLength: 100,
       label: 'tradeName',
+      required: true,
     },
     {
       name: 'corporateDocument',

@@ -4,6 +4,7 @@ import brazil from '@vtex/phone/countries/BRA'
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
 import { isPastDate } from '../utils/dateRules'
+import regexValidation from '../modules/regexValidation'
 
 const phoneCountryCode = initialize(brazil)
 
@@ -26,7 +27,10 @@ export default {
       name: 'email',
       maxLength: 100,
       label: 'email',
-      hidden: true,
+      required: true,
+      validate: regexValidation(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      ),
     },
     {
       name: 'document',
@@ -62,31 +66,24 @@ export default {
         const firstElement = 0
         const cpfDigitsArray = [firstElement].concat(cpfDigits)
 
-        const sum1 = cpfDigitsArray.reduce(function(
-          acc,
-          value,
-          index,
-          cpfDigitsArray
-        ) {
+        const sum1 = cpfDigitsArray.reduce(function(acc, value, index) {
           if (index < 10) {
             return acc + value * (11 - index)
           }
+
           return acc
         })
+
         remainder = (sum1 * 10) % 11
 
         if (remainder === 10 || remainder === 11) remainder = 0
         if (remainder !== parseInt(cpf.substring(9, 10), 10)) return false
 
-        const sum2 = cpfDigitsArray.reduce(function(
-          acc,
-          value,
-          index,
-          cpfDigitsArray
-        ) {
+        const sum2 = cpfDigitsArray.reduce(function(acc, value, index) {
           if (index < 11) {
             return acc + value * (12 - index)
           }
+
           return acc
         })
 
@@ -123,50 +120,77 @@ export default {
       name: 'corporateName',
       maxLength: 100,
       label: 'corporateName',
+      required: true,
     },
     {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'BRA_cnpj',
+      required: true,
       mask: value => msk.fit(value, '99.999.999/9999-99'),
-      validate: value => {
-        const cleanValue = value.replace(/[^\d]/g, '')
+      validate: cnpj => {
+        if (!cnpj) {
+          return false
+        }
 
-        if (cleanValue.length !== 14) return false
+        cnpj = cnpj.replace(/[^\d]+/g, '')
 
-        const isRepeatedNum = '0123456789'
-          .split('')
-          .some(digit => digit.repeat(14) === cleanValue)
+        if (cnpj.length !== 14) {
+          return false
+        }
 
-        if (isRepeatedNum) return false
+        if (
+          cnpj === '00000000000000' ||
+          cnpj === '11111111111111' ||
+          cnpj === '22222222222222' ||
+          cnpj === '33333333333333' ||
+          cnpj === '44444444444444' ||
+          cnpj === '55555555555555' ||
+          cnpj === '66666666666666' ||
+          cnpj === '77777777777777' ||
+          cnpj === '88888888888888' ||
+          cnpj === '99999999999999'
+        ) {
+          return false
+        }
 
-        const firstWeights = '543298765432'.split('')
-        const firstReduce = cleanValue
-          .split('')
-          .slice(0, 12)
-          .reduce(
-            (acc, cur, index) =>
-              acc + parseInt(cur, 10) * parseInt(firstWeights[index], 10),
-            0
-          )
+        // Validate DVs
+        let tamanho = cnpj.length - 2
+        let numeros = cnpj.substring(0, tamanho)
+        const digitos = cnpj.substring(tamanho)
+        let soma = 0
+        let pos = tamanho - 7
 
-        const firstDigit = firstReduce % 11 < 2 ? 0 : 11 - (firstReduce % 11)
+        for (let i = tamanho; i >= 1; i--) {
+          soma += parseInt(numeros.charAt(tamanho - i), 10) * pos--
+          if (pos < 2) {
+            pos = 9
+          }
+        }
 
-        if (firstDigit !== cleanValue.charAt(12)) return false
+        let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11)
 
-        const secondWeights = ['6', ...firstWeights]
-        const secondReduce = cleanValue
-          .split('')
-          .slice(0, 13)
-          .reduce(
-            (acc, cur, index) =>
-              acc + parseInt(cur, 10) * parseInt(secondWeights[index], 10),
-            0
-          )
+        if (resultado !== parseInt(digitos.charAt(0), 10)) {
+          return false
+        }
 
-        const secondDigit = secondReduce % 11 < 2 ? 0 : 11 - (secondReduce % 11)
+        tamanho += 1
+        numeros = cnpj.substring(0, tamanho)
+        soma = 0
+        pos = tamanho - 7
+        for (let i = tamanho; i >= 1; i--) {
+          soma += parseInt(numeros.charAt(tamanho - i), 10) * pos--
+          if (pos < 2) {
+            pos = 9
+          }
+        }
 
-        return secondDigit === cleanValue.charAt(13)
+        resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11)
+        if (resultado !== parseInt(digitos.charAt(1), 10)) {
+          return false
+        }
+
+        return true
       },
     },
     {
@@ -179,11 +203,13 @@ export default {
       name: 'stateRegistration',
       maxLength: 50,
       label: 'stateRegistration',
+      required: true,
     },
     {
       name: 'tradeName',
       maxLength: 100,
       label: 'tradeName',
+      required: true,
     },
   ],
 }

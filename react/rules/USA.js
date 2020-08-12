@@ -3,6 +3,7 @@ import usa from '@vtex/phone/countries/USA' // Used for initialization purposes,
 import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
 import { isPastDate } from '../utils/dateRules'
+import regexValidation from '../modules/regexValidation'
 
 const phoneCountryCode = initialize(usa)
 
@@ -25,12 +26,16 @@ export default {
       name: 'email',
       maxLength: 100,
       label: 'email',
-      hidden: true,
+      required: true,
+      validate: regexValidation(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      ),
     },
     {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      required: true,
       ...getPhoneFields(phoneCountryCode),
     },
     {
@@ -51,11 +56,13 @@ export default {
       name: 'corporateName',
       maxLength: 100,
       label: 'corporateName',
+      required: true,
     },
     {
       name: 'tradeName',
       maxLength: 100,
       label: 'tradeName',
+      required: true,
     },
     {
       name: 'businessPhone',
