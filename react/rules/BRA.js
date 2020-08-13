@@ -153,38 +153,38 @@ export default {
         }
 
         // Validate DVs
-        let tamanho = cnpj.length - 2
-        let numeros = cnpj.substring(0, tamanho)
-        const digitos = cnpj.substring(tamanho)
-        let soma = 0
-        let pos = tamanho - 7
+        let size = cnpj.length - 2
+        let numbers = cnpj.substring(0, size)
+        const digitos = cnpj.substring(size)
+        let sum = 0
+        let pos = size - 7
 
-        for (let i = tamanho; i >= 1; i--) {
-          soma += parseInt(numeros.charAt(tamanho - i), 10) * pos--
+        for (let i = size; i >= 1; i--) {
+          sum += parseInt(numbers.charAt(size - i), 10) * pos--
           if (pos < 2) {
             pos = 9
           }
         }
 
-        let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11)
+        let result = sum % 11 < 2 ? 0 : 11 - (sum % 11)
 
-        if (resultado !== parseInt(digitos.charAt(0), 10)) {
+        if (result !== parseInt(digitos.charAt(0), 10)) {
           return false
         }
 
-        tamanho += 1
-        numeros = cnpj.substring(0, tamanho)
-        soma = 0
-        pos = tamanho - 7
-        for (let i = tamanho; i >= 1; i--) {
-          soma += parseInt(numeros.charAt(tamanho - i), 10) * pos--
+        size += 1
+        numbers = cnpj.substring(0, size)
+        sum = 0
+        pos = size - 7
+        for (let i = size; i >= 1; i--) {
+          sum += parseInt(numbers.charAt(size - i), 10) * pos--
           if (pos < 2) {
             pos = 9
           }
         }
 
-        resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11)
-        if (resultado !== parseInt(digitos.charAt(1), 10)) {
+        result = sum % 11 < 2 ? 0 : 11 - (sum % 11)
+        if (result !== parseInt(digitos.charAt(1), 10)) {
           return false
         }
 
