@@ -155,7 +155,7 @@ export default {
         // Validate DVs
         let size = cnpj.length - 2
         let numbers = cnpj.substring(0, size)
-        const digitos = cnpj.substring(size)
+        const digits = cnpj.substring(size)
         let sum = 0
         let pos = size - 7
 
@@ -168,7 +168,7 @@ export default {
 
         let result = sum % 11 < 2 ? 0 : 11 - (sum % 11)
 
-        if (result !== parseInt(digitos.charAt(0), 10)) {
+        if (result !== parseInt(digits.charAt(0), 10)) {
           return false
         }
 
@@ -184,7 +184,7 @@ export default {
         }
 
         result = sum % 11 < 2 ? 0 : 11 - (sum % 11)
-        if (result !== parseInt(digitos.charAt(1), 10)) {
+        if (result !== parseInt(digits.charAt(1), 10)) {
           return false
         }
 
