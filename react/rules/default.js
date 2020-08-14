@@ -1,4 +1,5 @@
 import { isPastDate } from '../utils/dateRules'
+import regexValidation, { regexEmail } from '../modules/regexValidation'
 
 export default {
   country: 'UNI',
@@ -19,13 +20,13 @@ export default {
       name: 'email',
       maxLength: 100,
       label: 'email',
-      hidden: true,
+      required: true,
+      validate: regexValidation(regexEmail),
     },
     {
       name: 'document',
       maxLength: 50,
       label: 'document',
-      required: true,
     },
     {
       name: 'homePhone',
@@ -50,16 +51,25 @@ export default {
       name: 'corporateName',
       maxLength: 100,
       label: 'corporateName',
+      required: true,
     },
     {
       name: 'tradeName',
       maxLength: 100,
       label: 'tradeName',
+      required: true,
     },
     {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'corporateDocument',
+      required: true,
+    },
+    {
+      name: 'stateRegistration',
+      maxLength: 50,
+      label: 'stateRegistration',
+      required: true,
     },
     {
       name: 'businessPhone',

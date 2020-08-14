@@ -1,7 +1,7 @@
 import mexico from '@vtex/phone/countries/MEX'
 
 import { getPhoneFields } from '../modules/phone'
-import regexValidation from '../modules/regexValidation'
+import regexValidation, { regexEmail } from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
 import { isPastDate } from '../utils/dateRules'
 
@@ -26,7 +26,8 @@ export default {
       name: 'email',
       maxLength: 100,
       label: 'email',
-      hidden: true,
+      required: true,
+      validate: regexValidation(regexEmail),
     },
     {
       name: 'homePhone',
@@ -59,6 +60,7 @@ export default {
       name: 'corporateName',
       maxLength: 100,
       label: 'corporateName',
+      required: true,
     },
     {
       name: 'document',
@@ -71,6 +73,7 @@ export default {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'MEX_rfc_corporate',
+      required: true,
       validate: regexValidation(/^[a-zA-Z]{3}[0-9]{6}[a-zA-Z0-9]{3}$/),
     },
     {
@@ -78,6 +81,12 @@ export default {
       maxLength: 30,
       label: 'businessPhone',
       ...getPhoneFields(phoneCountryCode),
+    },
+    {
+      name: 'stateRegistration',
+      maxLength: 50,
+      label: 'stateRegistration',
+      required: true,
     },
   ],
 }

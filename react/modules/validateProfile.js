@@ -18,12 +18,14 @@ export function applyFullValidation(rules, profile, isCorporate) {
       const rule =
         rules.personalFields.find(rule => rule.name === field) ||
         rules.businessFields.find(rule => rule.name === field && isCorporate)
+
       if (rule) {
         const error = applyValidation(rule, profile[field].value)
+
         return { [field]: { ...profile[field], error } }
-      } else {
-        return { [field]: { value: null } }
       }
+
+      return { [field]: { value: null } }
     })
     .reduce((acc, cur) => ({ ...acc, ...cur }), {})
 
@@ -42,6 +44,7 @@ export function addFocusToFirstInvalidInput(rules, profile) {
   if (firstInvalidInput == null) return profile
 
   const focusedInput = { ...profile[firstInvalidInput.name], focus: true }
+
   return { ...profile, [firstInvalidInput.name]: focusedInput }
 }
 

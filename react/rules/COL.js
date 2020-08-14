@@ -1,7 +1,7 @@
 import colombia from '@vtex/phone/countries/COL'
 
 import { getPhoneFields } from '../modules/phone'
-import regexValidation from '../modules/regexValidation'
+import regexValidation, { regexEmail } from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
 import { isPastDate } from '../utils/dateRules'
 
@@ -26,7 +26,8 @@ export default {
       name: 'email',
       maxLength: 100,
       label: 'email',
-      hidden: true,
+      required: true,
+      validate: regexValidation(regexEmail),
     },
     {
       name: 'document',
@@ -60,17 +61,26 @@ export default {
       name: 'corporateName',
       maxLength: 100,
       label: 'corporateName',
+      required: true,
     },
     {
       name: 'tradeName',
       maxLength: 100,
       label: 'tradeName',
+      required: true,
     },
     {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'COL_rut',
+      required: true,
       validate: regexValidation(/^[\d]{5,}$/),
+    },
+    {
+      name: 'stateRegistration',
+      maxLength: 50,
+      label: 'stateRegistration',
+      required: true,
     },
     {
       name: 'stateRegistration',
