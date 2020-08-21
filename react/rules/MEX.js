@@ -77,6 +77,12 @@ export default {
       validate: regexValidation(/^[a-zA-Z]{3}[0-9]{6}[a-zA-Z0-9]{3}$/),
     },
     {
+      name: 'tradeName',
+      maxLength: 100,
+      label: 'tradeName',
+      required: true,
+    },
+    {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
