@@ -30,7 +30,7 @@ function setDateRuleValidations(rules, intl) {
   if (rules) {
     return rules.map(rule => {
       const ruleCopy = { ...rule }
-      ruleCopy.mask = value => msk.fit(value, '99/99/9999')
+      ruleCopy.mask = rule.mask ? rule.mask : (value => msk.fit(value, '99/99/9999'));
       ruleCopy.validate = value => {
         const mom = moment.utc(value, 'L', intl.locale.toLowerCase())
 
