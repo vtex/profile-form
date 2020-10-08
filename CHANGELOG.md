@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.7.3] - 2020-10-08
+
+### Changed
+
+- Mask function for field `birthdate` rule for ROU
+- `setDateRuleValidations` - accept mask from rule if defined else the default one 
+
+### Fixed
+
+- changed `birthdate` field's mask function to match the ro_RO format from moment (`DD.MM.YYYY`)
+
 ## [2.7.2] - 2020-07-08
 
 ### Changed
