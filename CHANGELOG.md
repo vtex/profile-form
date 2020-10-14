@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.3.3] - 2020-10-14
+
 ### Fixed
 
 - changed `birthdate` field's mask function to match the ro_RO format from moment (`DD.MM.YYYY`)
