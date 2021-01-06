@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Specific rules for `ITA`.
+
 ## [2.7.3] - 2020-10-14
 
 ### Fixed
