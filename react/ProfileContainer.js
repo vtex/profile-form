@@ -30,6 +30,8 @@ class ProfileContainer extends Component {
     })
   }
 
+
+
   handleFieldUpdate = field => {
     this.setState(prevState => ({
       profile: { ...prevState.profile, ...field },
@@ -89,6 +91,8 @@ class ProfileContainer extends Component {
               options={options[field.name]}
               onFieldUpdate={this.handleFieldUpdate}
               Input={Input}
+              userProfile={profile}
+              blockDocument={this.props.blockDocument}
             />
           ))}
         </div>
