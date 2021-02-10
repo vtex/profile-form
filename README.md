@@ -77,9 +77,11 @@ Inputs and buttons inside `ProfileContainer` can be customized to fit the style 
 - **Input**: (default: `StyleguideInput`) Component to be used as input for the form fields
 - **ToggleBusinessButton**: Component to be used as a button for toggling business fields
 - **SubmitButton**: Component to be used as a submit button
-- **shouldShowExtendedGenders**: (default: `false`) Whether the gender input should display a wide list of genders or just male/female
+- **shouldShowExtendedGenders**: (default: `false`) Whether the gender input should display a wide list of genders or just male/
+female
 - **children**: Custom components to be added right before the business toggle button
 - **intl**: `react-intl` automatically injected util
+- **blockDocument**: Enables or disables editing the document field in my account page.
 
 ```js
 ProfileContainer.propTypes = {
@@ -155,6 +157,52 @@ Here, `ProfileContainer` will be injected with the fetched rules:
 >
   <ProfileContainer profile={profile} onSubmit={this.handleSubmit} />
 </ProfileRules>
+```
+
+### ProfileField
+
+This component that renders my account fields. It received new two more properties to make it possible to block the document field: `userProfile` and` blockDocument`
+
+#### Props
+
+- **`userProfile`**: User profile so that we can check if the saved document already exists in database.
+- **`blockDocument`**: Enables or disables editing the document field in my account page. This property comes from the my-account module
+
+
+```js
+<ProfileField
+key={field.name}
+field={field}
+data={profile[field.name]}
+options={options[field.name]}
+onFieldUpdate={this.handleFieldUpdate}
+Input={Input}
+userProfile={profile}
+blockDocument={this.props.blockDocument}
+ />
+```
+
+
+### Exemple:
+
+```js
+render() {
+    const { field, data, options, Input, userProfile, blockDocument } = this.props
+    if(blockDocument && field.name === 'document' && userProfile['document'].value !== null){
+      field.disabled = true      
+    }
+    return (
+      <Input
+        field={field}
+        data={data}
+        options={options}
+        inputRef={this.inputRef}
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+      />
+    )
+  }
+}
 ```
 
 ### ProfileSummary
