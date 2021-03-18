@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+- Added verification if the user's document is empty not only null 
 - Added prop `blockDocument` to Enables or disables editing the document field in my account
 ## [2.9.3] - 2021-01-11
 
