@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added 
-- Added verification if the user's document is empty
+- Add verification if the user's document is empty not only null 
 - Added prop `blockDocument` to Enables or disables editing the document field in my account
 
 ## [3.4.0] - 2021-01-06

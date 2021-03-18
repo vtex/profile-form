@@ -43,6 +43,7 @@ class ProfileField extends Component {
 
     render() {
         const { field, data, options, Input, userProfile, blockDocument } = this.props
+
         if (blockDocument && field.name === 'document' && (userProfile['document'].value !== null && userProfile['document'].value !== "")) {
             field.disabled = true
         }
