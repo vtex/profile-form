@@ -1,10 +1,4 @@
-import france from '@vtex/phone/countries/BEL'
-
-import { getPhoneFields } from '../modules/phone'
 import initialize from './initializeCountryPhone'
-import { isPastDate } from '../utils/dateRules'
-
-const phoneCountryCode = initialize(france)
 
 export default {
   country: 'BEL',
