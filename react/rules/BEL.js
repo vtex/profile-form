@@ -1,4 +1,4 @@
-import initialize from './initializeCountryPhone'
+import { isPastDate } from '../utils/dateRules'
 
 export default {
   country: 'BEL',
@@ -24,8 +24,7 @@ export default {
     {
       name: 'homePhone',
       maxLength: 30,
-      label: 'homePhone',
-      ...getPhoneFields(phoneCountryCode),
+      label: 'homePhone'
     },
     {
       name: 'gender',
@@ -55,7 +54,6 @@ export default {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
-      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }
