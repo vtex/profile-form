@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [2.9.4] - 2021-03-26
+## [2.10.2] - 2021-03-26
 
 ### Added
 
 - Specific rules for `BEL`.
+
+## [2.10.1] - 2021-03-22
+
+### Fixed
+
+- I18n Ro.
+
+## [2.10.0] - 2021-03-17
+
+- Added prop `blockDocument` to Enables or disables editing the document field in my account
 
 ## [2.9.3] - 2021-01-11
 
