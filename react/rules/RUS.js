@@ -23,6 +23,13 @@ export default {
       hidden: true,
     },
     {
+      name: 'document',
+      maxLength: 50,
+      label: 'document',
+      required: false,
+      hidden: true,
+    },
+    {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
