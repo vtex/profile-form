@@ -1,7 +1,7 @@
 import { isPastDate } from '../utils/dateRules'
 
 export default {
-  country: 'DNK',
+  country: 'DEU',
   personalFields: [
     {
       name: 'firstName',
