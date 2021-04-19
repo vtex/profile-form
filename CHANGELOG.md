@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.11.0] - 2021-04-19
+
 ### Added
 
 - Add RUS for RUSSIA.
