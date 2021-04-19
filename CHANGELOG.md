@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- I18n Denmark
+- I18n Deutschland 
+- I18n Finnland
+- I18n Sweden
 ## [2.10.1] - 2021-03-22
 
 ### Fixed
