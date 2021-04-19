@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- New translations.
+- Crowdin configuration file.
+
 ## [2.12.0] - 2021-04-22
 
 ### Added
@@ -14,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - I18n Deutschland 
 - I18n Finnland
 - I18n Sweden
+
 ## [2.11.0] - 2021-04-19
 
 ### Added
