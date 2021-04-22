@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - I18n Deutschland 
 - I18n Finnland
 - I18n Sweden
+## [2.11.0] - 2021-04-19
+
+### Added
+
+- Add RUS for RUSSIA.
+- RUS's `birthdate` field's changed using mask function as ROU format (`DD.MM.YYYY`)
+- RUS's `document` field to optional and Hide.
+
 ## [2.10.1] - 2021-03-22
 
 ### Fixed
