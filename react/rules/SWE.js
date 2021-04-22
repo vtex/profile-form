@@ -1,9 +1,7 @@
-import msk from 'msk'
-
 import { isPastDate } from '../utils/dateRules'
 
 export default {
-  country: 'RUS',
+  country: 'SWE',
   personalFields: [
     {
       name: 'firstName',
@@ -24,13 +22,6 @@ export default {
       hidden: true,
     },
     {
-      name: 'document',
-      maxLength: 50,
-      label: 'document',
-      required: false,
-      hidden: true,
-    },
-    {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
@@ -46,7 +37,6 @@ export default {
       label: 'birthDate',
       type: 'date',
       validate: isPastDate,
-      mask: (value) => msk.fit(value, '99.99.9999'),
     },
   ],
   businessFields: [
@@ -59,11 +49,6 @@ export default {
       name: 'tradeName',
       maxLength: 100,
       label: 'tradeName',
-    },
-    {
-      name: 'corporateDocument',
-      maxLength: 30,
-      label: 'corporateDocument',
     },
     {
       name: 'businessPhone',
