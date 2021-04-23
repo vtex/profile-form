@@ -1,7 +1,7 @@
 {
     "profile-form.optional": "Valinnainen",
-    "profile-form.include-business": "Sisällytä yrityskentät",
-    "profile-form.exclude-business": "Älä sisällytä yrityskenttiä",
+    "profile-form.include-business": "Lisää yrityksen tiedot",
+    "profile-form.exclude-business": "Älä lisää yrityksen tietoja",
     "profile-form.save-changes": "Tallenna muutokset",
     "profile-form.field.firstName": "Etunimi",
     "profile-form.field.lastName": "Sukunimi",
