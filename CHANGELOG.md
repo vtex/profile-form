@@ -7,10 +7,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-
 ### Added
 
 - Specific rules for `BEL`.
+
+## [3.8.0] - 2021-04-26
+
+### Added
+
+- New translations.
+- Crowdin configuration file.
+
+### Changed
+
+- I18n Ca, De, Fr, It, Ro.
+
+## [3.7.0] - 2021-04-22
+
+### Added
+- I18n Denmark
+- I18n Deutschland 
+- I18n Finnland
+- I18n Sweden
+## [3.6.0] - 2021-04-19
+
+### Added
+
+- Add RUS for RUSSIA.
+- RUS's `birthdate` field's changed using mask function as ROU format (`DD.MM.YYYY`)
+- RUS's `document` field to optional and Hide.
 
 ## [3.5.1] - 2021-03-22
 
