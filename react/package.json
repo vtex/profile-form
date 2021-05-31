@@ -68,16 +68,6 @@
       "^.+\\.js$": "../jest.transform.js"
     }
   },
-  "dependencies": {
-    "@vtex/phone": "^4.8.0",
-    "@vtex/styleguide": "^5.4.4",
-    "downshift": "^2.0.20",
-    "match-sorter": "^2.2.3",
-    "moment": "^2.22.2",
-    "msk": "^1.0.3",
-    "react": "^16.4.1",
-    "react-intl": "^2.4.0"
-  },
   "devDependencies": {
     "@vtex/intl-equalizer": "^2.3.0",
     "babel-jest": "^23.6.0",
@@ -90,12 +80,24 @@
     "jest": "^22.4.4",
     "jest-enzyme": "^6.0.2",
     "nwb": "^0.21.5",
+    "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-intl": "^2.4.0",
     "react-hot-loader": "^4.3.4",
     "react-test-renderer": "^16.4.1",
     "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.42.0/public/@types/vtex.render-runtime"
   },
+  "dependencies": {
+    "@vtex/phone": "^4.8.0",
+    "@vtex/styleguide": "^5.4.4",
+    "downshift": "^2.0.20",
+    "match-sorter": "^2.2.3",
+    "moment": "^2.22.2",
+    "msk": "^1.0.3"
+  },
   "peerDependencies": {
+    "react": "^16.4.1 || ^17.0.2",
+    "react-intl": "^2.4.0 || ^5.15.8",
     "vtex-tachyons": "^2.5.0"
   }
 }
