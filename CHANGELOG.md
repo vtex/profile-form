@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.9.4] - 2021-06-01
+
 ## [2.9.3] - 2021-06-01
 ### Changed
 - React and React Intl are now peer dependencies so the base project can choose the major version on it

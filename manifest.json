@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "profile-form",
-  "version": "2.9.3",
+  "version": "2.9.4",
   "title": "VTEX Profile-form",
   "description": "React component for managing user profiles",
   "builders": {
@@ -14,8 +14,6 @@
   },
   "mustUpdateAt": "2019-08-09",
   "categories": [],
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
