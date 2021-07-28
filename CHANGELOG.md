@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Specific rules for `BEL`.
+
 ## [3.8.0] - 2021-04-26
 
 ### Added
