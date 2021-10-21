@@ -93,15 +93,14 @@ class GenderInput extends Component {
         />
         {showExtendedGenders && (
           <div className="vtex-profile-form__custom-gender bg-light-silver pa5 mt4 br2">
-            <AutocompleteInput
+            <Dropdown
               name="custom-gender"
               label={intl.formatMessage({
                 id: `profile-form.field.custom-gender`,
               })}
               value={this.getAutocompleteValue()}
-              ref={inputRef}
-              items={extendedGenders}
               onChange={this.handleChange}
+              options={extendedGenders}
             />
           </div>
         )}
