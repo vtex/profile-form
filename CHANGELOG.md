@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - I18n Da, Fi, Ja, Pt, Uk.
 
+## [2.14.2] - 2021-10-21
+
+### Fixed
+
+- Gender field translation.
+
 ## [2.14.1] - 2021-09-09
 
 ### Changed
