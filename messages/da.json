@@ -30,7 +30,7 @@
     "profile-form.field.ESP_dni": "DNI",
     "profile-form.field.GTM_dpi": "DPI",
     "profile-form.field.GTM_nit": "NIT",
-    "profile-form.field.MEX_rfc_corporate": "RFC (corporate)",
+    "profile-form.field.MEX_rfc_corporate": "RFC (zakelijk)",
     "profile-form.field.MEX_rfc": "RFC",
     "profile-form.field.PAN_cip": "CIP",
     "profile-form.field.PAN_ruc": "RUC",

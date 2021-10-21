@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Arabic and Hungarian translations.
+
+### Changed
+
+- Danish, Finnish, Japanese, Portuguese, and Ukranian translations.
+
 ## [3.9.2] - 2021-10-21
 
 ### Fixed
