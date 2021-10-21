@@ -94,15 +94,14 @@ class GenderInput extends Component {
         />
         {showExtendedGenders && (
           <div className={`${styles.customGender} bg-light-silver pa5 mt4 br2`}>
-            <AutocompleteInput
+            <Dropdown
               name="custom-gender"
               label={intl.formatMessage({
                 id: `profile-form.field.custom-gender`,
               })}
               value={this.getAutocompleteValue()}
-              ref={inputRef}
-              items={extendedGenders}
               onChange={this.handleChange}
+              options={extendedGenders}
             />
           </div>
         )}
