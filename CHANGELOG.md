@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+### Added
+
+- Specific rules for Poland (`POL`).
+- Specific rules for Singapore (`SGP`).
+
 ## [2.15.0] - 2021-11-04
 
 ### Added
 
-- I18n Ar, Hu. 
+- I18n Ar, Hu.
 
 ### Changed
 
@@ -50,7 +56,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - I18n Denmark
-- I18n Deutschland 
+- I18n Deutschland
 - I18n Finnland
 - I18n Sweden
 
