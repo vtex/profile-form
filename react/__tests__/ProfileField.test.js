@@ -55,7 +55,7 @@ describe('ProfileField', () => {
     )
 
     // Act
-    maskWrapper.instance().handleChange({ target: { value: '123456789' } })
+    maskWrapper.instance().handleChange({ target: { value: '123456789' , changing: true  } })
 
     // Assert
     expect(mockChange).toHaveBeenCalledWith({
@@ -63,6 +63,7 @@ describe('ProfileField', () => {
         ...mockData,
         value: '-123456789-',
         error: null,
+        changing: true,
       },
     })
   })
@@ -81,7 +82,7 @@ describe('ProfileField', () => {
     )
 
     // Act
-    valWrapper.instance().handleChange({ target: { value: '' } })
+    valWrapper.instance().handleChange({ target: { value: '' , changing: true  } })
 
     // Assert
     expect(mockChange).toHaveBeenCalledWith({
@@ -89,6 +90,7 @@ describe('ProfileField', () => {
         ...valData,
         value: '',
         error: 'EMPTY_FIELD',
+        changing: true,
       },
     })
   })
@@ -107,7 +109,7 @@ describe('ProfileField', () => {
     )
 
     // Act
-    valWrapper.instance().handleChange({ target: { value: '' } })
+    valWrapper.instance().handleChange({ target: { value: '' , changing: true } })
 
     // Assert
     expect(mockChange).toHaveBeenCalledWith({
@@ -115,6 +117,7 @@ describe('ProfileField', () => {
         ...valData,
         value: '',
         error: null,
+        changing: true,
       },
     })
   })
