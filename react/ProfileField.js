@@ -20,7 +20,7 @@ class ProfileField extends Component {
     const error = data.touched ? applyValidation(field, value) : null
     const maskedValue = applyMask(field, value)
 
-    onFieldUpdate({ [field.name]: { ...data, value: maskedValue, error } })
+    onFieldUpdate({ [field.name]: { ...data, value: maskedValue, error, changing: true } })
   }
 
   handleBlur = () => {
@@ -36,14 +36,13 @@ class ProfileField extends Component {
 
   render() {
     const { field, data, options, Input, userProfile, blockDocument } = this.props
-
-    if(blockDocument && field.name === 'document' && userProfile['document'].value !== null){
-      field.disabled = true      
+    if(blockDocument && field.name === 'document' && userProfile.document.value && !userProfile.document.changing) {
+      field.disabled = true 
     }
     return (
       <Input
         field={field}
-        data={data}
+        data={data}  
         options={options}
         inputRef={this.inputRef}
         onChange={this.handleChange}
