@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- South Africa country rules (`ZAF`).
+
 ## [2.17.1] - 2022-02-23
 
 ### Fixed
