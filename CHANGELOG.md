@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Specific rules for India (`IND`).
 - Norwegian variation translation.
 
 ## [2.16.0] - 2022-02-03
