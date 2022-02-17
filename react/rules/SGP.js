@@ -26,7 +26,7 @@ export default {
       name: 'document',
       maxLength: 50,
       label: 'document',
-      required: true,
+      hidden: true,
     },
     {
       name: 'homePhone',
