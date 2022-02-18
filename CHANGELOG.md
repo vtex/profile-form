@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.17.0] - 2022-02-18
+
 ### Added
 
 - Specific rules for India (`IND`).
