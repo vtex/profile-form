@@ -2,17 +2,17 @@ import { isPastDate } from '../utils/dateRules'
 import msk from 'msk'
 
 export default {
-  country: 'SGP',
+  country: 'IND',
   personalFields: [
     {
       name: 'firstName',
-      maxLength: 25,
+      maxLength: 100,
       label: 'firstName',
       required: true,
     },
     {
       name: 'lastName',
-      maxLength: 25,
+      maxLength: 100,
       label: 'lastName',
       required: true,
     },
