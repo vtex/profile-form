@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Specific rules for India (`IND`).
+- Norwegian variant translation.
+
+### Fixed
+
+- Specific rules for Singapore (`SGP`).
+
 ## [3.11.0] - 2022-02-03
 
 - Specific rules for Poland (`POL`).
