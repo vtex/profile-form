@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Remove mask using `.` as separator in `birthdate` field for `IND` rules.
+
 ## [2.17.0] - 2022-02-18
 
 ### Added
@@ -68,6 +72,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.12.0] - 2021-04-22
 
 ### Added
+
 - I18n Denmark
 - I18n Deutschland
 - I18n Finnland
