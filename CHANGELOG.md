@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Remove mask using `.` as separator in `birthdate` field for `IND` rules.
+
 ## [3.12.0] - 2022-02-18
 
 ### Added
@@ -65,10 +69,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.7.0] - 2021-04-22
 
 ### Added
+
 - I18n Denmark
-- I18n Deutschland 
+- I18n Deutschland
 - I18n Finnland
 - I18n Sweden
+
 ## [3.6.0] - 2021-04-19
 
 ### Added
@@ -84,7 +90,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - I18n Ro.
 
 ## [3.5.0] - 2021-03-17
-### Added 
+
+### Added
+
 - Added prop `blockDocument` to Enables or disables editing the document field in my account
 
 ## [3.4.0] - 2021-01-06
