@@ -65,5 +65,6 @@
   "profile-form.gender.other": "profile-form.gender.other",
   "profile-form.gender.pangender": "profile-form.gender.pangender",
   "profile-form.gender.transgender": "profile-form.gender.transgender",
-  "profile-form.gender.transsexual": "profile-form.gender.transsexual"
+  "profile-form.gender.transsexual": "profile-form.gender.transsexual",
+  "profile-form.button.submit": "profile-form.button.submit"
 }
