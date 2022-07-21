@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Indonesia ('IDN'), Czech Republic ('CZE') and Slovakia ('SVK') country rules.
+- Australia ('AUS'), Czech Republic ('CZE'), Indonesia ('IDN'), New Zealand ('NZL') and Slovakia ('SVK') country rules.
 
 ### Fixed
 
