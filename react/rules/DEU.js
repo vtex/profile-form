@@ -1,3 +1,4 @@
+import msk from 'msk'
 import { isPastDate } from '../utils/dateRules'
 
 export default {
@@ -37,6 +38,7 @@ export default {
       label: 'birthDate',
       type: 'date',
       validate: isPastDate,
+      mask: (value) => msk.fit(value, '99.99.9999'),
     },
   ],
   businessFields: [
