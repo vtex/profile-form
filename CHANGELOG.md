@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Arabic, Czech, Slovak, and Thai translations. 
+
+### Fixed
+
+- Added missing DEU birthDate mask.
+
 ## [2.18.3] - 2022-07-22
 
 ### Added
