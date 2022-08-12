@@ -58,6 +58,11 @@ export default {
       label: 'corporateDocument',
     },
     {
+      name: 'stateRegistration',
+      maxLength: 50,
+      label: 'stateRegistration',
+    },
+    {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
