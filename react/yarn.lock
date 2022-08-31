@@ -66,10 +66,10 @@
     intl-messageformat-parser "^6.0.9"
     util "^0.12.1"
 
-"@vtex/phone@^4.17.3":
-  version "4.17.3"
-  resolved "https://registry.yarnpkg.com/@vtex/phone/-/phone-4.17.3.tgz#1079b9183f61470377430187ca0b5c44985deccf"
-  integrity sha512-vIxNbZhexqPLTGI4FoMd3k2rkLhh63STZVkX748FEksSc4ybI5w9cTfGSx1XxJGrkBxUGyVwf7iLqLgizXrmVw==
+"@vtex/phone@^4.17.4":
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/@vtex/phone/-/phone-4.17.4.tgz#64014af670d36a7f9d782990119a6857f2935f3b"
+  integrity sha512-tcVy/2MQbbQ4O/Ibev+sHShI5tDj2SFW5yexYK3RqCHeB+ZLItLf4K0d4yi+QLj7uehZCxsQNYZJhuqZLX9BGQ==
 
 "@vtex/styleguide@^5.4.4":
   version "5.6.2"

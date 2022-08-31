@@ -69,7 +69,7 @@
     }
   },
   "dependencies": {
-    "@vtex/phone": "^4.17.3",
+    "@vtex/phone": "^4.17.4",
     "@vtex/styleguide": "^5.4.4",
     "downshift": "^2.0.20",
     "match-sorter": "^2.2.3",
