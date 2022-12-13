@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - English translation.
 
+## [3.14.2] - 2022-10-28
+
+### Chore
+
+- Updated `@vtex/phone` version.
+
 ## [3.14.1] - 2022-09-14
 
 ### Fixed
