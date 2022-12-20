@@ -1,6 +1,6 @@
 {
   "name": "@vtex/profile-form",
-  "version": "3.14.1",
+  "version": "3.14.3",
   "description": "React component for managing user profiles",
   "main": "lib/index.js",
   "files": [
@@ -69,7 +69,7 @@
     }
   },
   "dependencies": {
-    "@vtex/phone": "^4.8.0",
+    "@vtex/phone": "^4.17.4",
     "@vtex/styleguide": "^5.4.4",
     "downshift": "^2.0.20",
     "match-sorter": "^2.2.3",
