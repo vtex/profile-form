@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Permission to publish to npm (removed `private` flag)
+
 ## [2.20.0] - 2022-12-21
 
 ### Added
