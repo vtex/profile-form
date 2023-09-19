@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- ID, PT, EN and ES translations.
+
+### Removed
+
+- ar-SA, cs-CZ, id-ID, sk-SK and th-TH translations.
+
 ## [2.20.1] - 2023-02-14
 
 ### Added
