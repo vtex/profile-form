@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.20.3] - 2023-10-11
+
 ### Fixed
 
 - Unhides the ID field for Costa Rica as it is a government requirement.
