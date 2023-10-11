@@ -32,8 +32,8 @@ export default {
       name: 'document',
       maxLength: 50,
       label: 'CRI_cedula',
-      hidden: true,
-      validate: regexValidation(/^\d{10}$/),
+      required: true,
+      validate: regexValidation(/^\d{9,12}$/),
     },
     {
       name: 'homePhone',
