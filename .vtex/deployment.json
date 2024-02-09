@@ -13,8 +13,7 @@
         {
           "name": "node-ci-v2",
           "parameters": {
-            "nodeCommands": [ "lint", "build", "test:coverage" ],
-            "contextPath": "react"
+            "nodeCommands": [ "lint", "build", "test:coverage" ]
           },
           "when": [
             {
