@@ -7,13 +7,13 @@
       "deploy": ".vtex/deploy.yml",
       "ci": ".vtex/ci.yml"
     },
-   "build": {
+    "build": {
       "provider": "dkcicd",
       "pipelines": [
         {
           "name": "node-ci-v2",
           "parameters": {
-            "nodeCommands": [ "lint", "build", "test:coverage" ]
+            "nodeCommands": ["lint", "build", "test:coverage"]
           },
           "when": [
             {
@@ -23,23 +23,6 @@
           ]
         }
       ]
-    },
-    "service": {
-      "type": "front"
-    },
-    "tags": [
-      {
-        "key": "Product",
-        "value": "profile-form"
-      },
-      {
-        "key": "Owner",
-        "value": "Post Purchase XP"
-      },
-      {
-        "key": "Team",
-        "value": "Post Purchase XP"
-      }
-    ]
+    }
   }
 ]
