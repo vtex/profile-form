@@ -86,7 +86,8 @@
       "<rootDir>/es/",
       "<rootDir>/lib/",
       "<rootDir>/umd/",
-      "<rootDir>/src/"
+      "<rootDir>/src/",
+      "local_dependencies"
     ],
     "transformIgnorePatterns": [
       "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
