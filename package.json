@@ -103,13 +103,13 @@
   },
   "dependencies": {
     "phantomjs-prebuilt": "file:local_dependencies/phantomjs-prebuilt",
+    "node-gyp": "file:local_dependencies/node-gyp",
     "@vtex/phone": "^4.8.0",
     "@vtex/styleguide": "^5.4.4",
     "downshift": "^2.0.20",
     "match-sorter": "^2.2.3",
     "moment": "^2.22.2",
     "msk": "^1.0.3",
-    "node-gyp": "^10.0.1",
     "react": "^16.4.1",
     "react-intl": "^2.4.0"
   },
