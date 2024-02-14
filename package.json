@@ -104,6 +104,7 @@
   "dependencies": {
     "phantomjs-prebuilt": "file:local_dependencies/phantomjs-prebuilt",
     "karma-phantomjs-launcher": "file:local_dependencies/karma-phantomjs-launcher",
+    "nwb": "file:local_dependencies/nwb",
     "@vtex/phone": "^4.8.0",
     "@vtex/styleguide": "^5.4.4",
     "downshift": "^2.0.20",
