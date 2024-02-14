@@ -26,15 +26,12 @@
     }
   },
   "lint-staged": {
-    "*.{ts,js,tsx,jsx}": [
+    "!(local_dependencies)/**/*.{ts,js,tsx,jsx}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{json,graphql,gql}": [
+    "!(local_dependencies)/**/*.{json,graphql,gql}": [
       "prettier --write"
-    ],
-    "ignore": [
-      "local_dependencies"
     ]
   },
   "devDependencies": {
