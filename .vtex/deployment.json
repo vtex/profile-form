@@ -13,9 +13,9 @@
         {
           "name": "node-ci-v2",
           "parameters": {
-            "nodeCommands": ["lint", "build", "test:coverage"]
+            "nodeCommands": ["lint", "build", "test:coverage"],
+            "skipInstall": "true"
           },
-          "skipInstall": "true",
           "when": [
             {
               "event": "push",
