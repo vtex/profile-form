@@ -50,7 +50,7 @@
     "jest": "^22.4.4",
     "jest-enzyme": "^6.0.2",
     "lint-staged": "^10.0.2",
-    "nwb": "^0.21.5",
+    "nwb": "file:local_dependencies/nwb",
     "prettier": "^1.19.1",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4",
@@ -104,7 +104,6 @@
   "dependencies": {
     "phantomjs-prebuilt": "file:local_dependencies/phantomjs-prebuilt",
     "karma-phantomjs-launcher": "file:local_dependencies/karma-phantomjs-launcher",
-    "nwb": "file:local_dependencies/nwb",
     "@vtex/phone": "^4.8.0",
     "@vtex/styleguide": "^5.4.4",
     "downshift": "^2.0.20",
