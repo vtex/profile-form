@@ -15,6 +15,7 @@
           "parameters": {
             "nodeCommands": ["lint", "build", "test:coverage"]
           },
+          "skipInstall": "true",
           "when": [
             {
               "event": "push",
