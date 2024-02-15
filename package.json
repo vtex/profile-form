@@ -26,11 +26,11 @@
     }
   },
   "lint-staged": {
-    "*.{ts,js,tsx,jsx}": [
+    "!(local_dependencies)/**/*.{ts,js,tsx,jsx}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{json,graphql,gql}": [
+    "!(local_dependencies)/**/*.{json,graphql,gql}": [
       "prettier --write"
     ]
   },
@@ -50,7 +50,7 @@
     "jest": "^22.4.4",
     "jest-enzyme": "^6.0.2",
     "lint-staged": "^10.0.2",
-    "nwb": "^0.21.5",
+    "nwb": "file:local_dependencies/nwb",
     "prettier": "^1.19.1",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4",
@@ -86,7 +86,8 @@
       "<rootDir>/es/",
       "<rootDir>/lib/",
       "<rootDir>/umd/",
-      "<rootDir>/src/"
+      "<rootDir>/src/",
+      "local_dependencies"
     ],
     "transformIgnorePatterns": [
       "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
@@ -102,12 +103,15 @@
     }
   },
   "dependencies": {
+    "phantomjs-prebuilt": "file:local_dependencies/phantomjs-prebuilt",
+    "karma-phantomjs-launcher": "file:local_dependencies/karma-phantomjs-launcher",
     "@vtex/phone": "^4.8.0",
     "@vtex/styleguide": "^5.4.4",
     "downshift": "^2.0.20",
     "match-sorter": "^2.2.3",
     "moment": "^2.22.2",
     "msk": "^1.0.3",
+    "node-gyp": "^10.0.1",
     "react": "^16.4.1",
     "react-intl": "^2.4.0"
   },
