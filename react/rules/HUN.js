@@ -45,7 +45,7 @@ export default {
       label: 'birthDate',
       
       validate: isPastDate,
-      mask: (value) => msk.fit(value, '9999.99.99.'),
+      mask: (value) => msk.fit(value, '9999/99/99'),
     },
   ],
   businessFields: [

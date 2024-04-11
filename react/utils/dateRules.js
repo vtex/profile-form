@@ -26,7 +26,7 @@ export function prepareDateRules(rules, intl) {
   }
 }
 
-const EXPECTED_DATE_LENGTH = 10; //99/99/9999
+const EXPECTED_DATE_LENGTH = 10; // 99/99/9999
 
 function setDateRuleValidations(rules, intl) {
   if (rules) {
