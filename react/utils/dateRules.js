@@ -2,7 +2,7 @@ import moment from 'moment'
 import msk from 'msk'
 
 export function filterDateType(fields) {
-  return fields.filter(rule => rule.type === 'date')
+  return fields.filter(rule => rule.type === 'date' || rule.label === "birthDate")
 }
 
 // merge the arr2 into arr1 based on a rule name
@@ -33,8 +33,9 @@ function setDateRuleValidations(rules, intl) {
       ruleCopy.mask = rule.mask ? rule.mask : (value => msk.fit(value, '99/99/9999'))
       ruleCopy.validate = value => {
         const mom = moment.utc(value, 'L', intl.locale.toLowerCase())
+        const currValidate = rule.validate === undefined ? true : rule.validate(value);
 
-        return mom.isValid() && rule.validate(mom.unix())
+        return mom.isValid() && currValidate
       }
       ruleCopy.display = value =>
         moment
@@ -54,8 +55,8 @@ function setDateRuleValidations(rules, intl) {
   return rules
 }
 
-export function isPastDate(unixTimestamp) {
-  const nowMS = Date.now() / 1000
-
-  return unixTimestamp - nowMS < 0
+export function isPastDate(dateString) {
+  const date = moment(dateString, 'DD/MM/YYYY', true);
+  const now = moment();
+  return date.isValid() && date.isBefore(now);
 }

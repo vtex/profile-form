@@ -77,7 +77,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date',
+      mask: (value) => msk.fit(value, '99/99/9999'),
       validate: isPastDate,
     },
   ],
