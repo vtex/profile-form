@@ -26,6 +26,8 @@ export function prepareDateRules(rules, intl) {
   }
 }
 
+const EXPECTED_DATE_LENGTH = 10; //99/99/9999
+
 function setDateRuleValidations(rules, intl) {
   if (rules) {
     return rules.map(rule => {
@@ -33,9 +35,9 @@ function setDateRuleValidations(rules, intl) {
       ruleCopy.mask = rule.mask ? rule.mask : (value => msk.fit(value, '99/99/9999'))
       ruleCopy.validate = value => {
         const mom = moment.utc(value, 'L', intl.locale.toLowerCase())
-        const currValidate = rule.validate === undefined ? true : rule.validate(value);
+        const currValidate = rule.validate === undefined ? true : rule.validate(value, intl);
 
-        return mom.isValid() && currValidate
+        return value.length === EXPECTED_DATE_LENGTH && mom.isValid() && currValidate
       }
       ruleCopy.display = value =>
         moment
@@ -55,8 +57,12 @@ function setDateRuleValidations(rules, intl) {
   return rules
 }
 
-export function isPastDate(dateString) {
-  const date = moment(dateString, 'DD/MM/YYYY', true);
+export function isPastDate(dateString, intl) {
+  if(intl === undefined){
+    return false
+  }
+
+  const date = moment.utc(dateString, 'L', intl.locale.toLowerCase());
   const now = moment();
   return date.isValid() && date.isBefore(now);
 }
