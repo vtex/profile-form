@@ -26,7 +26,7 @@ export function prepareDateRules(rules, intl) {
   }
 }
 
-const EXPECTED_DATE_LENGTH = 10; // 99/99/9999 or 99.99.99.
+const MINIMUM_EXPECTED_DATE_LENGTH = 10; // 99/99/9999 or 99.99.99.
 
 function setDateRuleValidations(rules, intl) {
   if (rules) {
@@ -37,7 +37,7 @@ function setDateRuleValidations(rules, intl) {
         const mom = moment.utc(value, 'L', intl.locale.toLowerCase())
         const currValidate = rule.validate === undefined ? true : rule.validate(value, intl);
 
-        return value.length >= EXPECTED_DATE_LENGTH && mom.isValid() && currValidate
+        return value.length >= MINIMUM_EXPECTED_DATE_LENGTH && mom.isValid() && currValidate
       }
       ruleCopy.display = value =>
         moment
