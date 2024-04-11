@@ -52,7 +52,7 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date',
+      
       validate: isPastDate,
     },
   ],
