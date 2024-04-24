@@ -2,7 +2,7 @@ import moment from 'moment'
 import msk from 'msk'
 
 export function filterDateType(fields) {
-  return fields.filter(rule => rule.type === 'date' || rule.label === "birthDate")
+  return fields.filter(rule => rule.type === 'date' || rule.name === "birthDate")
 }
 
 // merge the arr2 into arr1 based on a rule name
