@@ -43,9 +43,8 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date',
-      validate: isPastDate,
-    },
+      
+     validate: isPastDate, mask: (value) => msk.fit(value, '99/99/9999')},
   ],
   businessFields: [
     {
