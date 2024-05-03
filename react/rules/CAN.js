@@ -1,3 +1,4 @@
+import msk from 'msk'
 import canada from '@vtex/phone/countries/CAN'
 
 import { getPhoneFields } from '../modules/phone'
