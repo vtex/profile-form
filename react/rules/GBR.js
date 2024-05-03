@@ -1,3 +1,4 @@
+import msk from 'msk'
 import gbr from '@vtex/phone/countries/GBR' // Used for initialization purposes, do not remove it!
 
 import { getPhoneFields } from '../modules/phone'

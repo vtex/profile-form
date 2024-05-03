@@ -1,3 +1,4 @@
+import msk from 'msk'
 import peru from '@vtex/phone/countries/PER'
 
 import { getPhoneFields } from '../modules/phone'

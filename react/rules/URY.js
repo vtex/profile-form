@@ -1,3 +1,4 @@
+import msk from 'msk'
 import uruguay from '@vtex/phone/countries/URY' // Used for initialization purposes, do not remove it!
 
 import { getPhoneFields } from '../modules/phone'
