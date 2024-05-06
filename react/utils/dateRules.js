@@ -26,7 +26,7 @@ export function prepareDateRules(rules, intl) {
   }
 }
 
-const MINIMUM_EXPECTED_DATE_LENGTH = 10; // 99/99/9999 or 99.99.99.
+export const MINIMUM_EXPECTED_DATE_LENGTH = 10; // 99/99/9999 or 99.99.99.
 
 function setDateRuleValidations(rules, intl) {
   if (rules) {
