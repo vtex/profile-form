@@ -16,7 +16,7 @@ export function applyValidation(field, value) {
 
 export function applyFullValidation(rules, profile, isCorporate) {
 
-  if(rules.country === 'HUN' && profile?.birthDate?.value){
+  if(rules.country === 'HUN' && profile.birthDate.value){
     hungarianDateValidation(profile)
   }
 
