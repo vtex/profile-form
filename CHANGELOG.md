@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.16.5] - 2024-05-07
+
 ### Fixed
 - Hungarian validation to match hungarian mask when last dot is missing
 
