@@ -1,3 +1,5 @@
+import { MINIMUM_EXPECTED_DATE_LENGTH } from '../utils/dateRules.js'
+
 export function applyMask(field, value) {
   return field.mask ? field.mask(value) : value
 }
@@ -13,6 +15,11 @@ export function applyValidation(field, value) {
 }
 
 export function applyFullValidation(rules, profile, isCorporate) {
+
+  if (rules.country === 'HUN' && profile.birthDate.value) {
+    hungarianDateValidation(profile)
+  }
+
   const validatedProfile = Object.keys(profile)
     .map(field => {
       const rule =
@@ -51,3 +58,13 @@ function containsEmoji(input) {
 
   return EMOJIS_REGEX.test(input)
 }
+
+function hungarianDateValidation(profile) {
+  let profileDate = profile.birthDate.value
+  if (!profileDate.endsWith(".") && profileDate.length === MINIMUM_EXPECTED_DATE_LENGTH) {
+    profileDate += "."
+
+    profile.birthDate.value = profileDate
+  }
+}
+
