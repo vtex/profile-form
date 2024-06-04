@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Austria ('AUT') country rules.
+
 ## [2.20.3] - 2023-10-11
 
 ### Fixed
