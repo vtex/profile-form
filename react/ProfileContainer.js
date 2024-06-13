@@ -12,7 +12,9 @@ import emptyProfile from './modules/emptyProfile'
 import defaultRules from './rules/default'
 import StyleguideInput from './inputs/StyleguideInput'
 import styles from './styles.css'
+import ProfileFieldWrapper from './ProfileFieldWrapper'
 
+const PROFILE_FIELD_CSS_HANDLE_PREFIX = 'profileForm-'
 class ProfileContainer extends Component {
   constructor(props) {
     super(props)
@@ -82,7 +84,7 @@ class ProfileContainer extends Component {
       <form className={styles.profileContainer} onSubmit={this.handleSubmit}>
         <div className={styles.personalFields}>
           {rules.personalFields.map(field => (
-            <ProfileField
+            <ProfileFieldWrapper
               key={field.name}
               field={field}
               data={profile[field.name]}
@@ -91,6 +93,7 @@ class ProfileContainer extends Component {
               Input={Input}
               userProfile={profile}
               blockDocument={this.props.blockDocument}
+              cssHandle={`${PROFILE_FIELD_CSS_HANDLE_PREFIX}${field.name}`}
             />
           ))}
         </div>
