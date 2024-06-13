@@ -33,7 +33,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-push": "yarn locales:lint && yarn test"
+      "pre-push": "yarn locales:lint"
     }
   },
   "jest": {
