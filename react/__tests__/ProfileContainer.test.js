@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallowWithIntl, loadTranslation } from 'enzyme-react-intl'
 import ProfileContainer from '../ProfileContainer'
-import ProfileField from '../ProfileField'
+import ProfileFieldWrapper from '../ProfileFieldWrapper'
 import mockRules from '../__mocks__/rules'
 import mockProfile from '../__mocks__/profile'
 
@@ -10,6 +10,7 @@ loadTranslation('../messages/pt.json')
 describe('ProfileContainer', () => {
   let wrapper
   let mockSubmit
+
   beforeEach(() => {
     // Arrange
     mockSubmit = jest.fn()
@@ -24,7 +25,7 @@ describe('ProfileContainer', () => {
 
   it('should render fields based on rules', () => {
     // Act
-    const result = wrapper.find(ProfileField)
+    const result = wrapper.find(ProfileFieldWrapper)
 
     // Assert
     expect(result).toHaveLength(4)
@@ -32,14 +33,9 @@ describe('ProfileContainer', () => {
 
   it('should pass down profile data to fields', () => {
     // Act
-    const firstName = wrapper
-      .find(ProfileField)
-      .first()
-      .props().data.value
-    const lastName = wrapper
-      .find(ProfileField)
-      .last()
-      .props().data.value
+    const firstName = wrapper.find(ProfileFieldWrapper).first().props()
+      .data.value
+    const lastName = wrapper.find(ProfileFieldWrapper).last().props().data.value
 
     // Assert
     expect(firstName).toBe('John')
