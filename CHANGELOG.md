@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- CSS Handles based at field names for edit profile customizations at my account.
+
 ## [3.16.6] - 2024-06-05
 
 ### Added

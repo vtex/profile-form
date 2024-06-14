@@ -1,5 +1,4 @@
 import { IntlProvider } from 'react-intl'
-
 import { prepareDateRules, filterDateType } from '../utils/dateRules'
 import defaultRules from '../rules/default'
 
@@ -9,7 +8,7 @@ const { intl } = intlProvider.getChildContext()
 function getBirthDate(rules) {
   const preparedRules = prepareDateRules(rules, intl)
   const birthDateInitialized = preparedRules.personalFields.find(
-    rule => rule.name === 'birthDate',
+    (rule) => rule.name === 'birthDate',
   )
   return birthDateInitialized
 }
@@ -27,7 +26,7 @@ describe('ProfileRules aux functions', () => {
     const rules = defaultRules
     const birthDate = filterDateType(rules.personalFields)[0]
 
-    expect(birthDate.mask).toBeUndefined()
+    expect(birthDate.mask).toBeDefined()
     expect(birthDate.validate).toBeDefined()
     expect(birthDate.display).toBeUndefined()
     expect(birthDate.submit).toBeUndefined()

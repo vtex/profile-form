@@ -92,7 +92,8 @@
     "nwb": "^0.21.5",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4",
-    "react-test-renderer": "^16.4.1"
+    "react-test-renderer": "^16.4.1",
+    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles"
   },
   "peerDependencies": {
     "vtex-tachyons": "^2.5.0"
