@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- "...-disabled", "...-empty", "...-focused" and "...-invalid" classNames for the StyleguideInput component.
+- "...-required", "...-disabled", "...-empty", "...-focused" and "...-invalid" classNames for the StyleguideInput component.
 
 ## [3.17.0] - 2024-06-14
 

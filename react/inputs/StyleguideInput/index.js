@@ -31,6 +31,7 @@ const StyleguideInput = (props) => {
   const containerClassNames = [
     styles.styleguideInput,
     field.hidden ? 'dn' : '',
+    field.required ? 'required' : '',
     isFocused ? 'focused' : '',
     data.error ? 'invalid' : '',
     !data.value ? 'empty' : '',
