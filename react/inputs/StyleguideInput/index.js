@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import Input from '@vtex/styleguide/lib/Input'
@@ -7,7 +7,7 @@ import ProfileFieldShape from '../../ProfileFieldShape'
 import GenderInput from './GenderInput'
 import styles from '../../styles.css'
 
-const StyleguideInput = props => {
+const StyleguideInput = (props) => {
   const {
     field,
     data,
@@ -17,6 +17,25 @@ const StyleguideInput = props => {
     onBlur,
     intl,
   } = props
+
+  const [isFocused, setIsFocused] = useState(false)
+
+  // Handle focus and blur events
+  const handleFocus = () => setIsFocused(true)
+  const handleBlur = (e) => {
+    onBlur(e)
+    setIsFocused(false)  
+  }
+
+  // Define class names based on the component state and props
+  const containerClassNames = [
+    styles.styleguideInput,
+    field.hidden ? 'dn' : '',
+    isFocused ? 'focused' : '',
+    data.error ? 'invalid' : '',
+    !data.value ? 'empty' : '',
+    'pb7',
+  ].join(' ')
 
   if (field.name === 'gender') {
     return (
@@ -28,11 +47,7 @@ const StyleguideInput = props => {
   }
 
   return (
-    <div
-      className={`${styles.styleguideInput} ${
-        field.hidden ? 'dn' : ''
-      } pb7`}
-    >
+    <div className={containerClassNames}>
       <Input
         name={field.name}
         label={intl.formatMessage({
@@ -51,7 +66,8 @@ const StyleguideInput = props => {
             : null
         }
         onChange={onChange}
-        onBlur={onBlur}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
         ref={inputRef}
         maxLength={field.maxLength}
         disabled={field.disabled}
@@ -75,6 +91,11 @@ StyleguideInput.propTypes = {
   onBlur: PropTypes.func.isRequired,
   /** React-intl utility */
   intl: intlShape.isRequired,
+}
+
+StyleguideInput.defaultProps = {
+  options: {},
+  inputRef: () => {},
 }
 
 export default injectIntl(StyleguideInput)
