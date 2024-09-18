@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Netherlands ('NLD') country rules.
+
 ## [2.20.4] - 2024-06-04
 
 ### Added
