@@ -8,15 +8,7 @@ import GenderInput from './GenderInput'
 import styles from '../../styles.css'
 
 const StyleguideInput = (props) => {
-  const {
-    field,
-    data,
-    options,
-    inputRef,
-    onChange,
-    onBlur,
-    intl,
-  } = props
+  const { field, data, options, inputRef, onChange, onBlur, intl } = props
 
   const [isFocused, setIsFocused] = useState(false)
 
@@ -24,17 +16,17 @@ const StyleguideInput = (props) => {
   const handleFocus = () => setIsFocused(true)
   const handleBlur = (e) => {
     onBlur(e)
-    setIsFocused(false)  
+    setIsFocused(false)
   }
 
   // Define class names based on the component state and props
   const containerClassNames = [
     styles.styleguideInput,
     field.hidden ? 'dn' : '',
-    field.required ? 'required' : '',
-    isFocused ? 'focused' : '',
-    data.error ? 'invalid' : '',
-    !data.value ? 'empty' : '',
+    field.required ? `${styles.styleguideInput}-required` : '',
+    isFocused ? `${styles.styleguideInput}-focused` : '',
+    data.error ? `${styles.styleguideInput}-invalid` : '',
+    !data.value ? `${styles.styleguideInput}-empty` : '',
     'pb7',
   ].join(' ')
 
