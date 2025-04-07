@@ -46,7 +46,7 @@ function setDateRuleValidations(rules, intl) {
       ruleCopy.submit = value => {
         if (!value) return null
 
-        const localizedDate = !intl.locale.toLowerCase() === 'en-sg' ? 'L' : 'DD.MM.YYYY'
+        const localizedDate = intl.locale.toLowerCase() !== 'en-sg' ? 'L' : 'DD.MM.YYYY'
         const date = moment.utc(value, localizedDate, intl.locale.toLowerCase(), true)
 
         if (!date.isValid()) return null
