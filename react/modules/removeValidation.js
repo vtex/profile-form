@@ -9,7 +9,6 @@ export default function removeValidation(profile, rules) {
     } else {
       acc[field.name] = fieldValue
     }
-    
     return acc
   }, {})
 }
