@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.19.1] - 2025-04-08
+
 ### Fixed
 
 - Added validation to removeValidation function
