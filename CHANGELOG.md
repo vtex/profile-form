@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Canadian date format
+
 ## [3.19.1] - 2025-04-08
 
 ### Fixed
