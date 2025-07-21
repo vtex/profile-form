@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: profile-form
+  description: Storefront app responsible to render the profile data and user form
+  tags:
+    - javascript
+    - react
+  annotations:
+    vtex.com/janus-acronym: ""
+    vtex.com/o11y-os-index: ""
+    grafana/dashboard-selector: ""
+    github.com/project-slug: vtex/profile-form
+    vtex.com/platform-flow-id: Shopper#5
+    backstage.io/techdocs-ref: dir:../
+    vtex.com/application-id: G5H5RQFQ
+spec:
+  system: orders
+  lifecycle: stable
+  owner: te-0020
+  type: frontend-ui
+  dependsOn: []
