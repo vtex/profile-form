@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Ireland ('IRL') country rules.
+
+### Removed
+
+- Spain personal ID validation as a workaround to make sure store location changing works as expected for Dunnes.
+
+
 ## [2.21.0] - 2024-09-18
 
 ### Added
