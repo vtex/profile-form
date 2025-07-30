@@ -1,15 +1,15 @@
 import msk from 'msk'
-import spain from '@vtex/phone/countries/ESP'
+import ireland from '@vtex/phone/countries/IRL'
 
 import { getPhoneFields } from '../modules/phone'
 import regexValidation from '../modules/regexValidation'
 import initialize from './initializeCountryPhone'
 import { isPastDate } from '../utils/dateRules'
 
-const phoneCountryCode = initialize(spain)
+const phoneCountryCode = initialize(ireland)
 
 export default {
-  country: 'ESP',
+  country: 'IRL',
   personalFields: [
     {
       name: 'firstName',
@@ -32,7 +32,7 @@ export default {
     {
       name: 'document',
       maxLength: 50,
-      label: 'ESP_dni',
+      label: 'document',
       required: false,
     },
     {
@@ -51,7 +51,8 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      validate: isPastDate, mask: (value) => msk.fit(value, '99/99/9999')},
+      validate: isPastDate, mask: (value) => msk.fit(value, '99/99/9999')
+    },
   ],
   businessFields: [
     {
@@ -67,8 +68,7 @@ export default {
     {
       name: 'corporateDocument',
       maxLength: 30,
-      label: 'ESP_cif',
-      validate: regexValidation(/^[A-z]{1}\d{8}$/),
+      label: 'corporateDocument',
     },
     {
       name: 'businessPhone',
