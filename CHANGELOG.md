@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Austria (AUT) date mask format for birthDate field
+
 ## [3.19.2] - 2025-05-13
 
 ### Fixed
