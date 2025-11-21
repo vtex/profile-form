@@ -1,7 +1,8 @@
 [
   {
     "name": "profile-form",
-    "description": "",
+    "referenceId": "G5H5RQFQ",
+    "description": "CI/CD and TechDocs pipeline for profile-form",
     "source": "https://github.com/vtex/profile-form.git",
     "script": {
       "deploy": ".vtex/deploy.yml",
@@ -19,6 +20,25 @@
             {
               "event": "push",
               "source": "branch"
+            }
+          ]
+        },
+        {
+          "name": "techdocs-v1",
+          "parameters": {
+            "entityReference": "default/component/profile-form"
+          },
+          "when": [
+            {
+              "event": "push",
+              "source": "branch",
+              "regex": "main",
+              "path": [
+                "docs/**",
+                ".vtex/deployment.yaml",
+                ".vtex/deployment.json",
+                "README.md"
+              ]
             }
           ]
         }
