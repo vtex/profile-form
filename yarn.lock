@@ -71,10 +71,10 @@
   resolved "https://registry.yarnpkg.com/@vtex/phone/-/phone-4.17.4.tgz#64014af670d36a7f9d782990119a6857f2935f3b"
   integrity sha512-tcVy/2MQbbQ4O/Ibev+sHShI5tDj2SFW5yexYK3RqCHeB+ZLItLf4K0d4yi+QLj7uehZCxsQNYZJhuqZLX9BGQ==
 
-"@vtex/styleguide@^5.4.4":
-  version "5.6.2"
-  resolved "https://registry.yarnpkg.com/@vtex/styleguide/-/styleguide-5.6.2.tgz#133ac2d7847b148f4b1bdb836b999cb90d667c22"
-  integrity sha512-jeJvB+T8/YuRQzbZ5yeUGdcSk/pg5mgl0w/BzeTNKPLI3zf0NrJ6icTsL55eErej6kWUL4svxz1BkF6d01wFFA==
+"@vtex/styleguide@5.6.5":
+  version "5.6.5"
+  resolved "https://registry.yarnpkg.com/@vtex/styleguide/-/styleguide-5.6.5.tgz#56e072ff5241a84aa1eaa207664e541ae85066ae"
+  integrity sha512-1c9g/xRr7JA56zIWR+j37MsJSkcdVPXnEMA34dWpuR9GA8sWFw7ksrMtH6182ee5Is7OHcLK7yqRUnE/5ub8uQ==
   dependencies:
     react-responsive-modal "^2.0.1"
     react-virtualized "^9.19.1"
