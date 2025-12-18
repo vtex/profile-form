@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Updated `@vtex/styleguide` to version `^5.6.5` to comply with accessibility improvements.
+- Updated `@vtex/styleguide` to version `^5.6.5` for accessibility improvements.
 
 ## [2.21.0] - 2024-09-18
 
