@@ -9,7 +9,7 @@ metadata:
   annotations:
     vtex.com/janus-acronym: ""
     vtex.com/o11y-os-index: ""
-    vtex.com/sdd-check-skip: true
+    vtex.com/sdd-check-skip: 'true'
     vtex.com/sdd-check-skip-reason: Legacy app in maintenance mode
     grafana/dashboard-selector: ""
     github.com/project-slug: vtex/profile-form
