@@ -91,7 +91,7 @@ export default {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'BRA_cnpj',
-      mask: value => msk.fit(value, '99.999.999/9999-99'),
+      mask: value => msk.fit(value, 'AA.AAA.AAA/AAAA-99'),
       validate: value => {
         const cleanValue = value.replace(/[^\d]/g, '')
         if (cleanValue.length != 14) return false

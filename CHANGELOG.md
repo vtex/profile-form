@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Fix validation for new alphanumeric CNPJ
+
 ## [2.21.0] - 2024-09-18
 
 ### Added
