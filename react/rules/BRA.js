@@ -109,7 +109,7 @@ export default {
         const firstDigit = firstReduce % 11 < 2 ? 0 : 11 - (firstReduce % 11)
         if (firstDigit != cleanValue.charAt(12)) return false
     
-        const secondWeights = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+        const secondWeights = [6, ...firstWeights]
         const secondReduce = values
           .slice(0, 13)
           .reduce((acc, cur, index) => acc + cur * secondWeights[index], 0)
