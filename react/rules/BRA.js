@@ -91,37 +91,28 @@ export default {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'BRA_cnpj',
-      mask: value => msk.fit(value, '99.999.999/9999-99'),
+      mask: value => msk.fit(value, 'SS.SSS.SSS/SSSS-99'),
       validate: value => {
-        const cleanValue = value.replace(/[^\d]/g, '')
-        if (cleanValue.length != 14) return false
-
-        const isRepeatedNum = '0123456789'
-          .split('')
-          .some(digit => digit.repeat(14) === cleanValue)
-        if (isRepeatedNum) return false
-
-        const firstWeights = '543298765432'.split('')
-        const firstReduce = cleanValue
-          .split('')
+        const cleanValue = value.replace(/[.\/-]/g, '').toUpperCase()
+        if (cleanValue.length !== 14) return false
+        if (!/^[A-Z0-9]{12}\d{2}$/.test(cleanValue)) return false
+    
+        if (/^(.)\1+$/.test(cleanValue)) return false
+    
+        const getCharValue = char => char.charCodeAt(0) - 48
+        const values = cleanValue.split('').map(getCharValue)
+    
+        const firstWeights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+        const firstReduce = values
           .slice(0, 12)
-          .reduce(
-            (acc, cur, index) =>
-              acc + parseInt(cur) * parseInt(firstWeights[index]),
-            0,
-          )
+          .reduce((acc, cur, index) => acc + cur * firstWeights[index], 0)
         const firstDigit = firstReduce % 11 < 2 ? 0 : 11 - (firstReduce % 11)
         if (firstDigit != cleanValue.charAt(12)) return false
-
-        const secondWeights = ['6', ...firstWeights]
-        const secondReduce = cleanValue
-          .split('')
+    
+        const secondWeights = [6, ...firstWeights]
+        const secondReduce = values
           .slice(0, 13)
-          .reduce(
-            (acc, cur, index) =>
-              acc + parseInt(cur) * parseInt(secondWeights[index]),
-            0,
-          )
+          .reduce((acc, cur, index) => acc + cur * secondWeights[index], 0)
         const secondDigit = secondReduce % 11 < 2 ? 0 : 11 - (secondReduce % 11)
         return secondDigit == cleanValue.charAt(13)
       },
