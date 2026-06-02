@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Fix to validate alphanumeric CNPJ in my account
+
 ## [3.19.3] - 2025-10-30
 
 ### Fixed
