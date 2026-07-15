@@ -1,10 +1,5 @@
-import irl from '@vtex/phone/countries/IRL' // Used for initialization purposes, do not remove it!
-
-import { getPhoneFields } from '../modules/phone'
-import initialize from './initializeCountryPhone'
+import msk from 'msk'
 import { isPastDate } from '../utils/dateRules'
-
-const phoneCountryCode = initialize(irl)
 
 export default {
   country: 'IRL',
@@ -31,7 +26,6 @@ export default {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
-      ...getPhoneFields(phoneCountryCode),
     },
     {
       name: 'gender',
@@ -42,8 +36,8 @@ export default {
       name: 'birthDate',
       maxLength: 30,
       label: 'birthDate',
-      type: 'date',
       validate: isPastDate,
+      mask: (value) => msk.fit(value, '99/99/9999'),
     },
   ],
   businessFields: [
@@ -61,7 +55,6 @@ export default {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
-      ...getPhoneFields(phoneCountryCode),
     },
   ],
 }
