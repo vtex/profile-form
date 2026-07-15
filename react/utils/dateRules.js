@@ -9,6 +9,7 @@ export function filterDateType(fields) {
 // considering the arr2 value over the arr1
 function mergeArrays(arr1, arr2) {
   const aux = {}
+
   arr2.forEach(rule => (aux[rule.name] = rule))
 
   return arr1.map(rule => {
@@ -21,7 +22,7 @@ export function prepareDateRules(rules, intl) {
     ...rules,
     personalFields: mergeArrays(
       rules.personalFields,
-      setDateRuleValidations(filterDateType(rules.personalFields), intl),
+      setDateRuleValidations(filterDateType(rules.personalFields), intl)
     ),
   }
 }
@@ -30,12 +31,16 @@ function setDateRuleValidations(rules, intl) {
   if (rules) {
     return rules.map(rule => {
       const ruleCopy = { ...rule }
-      ruleCopy.mask = rule.mask ? rule.mask : (value => msk.fit(value, '99/99/9999'))
+
+      ruleCopy.mask = rule.mask
+        ? rule.mask
+        : value => msk.fit(value, '99/99/9999')
       ruleCopy.validate = value => {
         const mom = moment.utc(value, 'L', intl.locale.toLowerCase())
 
         return mom.isValid() && rule.validate(mom.unix())
       }
+
       ruleCopy.display = value =>
         moment
           .utc(value, [moment.ISO_8601, 'L'], intl.locale.toLowerCase())
@@ -44,13 +49,16 @@ function setDateRuleValidations(rules, intl) {
         if (!value) return null
 
         const date = moment.utc(value, 'L', intl.locale.toLowerCase(), true)
+
         if (!date.isValid()) return null
 
         return date.format()
       }
+
       return ruleCopy
     })
   }
+
   return rules
 }
 
