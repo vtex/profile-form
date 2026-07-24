@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Venezuela (`VEN`) RIF validation now accepts government (`G`), passport (`P`), and commune (`C`) prefixes in addition to `V`/`E`/`J` (LOC-27360).
+
 ## [3.19.5] - 2026-07-16
 
 ## [3.19.4] - 2026-06-02
