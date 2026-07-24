@@ -69,7 +69,7 @@ export default {
       name: 'corporateDocument',
       maxLength: 30,
       label: 'VEN_rif',
-      validate: regexValidation(/^[VvJjEe]-?\d{6,8}-?\d$/),
+      validate: regexValidation(/^[VvJjEeGgPpCc]-?\d{6,8}-?\d$/),
     },
     {
       name: 'businessPhone',
