@@ -69,6 +69,7 @@ Two valid Irish phone formats need to be recognized (mobile and Dublin landline)
 - Retroactively cleaning up / re-formatting phone numbers already saved in the old format.
 - Backend/OMS-side phone validation — this is Storefront `profile-form` UI validation only.
 - Porting IRL rules to `master` (only `3.x` is in scope; `IRL.js` doesn't exist on `master` today).
+- Changing the shared `validate` contract (`ProfileField`/`validateProfile.js`) to pass a field's initial/saved value alongside the current one. That would let `validate()` grandfather a value only when it is exactly unchanged, closing the shape-heuristic gap in Decision 2 — but it changes behavior for every country rule file, not just `IRL`, so it's tracked as a possible follow-up rather than done here.
 
 ---
 
@@ -102,7 +103,7 @@ flowchart TD
 | Risk | Impact | Likelihood | Mitigation |
 |---|---|---|---|
 | Regex too strict, rejects valid spacing/format variants | Medium | Medium | Normalize input (strip spaces/dashes) before matching; test with variants before merge |
-| Permissive fallback means malformed new input could slip through as "legacy" | Low | Medium | Accepted trade-off per business decision; scope fallback to preserve only unchanged/previously-stored values where feasible |
+| Permissive fallback means malformed new input could slip through as "legacy" | Medium | High | Manually confirmed during testing (e.g. a digit string with a misplaced `+`, or an arbitrary ~15-digit number, was initially accepted). `validate()` has no access to the field's previously-saved value — it only ever sees the current value — so the fallback cannot truly tell "untouched legacy data" from "new free-form input"; it can only approximate via shape. Mitigated by tightening the shape check (single leading `+`, 7–15 digits, matching realistic subscriber-number length and E.164's max). This narrows, but does not eliminate, the acceptance window for new non-conforming input — accepted as a scoped trade-off to keep the fix contained to `IRL.js`. A fully precise fix would require comparing against the field's initial/saved value, which needs a shared change to the `validate` contract across `ProfileField`/`validateProfile.js` — out of scope here (see Out of Scope) |
 | `master` line still has no IRL support at all | Low | Low | Out of scope for this fix; track as separate follow-up if a `master`-based store requests it |
 | Confusion with a still-open, broken prior pull request attempting the same fix | Medium | Medium | Close that PR once this fix merges, referencing this spec/PR as the replacement |
 
@@ -115,12 +116,12 @@ flowchart TD
 - **Decision**: Implement `homePhone`/`businessPhone` validation and masking as custom logic inside `react/rules/IRL.js`, without calling `initializeCountryPhone` or `getPhoneFields` for `IRL`.
 - **Consequences**: Slightly more duplicated logic vs. countries backed by the library, but no broken dependency and no need to patch/wait on `@vtex/phone`.
 
-#### Decision 2: Permissive validation — accept new formats + legacy free-form
+#### Decision 2: Permissive validation — accept new formats + a bounded legacy shape
 
 - **Status**: Accepted
-- **Context**: Existing shoppers must not be blocked from editing their profile because of a phone number saved before this fix existed.
-- **Decision**: `validate()` accepts the two confirmed IRL formats for new/changed input, and does not reject values that don't conform when they represent previously accepted (free-form) data.
-- **Consequences**: The two confirmed formats become the guided format for new entries; legacy data is never retroactively invalidated or forced to reformat.
+- **Context**: Existing shoppers must not be blocked from editing their profile because of a phone number saved before this fix existed. `validate()` in this codebase only ever receives the current value — it has no access to what was previously saved — so "accept legacy data" can only be approximated by shape, not by an exact match against prior state.
+- **Decision**: `validate()` accepts the two confirmed IRL formats for new/changed input. For anything else, it falls back to a bounded shape check: an optional single leading `+`, otherwise only digits/spaces/dashes/parentheses, with a total digit count between 7 and 15 (a realistic subscriber-number length, capped at E.164's maximum).
+- **Consequences**: The two confirmed formats become the guided format for new entries; legacy data in a plausible phone shape is never retroactively invalidated or forced to reformat. This is a shape heuristic, not a guarantee — new input that happens to fit the same bounds is also accepted. A fully precise fix (only grandfather a value that is byte-for-byte what was already saved) would require passing the field's initial value into `validate`, a shared contract change across every country rule — out of scope for this fix.
 
 #### Decision 3: Fix targets the `3.x` line, not `master`
 

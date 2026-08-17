@@ -5,8 +5,14 @@ import { isPastDate } from '../utils/dateRules'
 const IRL_MOBILE_REGEX = /^\+3538\d{8}$/
 const IRL_LANDLINE_REGEX = /^\+3531\d{7}$/
 
-const LEGACY_PHONE_REGEX = /^[+()\d\s-]+$/
-const MIN_LEGACY_DIGITS = 4
+// `+` (if present) must be the very first character — not just "somewhere
+// in the string" — otherwise digit soups like `232+98374593453` would slip
+// through as if they were a phone number.
+const LEGACY_PHONE_REGEX = /^\+?[()\d\s-]+$/
+// A real subscriber number is realistically at least 7 digits; E.164 caps a
+// phone number at 15 digits total (country code included).
+const MIN_LEGACY_DIGITS = 7
+const MAX_LEGACY_DIGITS = 15
 
 function normalize(value) {
   return typeof value === 'string' ? value.replace(/[\s-]/g, '') : value
@@ -19,9 +25,14 @@ function isIrlFormat(normalized) {
 function isLegacyPhone(value) {
   if (typeof value !== 'string') return false
 
-  const digitCount = (value.match(/\d/g) || []).length
+  const trimmed = value.trim()
+  const digitCount = (trimmed.match(/\d/g) || []).length
 
-  return LEGACY_PHONE_REGEX.test(value.trim()) && digitCount >= MIN_LEGACY_DIGITS
+  return (
+    LEGACY_PHONE_REGEX.test(trimmed) &&
+    digitCount >= MIN_LEGACY_DIGITS &&
+    digitCount <= MAX_LEGACY_DIGITS
+  )
 }
 
 function formatIrl(normalized) {

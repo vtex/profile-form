@@ -45,6 +45,22 @@ describe('IRL phone validation', () => {
     it('rejects input that is too short to be a phone number', () => {
       expect(validate('12')).toBe(false)
     })
+
+    it('rejects a "+" that is not the leading character', () => {
+      expect(validate('232+983745934534534')).toBe(false)
+    })
+
+    it('rejects a digit string longer than E.164 allows (15 digits)', () => {
+      expect(validate('1234567890123456')).toBe(false)
+    })
+
+    it('rejects a legacy-looking value shorter than a real subscriber number (6 digits)', () => {
+      expect(validate('123456')).toBe(false)
+    })
+
+    it('accepts a legacy-looking value at the minimum realistic length (7 digits)', () => {
+      expect(validate('1234567')).toBe(true)
+    })
   })
 
   describe('mask / display', () => {
