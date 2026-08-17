@@ -2,24 +2,9 @@ import msk from 'msk'
 
 import { isPastDate } from '../utils/dateRules'
 
-// `@vtex/phone` has no native `IRL` country module (there is no
-// `@vtex/phone/countries/IRL`, and there never was one — see CHANGELOG).
-// Relying on `initializeCountryPhone` + `getPhoneFields` (as done for other
-// countries) breaks the build for Ireland, so this rule implements its own
-// phone validation/masking instead. See specs/irl-phone-format-validation.md
-// for the full rationale (Decision 1).
-
-// Confirmed valid formats (ticket #1447585 / OMS-9318, dunnesstores):
-//   mobile:             +353 87 123 4567
-//   landline (Dublin):  +353 1 123 4567
 const IRL_MOBILE_REGEX = /^\+3538\d{8}$/
 const IRL_LANDLINE_REGEX = /^\+3531\d{7}$/
 
-// Before this fix, IRL had no phone validation at all, so shoppers may
-// already have a phone number saved in an unrelated/free-form format. That
-// data must never be rejected or altered just because it doesn't match the
-// two formats above (Decision 2) — it's left untouched by mask/display/submit
-// and still accepted by validate.
 const LEGACY_PHONE_REGEX = /^[+()\d\s-]+$/
 const MIN_LEGACY_DIGITS = 4
 
@@ -51,9 +36,6 @@ function formatIrl(normalized) {
   return null
 }
 
-// Only values matching one of the confirmed formats are reformatted/
-// normalized. Anything else (legacy free-form data) passes through
-// unchanged, at every stage (mask, display and submit).
 function processIrlPhone(value, formatter) {
   const normalized = normalize(value)
 
