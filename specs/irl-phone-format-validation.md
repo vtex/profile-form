@@ -7,15 +7,15 @@
 
 ### Problem Statement
 
-Ticket [#1447585](https://vtexhelp.zendesk.com/agent/tickets/1447585) (Jira [OMS-9318](https://vtex-dev.atlassian.net/browse/OMS-9318), customer `dunnesstores`) reports that Irish (`IRL`) phone numbers in My Account have no real format validation today. `react/rules/IRL.js` on the `3.x` line registers the country but never wires phone masking/validation into the `homePhone`/`businessPhone` fields (the `getPhoneFields` spread added in PR #214 was never actually applied to those fields).
+Irish (`IRL`) phone numbers in the My Account profile form currently have no real format validation: `react/rules/IRL.js` registers the country but never wires any phone masking/validation into the `homePhone`/`businessPhone` fields.
 
-A previous attempt to fix this, PR #215 (`fix/restore-irl-phone-validation`), tried to add native support by importing `@vtex/phone/countries/IRL`. That country module **does not exist** in the `@vtex/phone` package (checked installed `v4.17.4` and its `CHANGELOG.md` — Ireland was never shipped there), so that PR breaks the build/runtime and cannot be merged as-is. This is the "deve ser feito de uma forma diferente" the customer/team flagged in the Slack thread — the fix needs a self-contained implementation instead of relying on the library's country registry.
+A prior attempt to fix this tried to reuse `@vtex/phone`'s native country support (`initializeCountryPhone` + `getPhoneFields`, importing `@vtex/phone/countries/IRL`). That country module does not exist in the `@vtex/phone` package — Ireland was never shipped there — so that approach breaks the build/runtime and cannot be used. A self-contained implementation is needed instead of relying on the library's country registry.
 
-The customer confirmed two valid formats and separately asked whether adding validation would affect **existing** customers who already have a phone number saved. Internal discussion (Gabriel Barros / Wagner Duarte) confirmed that yes — if validation is applied strictly, an existing shopper editing any profile field (even unrelated ones) would be blocked until they fix an old phone number that doesn't match the new pattern. The agreed direction is that the new formats must be accepted **in addition to** the previous unrestricted format, so existing data is never invalidated.
+Two valid Irish phone formats need to be recognized (mobile and Dublin landline). Any fix also needs to consider shoppers who already have a phone number saved under the current (unvalidated) regime: if the new validation is applied strictly, an existing shopper editing any profile field — even an unrelated one — could be blocked until they fix an old phone number that doesn't match the new pattern. The new formats must be accepted **in addition to** the previous unrestricted format, so existing data is never invalidated.
 
 ### Goals
 
-- Recognize and correctly format the two confirmed Irish phone formats (mobile and Dublin landline) on the My Account profile form.
+- Recognize and correctly format the two valid Irish phone formats (mobile and Dublin landline) on the My Account profile form.
 - Never invalidate a profile edit because of a phone number that was already saved before this fix (backward compatibility for existing shoppers).
 - Ship the fix without depending on `@vtex/phone`'s country registry, since it has no Ireland definition.
 
@@ -23,7 +23,7 @@ The customer confirmed two valid formats and separately asked whether adding val
 
 #### US-1: New Irish phone number is recognized
 
-- **Story**: As a `dunnesstores` shopper filling in my profile, I want my Irish mobile or Dublin landline number to be recognized as valid, so that I can save my profile without being blocked by generic/absent validation.
+- **Story**: As a shopper filling in my profile, I want my Irish mobile or Dublin landline number to be recognized as valid, so that I can save my profile without being blocked by generic/absent validation.
 - **Acceptance Criteria**:
   - **Given** a profile form with `homePhone` (or `businessPhone`) empty, **when** the shopper enters `+353 87 123 4567`, **then** the field validates successfully and is masked/displayed consistently.
   - **Given** the same conditions, **when** the shopper enters `+353 1 123 4567`, **then** the field validates successfully and is masked/displayed consistently.
@@ -93,8 +93,8 @@ flowchart TD
 
 | Alternative | Pros | Cons | Verdict |
 |---|---|---|---|
-| Use `@vtex/phone` country registry (`initializeCountryPhone` + `getPhoneFields`, as PR #215 attempted) | Reuses existing helper shared by other countries | `@vtex/phone` has no `IRL` module; import fails at build/runtime | Rejected — this is the exact bug in PR #215 |
-| Strict validation matching only the 2 new formats | Guarantees canonical format going forward | Blocks existing shoppers from editing unrelated profile fields if their saved number doesn't conform (per Wagner's concern) | Rejected — conflicts with confirmed business decision |
+| Use `@vtex/phone` country registry (`initializeCountryPhone` + `getPhoneFields`) | Reuses existing helper shared by other countries | `@vtex/phone` has no `IRL` module; import fails at build/runtime | Rejected — this is exactly why the prior attempt failed |
+| Strict validation matching only the 2 new formats | Guarantees canonical format going forward | Blocks existing shoppers from editing unrelated profile fields if their saved number doesn't conform | Rejected — conflicts with the confirmed business decision |
 | Custom permissive regex validate/mask in `IRL.js` (new formats + legacy fallback) | Satisfies both asks: correct guidance for new entries, zero breakage for existing data; no dependency on missing library country | Legacy non-conformant numbers are never forced to normalize | **Accepted** |
 
 ### Risks & Mitigations
@@ -104,14 +104,14 @@ flowchart TD
 | Regex too strict, rejects valid spacing/format variants | Medium | Medium | Normalize input (strip spaces/dashes) before matching; test with variants before merge |
 | Permissive fallback means malformed new input could slip through as "legacy" | Low | Medium | Accepted trade-off per business decision; scope fallback to preserve only unchanged/previously-stored values where feasible |
 | `master` line still has no IRL support at all | Low | Low | Out of scope for this fix; track as separate follow-up if a `master`-based store requests it |
-| Confusion with the still-open, broken PR #215 | Medium | Medium | Close PR #215 once this fix merges, referencing this spec/PR as the replacement |
+| Confusion with a still-open, broken prior pull request attempting the same fix | Medium | Medium | Close that PR once this fix merges, referencing this spec/PR as the replacement |
 
 ### Key Decisions
 
 #### Decision 1: Do not use `@vtex/phone`'s country registry for IRL
 
 - **Status**: Accepted
-- **Context**: `@vtex/phone` has no `IRL` entry under `countries/`, in any released version. PR #215 imports `@vtex/phone/countries/IRL`, which breaks build/runtime.
+- **Context**: `@vtex/phone` has no `IRL` entry under `countries/`, in any released version. Importing `@vtex/phone/countries/IRL` breaks build/runtime.
 - **Decision**: Implement `homePhone`/`businessPhone` validation and masking as custom logic inside `react/rules/IRL.js`, without calling `initializeCountryPhone` or `getPhoneFields` for `IRL`.
 - **Consequences**: Slightly more duplicated logic vs. countries backed by the library, but no broken dependency and no need to patch/wait on `@vtex/phone`.
 
@@ -125,17 +125,17 @@ flowchart TD
 #### Decision 3: Fix targets the `3.x` line, not `master`
 
 - **Status**: Accepted
-- **Context**: `react/rules/IRL.js` only exists on `3.x` (added by PR #214, merged there). It doesn't exist on `master`. The original `hotfix/irl-phone-validation` branch was based on `master` and therefore had nothing to fix.
-- **Decision**: Implement and ship this fix on branch `fix/irl-phone-format-validation`, based on `origin/3.x`.
+- **Context**: `react/rules/IRL.js` only exists on the `3.x` release line. It doesn't exist on `master`.
+- **Decision**: Implement and ship this fix on a branch based on `origin/3.x`.
 - **Consequences**: `master`/newer Storefront lines remain without IRL rules until a separate effort ports this forward, if ever requested.
 
 ### Implementation Plan
 
-1. On `fix/irl-phone-format-validation` (based on `origin/3.x`), update `react/rules/IRL.js`: keep existing `personalFields`/`businessFields`, add custom `mask`/`validate`/`display`/`submit` for `homePhone` and `businessPhone`.
+1. On a branch based on `origin/3.x`, update `react/rules/IRL.js`: keep existing `personalFields`/`businessFields`, add custom `mask`/`validate`/`display`/`submit` for `homePhone` and `businessPhone`.
 2. Implement regex helpers for the two confirmed formats with input normalization (strip spaces/dashes) — no import of `@vtex/phone/countries/IRL`.
 3. Add unit tests: new mobile format, new landline format, legacy/free-form existing value (must still validate), and a clearly invalid input case.
-4. Manually verify via local render against the examples from the ticket.
-5. Open PR against `3.x`; reference this spec and close PR #215 as superseded.
+4. Manually verify via local render.
+5. Open a PR against `3.x`, referencing this spec.
 
 ---
 
