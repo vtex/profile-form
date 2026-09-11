@@ -12,7 +12,10 @@ describe('IRL phone validation', () => {
   })
 
   describe('validate', () => {
-    // US-1: only the two confirmed formats are recognized
+    // US-1: only the two confirmed formats are recognized. Neither format
+    // pins a specific leading digit — mobile network prefixes and landline
+    // area codes both vary, so validation is by shape (digit count per
+    // group), not by a hardcoded prefix digit.
     it('accepts the confirmed mobile format', () => {
       expect(validate('+353 87 123 4567')).toBe(true)
     })
@@ -21,12 +24,24 @@ describe('IRL phone validation', () => {
       expect(validate('+353871234567')).toBe(true)
     })
 
+    it('accepts a mobile-shaped number with a different network prefix', () => {
+      // Irish mobile prefixes include 83/85/86/87/88/89 — none is hardcoded
+      expect(validate('+353 83 123 4567')).toBe(true)
+      expect(validate('+353 89 123 4567')).toBe(true)
+    })
+
     it('accepts the confirmed Dublin landline format', () => {
       expect(validate('+353 1 123 4567')).toBe(true)
     })
 
     it('accepts the confirmed Dublin landline format without spacing', () => {
       expect(validate('+35311234567')).toBe(true)
+    })
+
+    it('accepts a landline-shaped number with a different area code digit', () => {
+      // e.g. Cork/Limerick/Galway-style single leading digit — not hardcoded to Dublin's "1"
+      expect(validate('+353 2 123 4567')).toBe(true)
+      expect(validate('+353 6 123 4567')).toBe(true)
     })
 
     it('accepts an empty value at the validate() level (required is enforced upstream)', () => {
@@ -62,6 +77,14 @@ describe('IRL phone validation', () => {
     it('rejects a mobile-shaped number with the wrong country code', () => {
       expect(validate('+1 87 123 4567')).toBe(false)
     })
+
+    it('rejects a number that is one digit short of either shape (7 digits)', () => {
+      expect(validate('+353 1234567')).toBe(false)
+    })
+
+    it('rejects a number that is one digit too long for either shape (10 digits)', () => {
+      expect(validate('+353 1234567890')).toBe(false)
+    })
   })
 
   describe('required + empty value, via the shared validation pipeline', () => {
@@ -90,6 +113,11 @@ describe('IRL phone validation', () => {
 
     it('formats an unformatted landline number into the confirmed format', () => {
       expect(mask('+35311234567')).toBe('+353 1 123 4567')
+    })
+
+    it('formats by shape regardless of the leading digit', () => {
+      expect(mask('+35321234567')).toBe('+353 2 123 4567')
+      expect(mask('+353831234567')).toBe('+353 83 123 4567')
     })
 
     it('is idempotent for an already-formatted number', () => {

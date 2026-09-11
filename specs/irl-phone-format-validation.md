@@ -158,8 +158,8 @@ No new data models. `homePhone`/`businessPhone` remain plain string fields on th
 
 ### Invariants & Constraints
 
-- `validate()` must never reject a phone value that was accepted under the pre-existing (no-validation) regime.
-- `validate()` must accept `+353 87 123 4567` and `+353 1 123 4567`, plus reasonable spacing variants of each.
+- `validate()` must never reject a phone value that was accepted under the pre-existing (no-validation) regime. **(Superseded by [§4 Revision](#4-revision--2026-09-11) Decision 2 — the legacy fallback was removed; only the two confirmed shapes, or empty, now validate.)**
+- `validate()` must accept `+353 87 123 4567` and `+353 1 123 4567`, plus reasonable spacing variants of each — and, per [§4 Revision](#4-revision--2026-09-11) Decision 5, any other value of the same shape (`XX XXX XXXX` / `X XXX XXXX`) regardless of leading digit.
 - Must not import or depend on `@vtex/phone/countries/IRL`.
 - Change is scoped to the `3.x` release line of `profile-form` only.
 
@@ -186,6 +186,13 @@ Field feedback after shipping the original version of this fix: shoppers were ab
 - **Context**: The phone field was expected/communicated as required but was not enforced as such by the form.
 - **Decision**: Both `homePhone` (personalFields) and `businessPhone` (businessFields) in `react/rules/IRL.js` are now declared with `required: true`. This only changes IRL — no other country rule file is touched, and no other country's phone field becomes required.
 - **Consequences**: An empty phone value now produces `EMPTY_FIELD` via `applyValidation()`, consistent with how `firstName`/`lastName` already behave in this file. A shopper without a phone number on file will be required to enter one (in one of the two confirmed formats) the next time they touch the profile form.
+
+### Decision 5: validate by shape (digit count per group), not by a hardcoded leading digit
+
+- **Status**: Accepted
+- **Context**: The initial implementation of Decision 2/§2 hardcoded the mobile format as literally starting with digit `8` (`+3538\d{8}`) and the landline format as literally starting with digit `1` (`+3531\d{7}`). This is wrong: Irish mobile network prefixes vary (`83`/`85`/`86`/`87`/`88`/`89`, all starting with `8`, so this specific case happened to still work) but Irish landline area codes vary by city and are **not** all `1` (Dublin is `01` → `1`, but Cork is `021` → `21`, Limerick `061` → `61`, Galway `091` → `91`, etc.) — hardcoding `1` as the only accepted landline prefix silently rejected every non-Dublin landline shaped like `+353 X XXX XXXX` with a different leading digit.
+- **Decision**: `IRL_MOBILE_REGEX`/`IRL_LANDLINE_REGEX` no longer pin any specific leading digit. Validation and masking are done purely by **shape**: mobile is any `+353` followed by exactly 9 digits, grouped/displayed as `XX XXX XXXX`; landline is any `+353` followed by exactly 8 digits, grouped/displayed as `X XXX XXXX`. The two shapes are unambiguous by digit count alone (8 vs. 9 digits after `+353`), so there is no overlap between them.
+- **Consequences**: Both formats now accept any leading digit(s), matching the two examples from the original request (`+353 87 123 4567`, `+353 1 123 4567`) as specific instances of a general shape rather than as literal templates. This is intentionally permissive about *which* digits appear — it does not validate against the real ComReg-assigned prefix list — trading a small amount of precision for correctness across all Irish area/network codes without maintaining a prefix allowlist. If a tighter, prefix-accurate validation is ever requested, it would need the official list of assigned Irish mobile/landline prefixes as an explicit follow-up input, not an assumption baked into this fix.
 
 ### Updated Acceptance Criteria
 

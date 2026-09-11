@@ -2,8 +2,8 @@ import msk from 'msk'
 
 import { isPastDate } from '../utils/dateRules'
 
-const IRL_MOBILE_REGEX = /^\+3538\d{8}$/
-const IRL_LANDLINE_REGEX = /^\+3531\d{7}$/
+const IRL_MOBILE_REGEX = /^\+353\d{9}$/
+const IRL_LANDLINE_REGEX = /^\+353\d{8}$/
 
 function normalize(value) {
   return typeof value === 'string' ? value.replace(/[\s-]/g, '') : value
