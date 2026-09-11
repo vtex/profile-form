@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- IRL `homePhone`/`businessPhone`: only the two confirmed formats (`+353 8X XXX XXXX`, `+353 1 XXX XXXX`) are now accepted — the permissive free-form fallback was letting other formats through
+- IRL `homePhone`/`businessPhone` are now `required`, fixing a bug that allowed saving the profile with an empty phone number
+
 ## [3.19.6] - 2026-09-09
 
 ### Added
