@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- IRL `homePhone`/`businessPhone`: only the two confirmed shapes (`XX XXX XXXX` mobile, `X XXX XXXX` landline, e.g. `+353 87 123 4567` / `+353 1 123 4567`) are now accepted — the permissive free-form fallback was letting other formats through
+- IRL `homePhone`/`businessPhone` validation no longer hardcodes the mobile prefix as `8` or the landline prefix as `1` — any leading digit(s) of the right shape are accepted, since Irish mobile/landline prefixes vary
+- IRL `homePhone`/`businessPhone` are now `required`, fixing a bug that allowed saving the profile with an empty phone number
+
 ## [3.19.6] - 2026-09-09
 
 ### Added

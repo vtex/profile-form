@@ -1,6 +1,6 @@
 # IRL Phone Format Validation
 
-> **Status**: Done
+> **Status**: Done (revised 2026-09-11 — see [§4 Revision](#4-revision--2026-09-11))
 > **Created**: 2026-08-17
 
 ## 1. Business Context
@@ -158,7 +158,44 @@ No new data models. `homePhone`/`businessPhone` remain plain string fields on th
 
 ### Invariants & Constraints
 
-- `validate()` must never reject a phone value that was accepted under the pre-existing (no-validation) regime.
-- `validate()` must accept `+353 87 123 4567` and `+353 1 123 4567`, plus reasonable spacing variants of each.
+- `validate()` must never reject a phone value that was accepted under the pre-existing (no-validation) regime. **(Superseded by [§4 Revision](#4-revision--2026-09-11) Decision 2 — the legacy fallback was removed; only the two confirmed shapes, or empty, now validate.)**
+- `validate()` must accept `+353 87 123 4567` and `+353 1 123 4567`, plus reasonable spacing variants of each — and, per [§4 Revision](#4-revision--2026-09-11) Decision 5, any other value of the same shape (`XX XXX XXXX` / `X XXX XXXX`) regardless of leading digit.
 - Must not import or depend on `@vtex/phone/countries/IRL`.
 - Change is scoped to the `3.x` release line of `profile-form` only.
+
+---
+
+## 4. Revision — 2026-09-11
+
+### Context
+
+Field feedback after shipping the original version of this fix: shoppers were able to save `homePhone`/`businessPhone` in formats other than the two confirmed IRL formats, and were also able to save the field empty despite it being expected to be required. Root causes:
+
+1. The permissive legacy-shape fallback from **Decision 2** (§2) — accepted at the time as a scoped trade-off — was, in practice, wide enough to accept new non-conforming input, not just genuinely pre-existing free-form data. This was flagged as a residual risk in the original Risks & Mitigations table and has now materialized as a reported issue.
+2. `homePhone`/`businessPhone` were never marked `required: true` in `react/rules/IRL.js` (consistent with every other country rule file, none of which marks phone as required at this layer). `applyValidation()` (`react/modules/validateProfile.js`) only blocks an empty value when `field.required` is `true`, so an empty phone was never rejected.
+
+### Decision 2 (superseded): remove the legacy fallback
+
+- **Status**: Superseded — see original Decision 2 in §2 for historical context.
+- **Decision**: `validate()` in `react/rules/IRL.js` now accepts **only** the two confirmed formats (mobile `+353 8X XXX XXXX`, landline `+353 1 XXX XXXX`, with reasonable spacing variants) or an empty value (empty is handled separately by `required`, see below). The permissive free-form/legacy shape fallback (`isLegacyPhone`, `LEGACY_PHONE_REGEX`, digit-count bounds) has been removed entirely.
+- **Consequences**: A shopper who already has a phone number saved in the old, unrestricted format will now be blocked by the `INVALID_FIELD` phone error if they submit the profile form without first correcting the phone number — including when editing an unrelated field (e.g. `firstName`). This reopens the exact regression that the original Decision 2 was written to avoid (see US-2 in §1, now superseded). This trade-off was made deliberately, prioritizing "never accept a new non-conforming number" over "never re-surface an old one" — accepted as a conscious business decision, not an oversight. If the resulting support burden from blocked existing shoppers turns out to be unacceptable, the precise fix flagged as out-of-scope in the original version (passing the field's initial/saved value into `validate()`, a shared contract change across `ProfileField`/`validateProfile.js` and every country rule file) is the follow-up to revisit.
+
+### Decision 4: mark `homePhone`/`businessPhone` as `required` in IRL
+
+- **Status**: Accepted
+- **Context**: The phone field was expected/communicated as required but was not enforced as such by the form.
+- **Decision**: Both `homePhone` (personalFields) and `businessPhone` (businessFields) in `react/rules/IRL.js` are now declared with `required: true`. This only changes IRL — no other country rule file is touched, and no other country's phone field becomes required.
+- **Consequences**: An empty phone value now produces `EMPTY_FIELD` via `applyValidation()`, consistent with how `firstName`/`lastName` already behave in this file. A shopper without a phone number on file will be required to enter one (in one of the two confirmed formats) the next time they touch the profile form.
+
+### Decision 5: validate by shape (digit count per group), not by a hardcoded leading digit
+
+- **Status**: Accepted
+- **Context**: The initial implementation of Decision 2/§2 hardcoded the mobile format as literally starting with digit `8` (`+3538\d{8}`) and the landline format as literally starting with digit `1` (`+3531\d{7}`). This is wrong: Irish mobile network prefixes vary (`83`/`85`/`86`/`87`/`88`/`89`, all starting with `8`, so this specific case happened to still work) but Irish landline area codes vary by city and are **not** all `1` (Dublin is `01` → `1`, but Cork is `021` → `21`, Limerick `061` → `61`, Galway `091` → `91`, etc.) — hardcoding `1` as the only accepted landline prefix silently rejected every non-Dublin landline shaped like `+353 X XXX XXXX` with a different leading digit.
+- **Decision**: `IRL_MOBILE_REGEX`/`IRL_LANDLINE_REGEX` no longer pin any specific leading digit. Validation and masking are done purely by **shape**: mobile is any `+353` followed by exactly 9 digits, grouped/displayed as `XX XXX XXXX`; landline is any `+353` followed by exactly 8 digits, grouped/displayed as `X XXX XXXX`. The two shapes are unambiguous by digit count alone (8 vs. 9 digits after `+353`), so there is no overlap between them.
+- **Consequences**: Both formats now accept any leading digit(s), matching the two examples from the original request (`+353 87 123 4567`, `+353 1 123 4567`) as specific instances of a general shape rather than as literal templates. This is intentionally permissive about *which* digits appear — it does not validate against the real ComReg-assigned prefix list — trading a small amount of precision for correctness across all Irish area/network codes without maintaining a prefix allowlist. If a tighter, prefix-accurate validation is ever requested, it would need the official list of assigned Irish mobile/landline prefixes as an explicit follow-up input, not an assumption baked into this fix.
+
+### Updated Acceptance Criteria
+
+- **Given** a profile form with `homePhone` (or `businessPhone`) containing a value that does not match either confirmed IRL format (new or previously saved), **when** the shopper submits the form, **then** the field fails validation with `INVALID_FIELD`.
+- **Given** a profile form with `homePhone` (or `businessPhone`) empty, **when** the shopper submits the form, **then** the field fails validation with `EMPTY_FIELD`.
+- **Given** a profile form with `homePhone` (or `businessPhone`) containing `+353 87 123 4567` or `+353 1 123 4567` (or a reasonable spacing variant of either), **when** the shopper submits the form, **then** the field validates successfully.
