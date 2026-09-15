@@ -3,6 +3,14 @@
 > **Status**: Done (revised 2026-09-11 — see [§4 Revision](#4-revision--2026-09-11))
 > **Created**: 2026-08-17
 
+> ⚠️ **Sections 1–3 describe the ORIGINAL design and are kept for historical
+> context only.** The backward-compatibility/legacy-fallback requirements
+> they describe (in particular the Goals bullet and Functional/Non-Functional
+> Requirements about never invalidating a previously-saved value) were
+> **superseded** by [§4 Revision](#4-revision--2026-09-11) Decision 2, which
+> removed that fallback. **§4 is the current, active contract** — read it
+> alongside §1–3 rather than in isolation.
+
 ## 1. Business Context
 
 ### Problem Statement
@@ -159,7 +167,7 @@ No new data models. `homePhone`/`businessPhone` remain plain string fields on th
 ### Invariants & Constraints
 
 - `validate()` must never reject a phone value that was accepted under the pre-existing (no-validation) regime. **(Superseded by [§4 Revision](#4-revision--2026-09-11) Decision 2 — the legacy fallback was removed; only the two confirmed shapes, or empty, now validate.)**
-- `validate()` must accept `+353 87 123 4567` and `+353 1 123 4567`, plus reasonable spacing variants of each — and, per [§4 Revision](#4-revision--2026-09-11) Decision 5, any other value of the same shape (`XX XXX XXXX` / `X XXX XXXX`) regardless of leading digit.
+- `validate()` must accept `+353 87 123 4567` and `+353 1 123 4567`, plus reasonable spacing variants of each — and, per [§4 Revision](#4-revision--2026-09-11) Decision 6, any other value of the same shape (mobile: leading `8` + 9 digits total; landline: non-`8` leading digit + 8 or 9 digits total).
 - Must not import or depend on `@vtex/phone/countries/IRL`.
 - Change is scoped to the `3.x` release line of `profile-form` only.
 
@@ -177,7 +185,7 @@ Field feedback after shipping the original version of this fix: shoppers were ab
 ### Decision 2 (superseded): remove the legacy fallback
 
 - **Status**: Superseded — see original Decision 2 in §2 for historical context.
-- **Decision**: `validate()` in `react/rules/IRL.js` now accepts **only** the two confirmed formats (mobile `+353 8X XXX XXXX`, landline `+353 1 XXX XXXX`, with reasonable spacing variants) or an empty value (empty is handled separately by `required`, see below). The permissive free-form/legacy shape fallback (`isLegacyPhone`, `LEGACY_PHONE_REGEX`, digit-count bounds) has been removed entirely.
+- **Decision**: `validate()` in `react/rules/IRL.js` now accepts **only** the two confirmed shapes — mobile (`XX XXX XXXX`, e.g. `+353 87 123 4567`) and landline (`X XXX XXXX` or `XX XXX XXXX`, e.g. `+353 1 123 4567`), with reasonable spacing variants — or an empty value (empty is handled separately by `required`, see below). The permissive free-form/legacy shape fallback (`isLegacyPhone`, `LEGACY_PHONE_REGEX`, digit-count bounds) has been removed entirely. The exact digit-shape rule is refined further in Decision 6.
 - **Consequences**: A shopper who already has a phone number saved in the old, unrestricted format will now be blocked by the `INVALID_FIELD` phone error if they submit the profile form without first correcting the phone number — including when editing an unrelated field (e.g. `firstName`). This reopens the exact regression that the original Decision 2 was written to avoid (see US-2 in §1, now superseded). This trade-off was made deliberately, prioritizing "never accept a new non-conforming number" over "never re-surface an old one" — accepted as a conscious business decision, not an oversight. If the resulting support burden from blocked existing shoppers turns out to be unacceptable, the precise fix flagged as out-of-scope in the original version (passing the field's initial/saved value into `validate()`, a shared contract change across `ProfileField`/`validateProfile.js` and every country rule file) is the follow-up to revisit.
 
 ### Decision 4: mark `homePhone`/`businessPhone` as `required` in IRL
@@ -187,12 +195,26 @@ Field feedback after shipping the original version of this fix: shoppers were ab
 - **Decision**: Both `homePhone` (personalFields) and `businessPhone` (businessFields) in `react/rules/IRL.js` are now declared with `required: true`. This only changes IRL — no other country rule file is touched, and no other country's phone field becomes required.
 - **Consequences**: An empty phone value now produces `EMPTY_FIELD` via `applyValidation()`, consistent with how `firstName`/`lastName` already behave in this file. A shopper without a phone number on file will be required to enter one (in one of the two confirmed formats) the next time they touch the profile form.
 
-### Decision 5: validate by shape (digit count per group), not by a hardcoded leading digit
+### Decision 5 (superseded): validate by digit count alone, with no leading-digit constraint on either format
+
+- **Status**: Superseded — see Decision 6 below. Kept for historical context.
+- **Context**: The initial implementation of Decision 2/§2 hardcoded the mobile format as literally starting with digit `8` (`+3538\d{8}`) and the landline format as literally starting with digit `1` (`+3531\d{7}`). Landline area codes vary by city and are **not** all `1` (Dublin is `01` → `1`, but Cork is `021` → `21`, Limerick `061` → `61`, Galway `091` → `91`, etc.) — hardcoding `1` as the only accepted landline prefix silently rejected every non-Dublin landline.
+- **Decision (superseded)**: `IRL_MOBILE_REGEX`/`IRL_LANDLINE_REGEX` were changed to not pin any specific leading digit at all, validating purely by digit count: mobile = exactly 9 digits after `+353`, landline = exactly 8 digits after `+353`.
+- **Why it was superseded**: this over-corrected. Removing the leading-digit constraint from *mobile* as well reintroduced ambiguity between the two formats: an in-progress/truncated mobile number (8 digits typed so far, e.g. `+35387123456`) is indistinguishable by digit count from a complete 8-digit Dublin landline, so it validated and was mask-formatted as a landline. Caught in code review (see PR #220) before merge — no production impact.
+
+### Decision 6: mobile keeps its leading-8 constraint; landline is shape-only (8 or 9 digits, never leading 8)
 
 - **Status**: Accepted
-- **Context**: The initial implementation of Decision 2/§2 hardcoded the mobile format as literally starting with digit `8` (`+3538\d{8}`) and the landline format as literally starting with digit `1` (`+3531\d{7}`). This is wrong: Irish mobile network prefixes vary (`83`/`85`/`86`/`87`/`88`/`89`, all starting with `8`, so this specific case happened to still work) but Irish landline area codes vary by city and are **not** all `1` (Dublin is `01` → `1`, but Cork is `021` → `21`, Limerick `061` → `61`, Galway `091` → `91`, etc.) — hardcoding `1` as the only accepted landline prefix silently rejected every non-Dublin landline shaped like `+353 X XXX XXXX` with a different leading digit.
-- **Decision**: `IRL_MOBILE_REGEX`/`IRL_LANDLINE_REGEX` no longer pin any specific leading digit. Validation and masking are done purely by **shape**: mobile is any `+353` followed by exactly 9 digits, grouped/displayed as `XX XXX XXXX`; landline is any `+353` followed by exactly 8 digits, grouped/displayed as `X XXX XXXX`. The two shapes are unambiguous by digit count alone (8 vs. 9 digits after `+353`), so there is no overlap between them.
-- **Consequences**: Both formats now accept any leading digit(s), matching the two examples from the original request (`+353 87 123 4567`, `+353 1 123 4567`) as specific instances of a general shape rather than as literal templates. This is intentionally permissive about *which* digits appear — it does not validate against the real ComReg-assigned prefix list — trading a small amount of precision for correctness across all Irish area/network codes without maintaining a prefix allowlist. If a tighter, prefix-accurate validation is ever requested, it would need the official list of assigned Irish mobile/landline prefixes as an explicit follow-up input, not an assumption baked into this fix.
+- **Context**: Every Irish mobile number does start with `8` (network prefixes `83`/`85`/`86`/`87`/`88`/`89` — the second digit varies, not the first), so pinning mobile's leading digit to `8` is factually correct and not an over-fit to the single "87" example. Landline area codes, by contrast, genuinely vary in both leading digit and length: Dublin uses a 1-digit code (`1`, 8 digits total after `+353`), while Cork/Limerick/Galway/etc. use a 2-digit code (`21`/`61`/`91`/..., 9 digits total) — none of them is `8`, since `8` is reserved for mobile.
+- **Decision**: `IRL_MOBILE_REGEX = /^\+3538\d{8}$/` (leading `8`, 9 digits total). `IRL_LANDLINE_REGEX = /^\+353(?!8)\d{8,9}$/` (any non-`8` leading digit, 8 **or** 9 digits total — covering both Dublin's 1-digit and other cities' 2-digit area codes). `formatIrl()` groups a landline as `X XXX XXXX` when it has 8 digits or `XX XXX XXXX` when it has 9, and a mobile always as `XX XXX XXXX`.
+- **Consequences**: The two formats are unambiguous at every prefix of input — a partially-typed mobile can never be mistaken for a complete landline, because the leading `8` is exclusive to mobile. Landline still doesn't validate against the real ComReg-assigned area-code list (any non-`8` leading digit of the right length passes), which remains an intentional trade-off — see Decision 5's original context — but the mobile/landline overlap bug is closed.
+
+### Decision 7: dashes are an accepted separator, equivalent to spaces
+
+- **Status**: Accepted
+- **Context**: `normalize()` strips both spaces and dashes before matching (`value.replace(/[\s-]/g, '')`), so a value like `+353-87-123-4567` validates and masks the same as `+353 87 123 4567`. Flagged in review as worth confirming was intentional rather than an oversight, since the two confirmed formats are only ever written with spaces.
+- **Decision**: This is intentional and stays as-is. Dashes are a common visual separator for phone numbers (arguably more common than spaces in some locales/inputs), and there's no reason to reject a shopper's input over that choice when the digits are otherwise correct. Covered by an explicit regression test (`react/__tests__/IRL.test.js`).
+- **Consequences**: `validate()`/`mask()`/`submit()` treat spaces and dashes interchangeably as separators; a shopper who types `+353-87-123-4567` sees it re-rendered as `+353 87 123 4567` (the canonical display), and the submitted value is the digits-only `+353871234567`.
 
 ### Updated Acceptance Criteria
 

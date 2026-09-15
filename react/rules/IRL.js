@@ -2,8 +2,15 @@ import msk from 'msk'
 
 import { isPastDate } from '../utils/dateRules'
 
-const IRL_MOBILE_REGEX = /^\+353\d{9}$/
-const IRL_LANDLINE_REGEX = /^\+353\d{8}$/
+// Irish mobile numbers always start with 8 (network prefixes 83/85/86/87/88/89).
+// Landline area codes never start with 8, but vary in length: Dublin's is a
+// single digit (8 digits total after +353), other cities like Cork/Limerick/
+// Galway use a two-digit area code (9 digits total). Pinning mobile to a
+// leading 8 — rather than validating by digit count alone — is what keeps an
+// in-progress/truncated mobile number (8 digits typed so far) from being
+// accepted as a complete landline.
+const IRL_MOBILE_REGEX = /^\+3538\d{8}$/
+const IRL_LANDLINE_REGEX = /^\+353(?!8)\d{8,9}$/
 
 function normalize(value) {
   return typeof value === 'string' ? value.replace(/[\s-]/g, '') : value
@@ -18,11 +25,15 @@ function formatIrl(normalized) {
     return normalized.replace(/^\+353(\d{2})(\d{3})(\d{4})$/, '+353 $1 $2 $3')
   }
 
-  if (IRL_LANDLINE_REGEX.test(normalized)) {
-    return normalized.replace(/^\+353(\d{1})(\d{3})(\d{4})$/, '+353 $1 $2 $3')
-  }
+  if (!IRL_LANDLINE_REGEX.test(normalized)) return null
 
-  return null
+  // Dublin's area code is 1 digit (8 digits total); other cities' area
+  // codes are 2 digits (9 digits total) — group accordingly.
+  const nationalDigits = normalized.length - '+353'.length
+  const AREA_CODE_PATTERN =
+    nationalDigits === 8 ? /^\+353(\d)(\d{3})(\d{4})$/ : /^\+353(\d{2})(\d{3})(\d{4})$/
+
+  return normalized.replace(AREA_CODE_PATTERN, '+353 $1 $2 $3')
 }
 
 function processIrlPhone(value, formatter) {

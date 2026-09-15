@@ -24,10 +24,27 @@ describe('IRL phone validation', () => {
       expect(validate('+353871234567')).toBe(true)
     })
 
+    it('accepts dashes as an equivalent separator to spaces (normalize() strips both)', () => {
+      // Intentional: dashes are a common visual separator for phone numbers
+      // too, so they're treated the same as spaces rather than rejected.
+      expect(validate('+353-87-123-4567')).toBe(true)
+      expect(mask('+353-87-123-4567')).toBe('+353 87 123 4567')
+    })
+
     it('accepts a mobile-shaped number with a different network prefix', () => {
-      // Irish mobile prefixes include 83/85/86/87/88/89 — none is hardcoded
+      // Irish mobile prefixes include 83/85/86/87/88/89 — none is hardcoded,
+      // only the leading 8 (see IRL_MOBILE_REGEX) and the 9-digit length
       expect(validate('+353 83 123 4567')).toBe(true)
       expect(validate('+353 89 123 4567')).toBe(true)
+    })
+
+    it('rejects a truncated/in-progress mobile number as an incomplete landline', () => {
+      // Regression: `+35387123456` is only 8 digits after +353 — one short
+      // of a full mobile — and must NOT be accepted as a valid 8-digit
+      // Dublin landline just because it happens to be the right length.
+      // The leading 8 (reserved for mobile) rules this out of the landline
+      // bucket too.
+      expect(validate('+35387123456')).toBe(false)
     })
 
     it('accepts the confirmed Dublin landline format', () => {
@@ -38,10 +55,21 @@ describe('IRL phone validation', () => {
       expect(validate('+35311234567')).toBe(true)
     })
 
-    it('accepts a landline-shaped number with a different area code digit', () => {
-      // e.g. Cork/Limerick/Galway-style single leading digit — not hardcoded to Dublin's "1"
+    it('accepts a Dublin-shaped landline (8 digits) with a different area code digit', () => {
+      // Shape is validated, not the specific ComReg-assigned code, so any
+      // non-8 leading digit is accepted at this length — not just Dublin's "1"
       expect(validate('+353 2 123 4567')).toBe(true)
-      expect(validate('+353 6 123 4567')).toBe(true)
+    })
+
+    describe('multi-digit area code landlines (Cork/Limerick/Galway-style)', () => {
+      // Non-Dublin Irish landlines use a 2-digit area code (Cork 021, Limerick
+      // 061, Galway 091, ...) which, with the leading 0 dropped, is 9 digits
+      // total after +353 — not 8 like Dublin's single-digit "1".
+      it('accepts a real two-digit area code landline', () => {
+        expect(validate('+353 21 123 4567')).toBe(true) // Cork
+        expect(validate('+353 61 123 4567')).toBe(true) // Limerick
+        expect(validate('+353 91 123 4567')).toBe(true) // Galway
+      })
     })
 
     it('accepts an empty value at the validate() level (required is enforced upstream)', () => {
@@ -115,9 +143,13 @@ describe('IRL phone validation', () => {
       expect(mask('+35311234567')).toBe('+353 1 123 4567')
     })
 
-    it('formats by shape regardless of the leading digit', () => {
+    it('formats an 8-digit landline by shape regardless of the leading digit', () => {
       expect(mask('+35321234567')).toBe('+353 2 123 4567')
       expect(mask('+353831234567')).toBe('+353 83 123 4567')
+    })
+
+    it('formats a two-digit area code landline (Cork/Limerick/Galway-style) into grouped display', () => {
+      expect(mask('+353211234567')).toBe('+353 21 123 4567')
     })
 
     it('is idempotent for an already-formatted number', () => {
@@ -129,6 +161,10 @@ describe('IRL phone validation', () => {
     // silently mangled one.
     it('leaves a non-conforming number untouched', () => {
       expect(mask('016613245')).toBe('016613245')
+    })
+
+    it('does not mask a truncated mobile number as a landline', () => {
+      expect(mask('+35387123456')).toBe('+35387123456')
     })
   })
 
