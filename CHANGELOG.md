@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.19.7] - 2026-09-17
+
 ### Fixed
 
 - IRL `homePhone`/`businessPhone`: only the two confirmed shapes (`XX XXX XXXX` mobile, `X XXX XXXX`/`XX XXX XXXX` landline, e.g. `+353 87 123 4567` / `+353 1 123 4567`) are now accepted — the permissive free-form fallback was letting other formats through
