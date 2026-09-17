@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- IRL `homePhone`/`businessPhone`: only the two confirmed shapes (`XX XXX XXXX` mobile, `X XXX XXXX`/`XX XXX XXXX` landline, e.g. `+353 87 123 4567` / `+353 1 123 4567`) are now accepted — the permissive free-form fallback was letting other formats through
+- IRL `homePhone`/`businessPhone` landline validation no longer hardcodes the area code as `1` — any non-`8` leading digit of the right shape is accepted (e.g. Cork/Limerick/Galway 2-digit area codes), since Irish landline prefixes vary by city
+- Fixed a truncated/in-progress IRL mobile number (e.g. `+35387123456`) being incorrectly accepted and mask-formatted as a complete landline — mobile keeps its leading-`8` constraint specifically to prevent this overlap
+- IRL `homePhone`/`businessPhone` are now `required`, fixing a bug that allowed saving the profile with an empty phone number
+
 ## [3.19.6] - 2026-09-09
 
 ### Added

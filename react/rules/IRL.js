@@ -2,17 +2,15 @@ import msk from 'msk'
 
 import { isPastDate } from '../utils/dateRules'
 
+// Irish mobile numbers always start with 8 (network prefixes 83/85/86/87/88/89).
+// Landline area codes never start with 8, but vary in length: Dublin's is a
+// single digit (8 digits total after +353), other cities like Cork/Limerick/
+// Galway use a two-digit area code (9 digits total). Pinning mobile to a
+// leading 8 — rather than validating by digit count alone — is what keeps an
+// in-progress/truncated mobile number (8 digits typed so far) from being
+// accepted as a complete landline.
 const IRL_MOBILE_REGEX = /^\+3538\d{8}$/
-const IRL_LANDLINE_REGEX = /^\+3531\d{7}$/
-
-// `+` (if present) must be the very first character — not just "somewhere
-// in the string" — otherwise digit soups like `232+98374593453` would slip
-// through as if they were a phone number.
-const LEGACY_PHONE_REGEX = /^\+?[()\d\s-]+$/
-// A real subscriber number is realistically at least 7 digits; E.164 caps a
-// phone number at 15 digits total (country code included).
-const MIN_LEGACY_DIGITS = 7
-const MAX_LEGACY_DIGITS = 15
+const IRL_LANDLINE_REGEX = /^\+353(?!8)\d{8,9}$/
 
 function normalize(value) {
   return typeof value === 'string' ? value.replace(/[\s-]/g, '') : value
@@ -22,29 +20,20 @@ function isIrlFormat(normalized) {
   return IRL_MOBILE_REGEX.test(normalized) || IRL_LANDLINE_REGEX.test(normalized)
 }
 
-function isLegacyPhone(value) {
-  if (typeof value !== 'string') return false
-
-  const trimmed = value.trim()
-  const digitCount = (trimmed.match(/\d/g) || []).length
-
-  return (
-    LEGACY_PHONE_REGEX.test(trimmed) &&
-    digitCount >= MIN_LEGACY_DIGITS &&
-    digitCount <= MAX_LEGACY_DIGITS
-  )
-}
-
 function formatIrl(normalized) {
   if (IRL_MOBILE_REGEX.test(normalized)) {
     return normalized.replace(/^\+353(\d{2})(\d{3})(\d{4})$/, '+353 $1 $2 $3')
   }
 
-  if (IRL_LANDLINE_REGEX.test(normalized)) {
-    return normalized.replace(/^\+353(\d{1})(\d{3})(\d{4})$/, '+353 $1 $2 $3')
-  }
+  if (!IRL_LANDLINE_REGEX.test(normalized)) return null
 
-  return null
+  // Dublin's area code is 1 digit (8 digits total); other cities' area
+  // codes are 2 digits (9 digits total) — group accordingly.
+  const nationalDigits = normalized.length - '+353'.length
+  const AREA_CODE_PATTERN =
+    nationalDigits === 8 ? /^\+353(\d)(\d{3})(\d{4})$/ : /^\+353(\d{2})(\d{3})(\d{4})$/
+
+  return normalized.replace(AREA_CODE_PATTERN, '+353 $1 $2 $3')
 }
 
 function processIrlPhone(value, formatter) {
@@ -66,11 +55,7 @@ function submitIrlPhone(value) {
 function validateIrlPhone(value) {
   if (!value) return true
 
-  const normalized = normalize(value)
-
-  if (isIrlFormat(normalized)) return true
-
-  return isLegacyPhone(value)
+  return isIrlFormat(normalize(value))
 }
 
 function getIrlPhoneFields() {
@@ -107,6 +92,7 @@ export default {
       name: 'homePhone',
       maxLength: 30,
       label: 'homePhone',
+      required: true,
       ...getIrlPhoneFields(),
     },
     {
@@ -137,6 +123,7 @@ export default {
       name: 'businessPhone',
       maxLength: 30,
       label: 'businessPhone',
+      required: true,
       ...getIrlPhoneFields(),
     },
   ],
