@@ -12,8 +12,19 @@ import { isPastDate } from '../utils/dateRules'
 const IRL_MOBILE_REGEX = /^\+3538\d{8}$/
 const IRL_LANDLINE_REGEX = /^\+353(?!8)\d{8,9}$/
 
+// Shoppers frequently type the country code without the leading `+`
+// (e.g. `353 87 123 4567`). That is unambiguous — no Irish area code starts
+// with `3`, so a bare `353…` can only be the country code — and is accepted
+// as equivalent to `+353…`. The value is canonicalized to the `+353` form so
+// mask/display/submit stay identical regardless of how it was typed.
+const IRL_BARE_COUNTRY_CODE_REGEX = /^353\d/
+
 function normalize(value) {
-  return typeof value === 'string' ? value.replace(/[\s-]/g, '') : value
+  if (typeof value !== 'string') return value
+
+  const stripped = value.replace(/[\s-]/g, '')
+
+  return IRL_BARE_COUNTRY_CODE_REGEX.test(stripped) ? `+${stripped}` : stripped
 }
 
 function isIrlFormat(normalized) {
