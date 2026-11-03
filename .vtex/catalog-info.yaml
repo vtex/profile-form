@@ -20,5 +20,5 @@ spec:
   system: orders
   lifecycle: stable
   owner: te-0020
-  type: frontend-ui
+  type: frontend
   dependsOn: []
