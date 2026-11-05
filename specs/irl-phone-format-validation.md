@@ -233,14 +233,15 @@ Zendesk ticket 1476975 (`dunnesstores`): shoppers typing the country code withou
 ### Decision 8: the `+` before the country code is optional
 
 - **Status**: Accepted
-- **Decision**: `normalize()` in `react/rules/IRL.js` now prepends `+` to a value whose stripped digits start with `353` (`IRL_BARE_COUNTRY_CODE_REGEX = /^353\d/`). Everything downstream (`validate`/`mask`/`display`/`submit`) is unchanged and keeps operating on the canonical `+353…` form.
+- **Decision**: `IRL_MOBILE_REGEX` and `IRL_LANDLINE_REGEX` in `react/rules/IRL.js` now accept an optional leading `+` (`^\+?353…`). `normalize()` only strips spaces and dashes; it does **not** add or remove the `+`. `validate`/`mask`/`display`/`submit` preserve whatever the shopper typed.
 - **Why it is safe**: no Irish area code starts with `3` (area codes are `01`, `02x`, `04x`, `05x`, `06x`, `07x`, `09x`), so a bare `353…` can only be the country code — there is no overlap with a national number.
 - **Consequences**:
-  - `353 87 123 4567` and `353 5 555 5557` validate exactly like their `+353` counterparts.
-  - The displayed value is canonicalized to `+353 X XXX XXXX` / `+353 XX XXX XXXX` as soon as the number is complete, and the submitted/stored value is always the E.164 `+353…` form — so Master Data receives a single, consistent format regardless of how the shopper typed it.
-  - **Out of scope (not requested)**: national format with the trunk `0` (`087 123 4567`) and the `00353` international prefix are still rejected. If the merchant asks for them, both would also map unambiguously onto `+353…` and could follow the same `normalize()` approach.
+  - `+353 87 123 4567` and `353 87 123 4567` both validate, with the same digit rules.
+  - The mask only groups the digits and keeps the prefix as typed: `+353871234567` → `+353 87 123 4567`; `353871234567` → `353 87 123 4567`.
+  - The submitted value is the typed number without spaces, with the `+` preserved or absent as typed (`+353871234567` or `353871234567`). Master Data may therefore receive either form.
+  - **Out of scope (not requested)**: national format with the trunk `0` (`087 123 4567`) and the `00353` international prefix are still rejected.
 
 ### Updated Acceptance Criteria
 
-- **Given** `homePhone`/`businessPhone` containing a conforming number typed **without** the `+` (e.g. `353 5 555 5557`), **when** the shopper submits the form, **then** the field validates successfully and the stored value is `+35355555557`.
+- **Given** `homePhone`/`businessPhone` containing a conforming number typed **without** the `+` (e.g. `353 5 555 5557`), **when** the shopper submits the form, **then** the field validates successfully and the value is displayed and stored as typed, without the `+` being added (`35355555557`).
 - Every criterion from §4 still holds unchanged.
