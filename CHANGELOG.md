@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.19.8] - 2026-11-05
+
 ### Fixed
 
 - IRL `homePhone`/`businessPhone`: the `+` before the country code is now optional — both `+353 87 123 4567` and `353 87 123 4567` are accepted, and the value is displayed/submitted as typed (the `+` is neither added nor removed) (OMS-9648)
