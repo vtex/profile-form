@@ -180,13 +180,18 @@ describe('IRL phone validation', () => {
       expect(mask('+353 87 123 4567')).toBe('+353 87 123 4567')
     })
 
-    // OMS-9648: a number typed without the "+" is canonicalized to the
-    // `+353` display form
-    it('adds the "+" to a number typed without it', () => {
-      expect(mask('353871234567')).toBe('+353 87 123 4567')
-      expect(mask('353 87 123 4567')).toBe('+353 87 123 4567')
-      expect(mask('35311234567')).toBe('+353 1 123 4567')
-      expect(mask('353211234567')).toBe('+353 21 123 4567')
+    // OMS-9648: the "+" is optional and is never added or removed — the mask
+    // only groups the digits.
+    it('keeps a number typed without the "+" without the "+"', () => {
+      expect(mask('353871234567')).toBe('353 87 123 4567')
+      expect(mask('353 87 123 4567')).toBe('353 87 123 4567')
+      expect(mask('35311234567')).toBe('353 1 123 4567')
+      expect(mask('353211234567')).toBe('353 21 123 4567')
+    })
+
+    it('keeps a number typed with the "+" with the "+"', () => {
+      expect(mask('+353871234567')).toBe('+353 87 123 4567')
+      expect(mask('+35311234567')).toBe('+353 1 123 4567')
     })
 
     it('leaves an incomplete number typed without the "+" untouched while typing', () => {
@@ -214,11 +219,10 @@ describe('IRL phone validation', () => {
       expect(submit('016613245')).toBe('016613245')
     })
 
-    // OMS-9648: the stored value is always the `+353` E.164 form, even when
-    // the shopper typed the country code without the "+"
-    it('submits a number typed without the "+" in the canonical "+353" form', () => {
-      expect(submit('353 87 123 4567')).toBe('+353871234567')
-      expect(submit('353871234567')).toBe('+353871234567')
+    // OMS-9648: the submitted value keeps the "+" as the shopper typed it
+    it('submits a number typed without the "+" without adding it', () => {
+      expect(submit('353 87 123 4567')).toBe('353871234567')
+      expect(submit('353871234567')).toBe('353871234567')
     })
   })
 })

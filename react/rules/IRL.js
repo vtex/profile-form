@@ -9,22 +9,17 @@ import { isPastDate } from '../utils/dateRules'
 // leading 8 — rather than validating by digit count alone — is what keeps an
 // in-progress/truncated mobile number (8 digits typed so far) from being
 // accepted as a complete landline.
-const IRL_MOBILE_REGEX = /^\+3538\d{8}$/
-const IRL_LANDLINE_REGEX = /^\+353(?!8)\d{8,9}$/
-
-// Shoppers frequently type the country code without the leading `+`
-// (e.g. `353 87 123 4567`). That is unambiguous — no Irish area code starts
-// with `3`, so a bare `353…` can only be the country code — and is accepted
-// as equivalent to `+353…`. The value is canonicalized to the `+353` form so
-// mask/display/submit stay identical regardless of how it was typed.
-const IRL_BARE_COUNTRY_CODE_REGEX = /^353\d/
+// The leading `+` is optional: `+353 87 123 4567` and `353 87 123 4567` are
+// both accepted, and the value is never rewritten to add or drop the `+` —
+// mask/display/submit keep whatever the shopper typed. A bare `353…` is
+// unambiguous because no Irish area code starts with 3.
+const IRL_MOBILE_REGEX = /^\+?3538\d{8}$/
+const IRL_LANDLINE_REGEX = /^\+?353(?!8)\d{8,9}$/
 
 function normalize(value) {
   if (typeof value !== 'string') return value
 
-  const stripped = value.replace(/[\s-]/g, '')
-
-  return IRL_BARE_COUNTRY_CODE_REGEX.test(stripped) ? `+${stripped}` : stripped
+  return value.replace(/[\s-]/g, '')
 }
 
 function isIrlFormat(normalized) {
@@ -33,18 +28,18 @@ function isIrlFormat(normalized) {
 
 function formatIrl(normalized) {
   if (IRL_MOBILE_REGEX.test(normalized)) {
-    return normalized.replace(/^\+353(\d{2})(\d{3})(\d{4})$/, '+353 $1 $2 $3')
+    return normalized.replace(/^(\+?353)(\d{2})(\d{3})(\d{4})$/, '$1 $2 $3 $4')
   }
 
   if (!IRL_LANDLINE_REGEX.test(normalized)) return null
 
   // Dublin's area code is 1 digit (8 digits total); other cities' area
   // codes are 2 digits (9 digits total) — group accordingly.
-  const nationalDigits = normalized.length - '+353'.length
+  const nationalDigits = normalized.replace('+', '').length - '353'.length
   const AREA_CODE_PATTERN =
-    nationalDigits === 8 ? /^\+353(\d)(\d{3})(\d{4})$/ : /^\+353(\d{2})(\d{3})(\d{4})$/
+    nationalDigits === 8 ? /^(\+?353)(\d)(\d{3})(\d{4})$/ : /^(\+?353)(\d{2})(\d{3})(\d{4})$/
 
-  return normalized.replace(AREA_CODE_PATTERN, '+353 $1 $2 $3')
+  return normalized.replace(AREA_CODE_PATTERN, '$1 $2 $3 $4')
 }
 
 function processIrlPhone(value, formatter) {
