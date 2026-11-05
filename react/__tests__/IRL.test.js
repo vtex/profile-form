@@ -47,6 +47,30 @@ describe('IRL phone validation', () => {
       expect(validate('+35387123456')).toBe(false)
     })
 
+    // OMS-9648: the `+` before the country code is optional
+    describe('country code typed without the leading "+"', () => {
+      it('accepts a mobile number without the "+"', () => {
+        expect(validate('353 87 123 4567')).toBe(true)
+        expect(validate('353871234567')).toBe(true)
+      })
+
+      it('accepts a landline number without the "+"', () => {
+        expect(validate('353 1 123 4567')).toBe(true)
+        expect(validate('353 21 123 4567')).toBe(true)
+      })
+
+      it('still rejects a non-conforming number without the "+"', () => {
+        expect(validate('353 87 123 456')).toBe(false) // one digit short
+        expect(validate('353 87 123 45678')).toBe(false) // one digit long
+        expect(validate('35387123456')).toBe(false) // truncated mobile
+      })
+
+      it('does not treat a national-format number (leading 0) as valid', () => {
+        // Only the `+` is optional — the country code itself is still required
+        expect(validate('087 123 4567')).toBe(false)
+      })
+    })
+
     it('accepts the confirmed Dublin landline format', () => {
       expect(validate('+353 1 123 4567')).toBe(true)
     })
@@ -156,6 +180,24 @@ describe('IRL phone validation', () => {
       expect(mask('+353 87 123 4567')).toBe('+353 87 123 4567')
     })
 
+    // OMS-9648: the "+" is optional and is never added or removed — the mask
+    // only groups the digits.
+    it('keeps a number typed without the "+" without the "+"', () => {
+      expect(mask('353871234567')).toBe('353 87 123 4567')
+      expect(mask('353 87 123 4567')).toBe('353 87 123 4567')
+      expect(mask('35311234567')).toBe('353 1 123 4567')
+      expect(mask('353211234567')).toBe('353 21 123 4567')
+    })
+
+    it('keeps a number typed with the "+" with the "+"', () => {
+      expect(mask('+353871234567')).toBe('+353 87 123 4567')
+      expect(mask('+35311234567')).toBe('+353 1 123 4567')
+    })
+
+    it('leaves an incomplete number typed without the "+" untouched while typing', () => {
+      expect(mask('35387123')).toBe('35387123')
+    })
+
     // A non-conforming value is left untouched by mask/display — validate()
     // is what rejects it, so the shopper sees their own error input, not a
     // silently mangled one.
@@ -176,6 +218,12 @@ describe('IRL phone validation', () => {
     it('leaves a non-conforming value unchanged (validate() blocks it before submit)', () => {
       expect(submit('016613245')).toBe('016613245')
     })
+
+    // OMS-9648: the submitted value keeps the "+" as the shopper typed it
+    it('submits a number typed without the "+" without adding it', () => {
+      expect(submit('353 87 123 4567')).toBe('353871234567')
+      expect(submit('353871234567')).toBe('353871234567')
+    })
   })
 })
 
@@ -189,6 +237,7 @@ describe('IRL businessPhone', () => {
 
   it('shares the same validation as homePhone', () => {
     expect(validate('+353 87 123 4567')).toBe(true)
+    expect(validate('353 87 123 4567')).toBe(true)
     expect(validate('016613245')).toBe(false)
     expect(validate('abcxyz')).toBe(false)
   })

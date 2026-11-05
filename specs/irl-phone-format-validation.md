@@ -221,3 +221,27 @@ Field feedback after shipping the original version of this fix: shoppers were ab
 - **Given** a profile form with `homePhone` (or `businessPhone`) containing a value that does not match either confirmed IRL format (new or previously saved), **when** the shopper submits the form, **then** the field fails validation with `INVALID_FIELD`.
 - **Given** a profile form with `homePhone` (or `businessPhone`) empty, **when** the shopper submits the form, **then** the field fails validation with `EMPTY_FIELD`.
 - **Given** a profile form with `homePhone` (or `businessPhone`) containing `+353 87 123 4567` or `+353 1 123 4567` (or a reasonable spacing variant of either), **when** the shopper submits the form, **then** the field validates successfully.
+
+---
+
+## 5. Revision — 2026-10-27 (OMS-9648)
+
+### Context
+
+Zendesk ticket 1476975 (`dunnesstores`): shoppers typing the country code without the leading `+` (e.g. `353 5 555 5557`, as captured in the customer's Jam recording) were blocked with `INVALID_FIELD`, because both `IRL_MOBILE_REGEX` and `IRL_LANDLINE_REGEX` anchor on a literal `+353`. The merchant asked for the number to be accepted both with and without the `+`.
+
+### Decision 8: the `+` before the country code is optional
+
+- **Status**: Accepted
+- **Decision**: `IRL_MOBILE_REGEX` and `IRL_LANDLINE_REGEX` in `react/rules/IRL.js` now accept an optional leading `+` (`^\+?353…`). `normalize()` only strips spaces and dashes; it does **not** add or remove the `+`. `validate`/`mask`/`display`/`submit` preserve whatever the shopper typed.
+- **Why it is safe**: no Irish area code starts with `3` (area codes are `01`, `02x`, `04x`, `05x`, `06x`, `07x`, `09x`), so a bare `353…` can only be the country code — there is no overlap with a national number.
+- **Consequences**:
+  - `+353 87 123 4567` and `353 87 123 4567` both validate, with the same digit rules.
+  - The mask only groups the digits and keeps the prefix as typed: `+353871234567` → `+353 87 123 4567`; `353871234567` → `353 87 123 4567`.
+  - The submitted value is the typed number without spaces, with the `+` preserved or absent as typed (`+353871234567` or `353871234567`). Master Data may therefore receive either form.
+  - **Out of scope (not requested)**: national format with the trunk `0` (`087 123 4567`) and the `00353` international prefix are still rejected.
+
+### Updated Acceptance Criteria
+
+- **Given** `homePhone`/`businessPhone` containing a conforming number typed **without** the `+` (e.g. `353 5 555 5557`), **when** the shopper submits the form, **then** the field validates successfully and the value is displayed and stored as typed, without the `+` being added (`35355555557`).
+- Every criterion from §4 still holds unchanged.
